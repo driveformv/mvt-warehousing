@@ -95,9 +95,10 @@ export function generateStaticParams() {
 }
 
 // Use a server component to avoid the params.id warning
-export default async function BlogPost({ params }: { params: { id: string } }) {
-  // Parse the ID from params - await the params.id to fix the Next.js 14 warning
-  const id = parseInt(params.id);
+export default async function BlogPost({ params }: { params: Promise<{ id: string }> }) {
+  // Parse the ID from params - await the params to fix the Next.js 15 warning
+  const resolvedParams = await params;
+  const id = parseInt(resolvedParams.id);
   
   // Get all blog posts
   const blogPosts = getBlogPosts();
