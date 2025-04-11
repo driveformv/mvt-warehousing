@@ -1,6 +1,6 @@
 "use client";
 
-import { Briefcase, CheckCircle, Clock, DollarSign, MapPin, Shield, Truck, User } from "lucide-react";
+import { Briefcase, CheckCircle, Clock, DollarSign, MapPin, Phone, Shield, Truck, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -387,16 +387,50 @@ export default function Careers() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-blue-900 text-white py-16 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Join Our Team?</h2>
-          <p className="text-xl mb-8">Apply today and take the first step toward a rewarding career with MVT Warehousing.</p>
-          <a 
-            href="#apply-now"
-            className="bg-white text-blue-900 hover:bg-gray-100 px-8 py-3 rounded-md text-lg font-semibold transition-colors inline-block"
-          >
-            Apply Now
-          </a>
+      <section className="bg-mvt-blue text-white py-20 md:py-24 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full">
+            <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <defs>
+                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+          </div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Join Our Team?</h2>
+            <p className="text-xl mb-10 text-white/80 max-w-2xl mx-auto">
+              Apply today and take the first step toward a rewarding career with MVT Warehousing.
+            </p>
+            
+            <div className="flex flex-col md:flex-row gap-6 justify-center mb-12">
+              <a 
+                href="#apply-now"
+                className="btn bg-white text-mvt-blue hover:bg-gray-100 btn-lg group inline-flex items-center justify-center"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <span>Apply Now</span>
+                <Briefcase className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </a>
+              
+              <Link 
+                href="/contact"
+                className="btn btn-outline border-white text-white hover:bg-white/10 btn-lg inline-flex items-center justify-center"
+                data-aos="fade-up"
+                data-aos-delay="300"
+              >
+                <Phone className="mr-2 h-5 w-5" />
+                <span>Contact Recruiting</span>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </main>

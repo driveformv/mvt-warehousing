@@ -109,30 +109,48 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* Newsletter Section - Using the original gray-900 color instead of blue-900 */}
-      <section className="bg-gray-900 text-white py-20 px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Subscribe to Our Newsletter</h2>
-          <p className="text-xl text-gray-300 mb-10">
-            Stay updated with the latest insights and news from the world of transportation and logistics
-          </p>
-          <form className="flex flex-col md:flex-row gap-4 max-w-xl mx-auto">
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="flex-grow px-4 py-3 rounded-md text-gray-900 focus:outline-none"
-              required
-            />
-            <button
-              type="submit"
-              className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md font-semibold transition-colors"
-            >
-              Subscribe
-            </button>
-          </form>
-          <p className="text-sm text-gray-400 mt-4">
-            We respect your privacy. Unsubscribe at any time.
-          </p>
+      {/* Newsletter Section */}
+      <section className="bg-mvt-blue text-white py-20 md:py-24 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full">
+            <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <defs>
+                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+          </div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Subscribe to Our Newsletter</h2>
+            <p className="text-xl mb-10 text-white/80 max-w-2xl mx-auto">
+              Stay updated with the latest insights and news from the world of transportation and logistics
+            </p>
+            
+            <form className="flex flex-col md:flex-row gap-4 max-w-xl mx-auto mb-6" data-aos="fade-up" data-aos-delay="200">
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="flex-grow px-4 py-3 rounded-md text-gray-900 focus:outline-none"
+                required
+              />
+              <button
+                type="submit"
+                className="bg-white text-mvt-blue hover:bg-gray-100 px-6 py-3 rounded-md font-semibold transition-colors"
+              >
+                Subscribe
+              </button>
+            </form>
+            
+            <p className="text-sm text-white/60 mt-4" data-aos="fade-up" data-aos-delay="300">
+              We respect your privacy. Unsubscribe at any time.
+            </p>
+          </div>
         </div>
       </section>
     </main>
