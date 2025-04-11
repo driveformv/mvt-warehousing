@@ -1,8 +1,17 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 
 export async function POST(request: Request) {
   try {
+    // Check if Supabase is configured
+    if (!isSupabaseConfigured() || !supabase) {
+      console.error('Supabase is not configured');
+      return NextResponse.json(
+        { error: 'Database connection not available' },
+        { status: 503 }
+      );
+    }
+    
     const body = await request.json();
     
     // Validate required fields
@@ -54,6 +63,15 @@ export async function POST(request: Request) {
 
 export async function GET(request: Request) {
   try {
+    // Check if Supabase is configured
+    if (!isSupabaseConfigured() || !supabase) {
+      console.error('Supabase is not configured');
+      return NextResponse.json(
+        { error: 'Database connection not available' },
+        { status: 503 }
+      );
+    }
+    
     // This endpoint would typically be protected
     // Get all contact submissions
     const { data, error } = await supabase
@@ -75,6 +93,15 @@ export async function GET(request: Request) {
 
 export async function PUT(request: Request) {
   try {
+    // Check if Supabase is configured
+    if (!isSupabaseConfigured() || !supabase) {
+      console.error('Supabase is not configured');
+      return NextResponse.json(
+        { error: 'Database connection not available' },
+        { status: 503 }
+      );
+    }
+    
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
     

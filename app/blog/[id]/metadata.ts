@@ -1,9 +1,18 @@
 import { Metadata } from 'next';
 import { seoToMetadata } from '@/lib/get-seo-metadata';
-import { supabase } from '@/lib/supabase';
+import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   try {
+    // Check if Supabase is configured
+    if (!isSupabaseConfigured() || !supabase) {
+      console.warn('Supabase is not configured, using default metadata');
+      return {
+        title: 'Blog Post | MVT Warehousing',
+        description: 'MVT Warehousing blog post'
+      };
+    }
+    
     // Fetch the blog post
     const { data, error } = await supabase
       .from('blog_posts')

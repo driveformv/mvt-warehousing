@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 // Import supabase client for client component
-import { supabase as supabaseClient } from '@/lib/supabase';
+import { supabase as supabaseClient, isSupabaseConfigured } from '@/lib/supabase';
 
 // Define the blog post type
 interface BlogPost {
@@ -37,6 +37,13 @@ export default function BlogPostClient({ postId }: { postId: string }) {
     
     async function fetchBlogPost() {
       try {
+        // Check if Supabase is configured
+        if (!isSupabaseConfigured() || !supabaseClient) {
+          setError('Database connection not available');
+          setLoading(false);
+          return;
+        }
+        
         const id = parseInt(postId);
         
         // Fetch the blog post
@@ -122,6 +129,11 @@ export default function BlogPostClient({ postId }: { postId: string }) {
     
     async function fetchRelatedPosts(currentPostId: number, category: string) {
       try {
+        // Check if Supabase is configured
+        if (!isSupabaseConfigured() || !supabaseClient) {
+          return;
+        }
+        
         // First try to get posts with the same category
         let { data, error } = await supabaseClient
           .from('blog_posts')

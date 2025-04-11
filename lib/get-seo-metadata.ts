@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { supabase } from './supabase';
+import { supabase, isSupabaseConfigured } from './supabase';
 
 // Define the SEO metadata type
 export interface SEOMetadata {
@@ -10,9 +10,25 @@ export interface SEOMetadata {
   path: string;
 }
 
+// Default metadata to use when Supabase is not available
+const defaultMetadata: Omit<SEOMetadata, 'path'> = {
+  title: 'MVT Warehousing',
+  description: 'MVT Warehousing provides logistics and warehousing solutions',
+  keywords: ['warehousing', 'logistics', 'transportation']
+};
+
 // Fetch SEO metadata from Supabase
 export async function getSEOMetadata(path: string): Promise<SEOMetadata> {
   try {
+    // Check if Supabase is configured
+    if (!isSupabaseConfigured() || !supabase) {
+      console.warn('Supabase is not configured, using default metadata');
+      return {
+        ...defaultMetadata,
+        path
+      };
+    }
+    
     // Query the seo_metadata table
     const { data, error } = await supabase
       .from('seo_metadata')
@@ -24,10 +40,8 @@ export async function getSEOMetadata(path: string): Promise<SEOMetadata> {
       // If no metadata found for this path, return default
       if (error.code === 'PGRST116') {
         return {
-          title: 'MVT Warehousing',
-          description: 'MVT Warehousing provides logistics and warehousing solutions',
-          keywords: ['warehousing', 'logistics', 'transportation'],
-          path: path
+          ...defaultMetadata,
+          path
         };
       }
       
@@ -47,10 +61,8 @@ export async function getSEOMetadata(path: string): Promise<SEOMetadata> {
     
     // Return default metadata on error
     return {
-      title: 'MVT Warehousing',
-      description: 'MVT Warehousing provides logistics and warehousing solutions',
-      keywords: ['warehousing', 'logistics', 'transportation'],
-      path: path
+      ...defaultMetadata,
+      path
     };
   }
 }
