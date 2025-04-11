@@ -1,48 +1,103 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 export default function HeroSection() {
+  // Initialize to false for SSR consistency
   const [isLoaded, setIsLoaded] = useState(false);
+  const [api, setApi] = useState<CarouselApi>();
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  
+  const warehouseImages = [
+    {
+      src: "/images/warehouse1.jpg",
+      alt: "MVT Warehouse"
+    },
+    {
+      src: "/images/WIDE_0034-Pano.jpg",
+      alt: "MVT Warehousing Facility"
+    },
+    {
+      src: "/images/DJI_20240104112814_0140_D.jpg",
+      alt: "MVT Logistics Services"
+    },
+    {
+      src: "/images/IMG_2575.jpg",
+      alt: "MVT Warehousing Services"
+    }
+  ];
 
   useEffect(() => {
-    setIsLoaded(true);
+    // Only run on the client side to avoid hydration issues
+    if (typeof window !== 'undefined') {
+      setIsLoaded(true);
+    }
   }, []);
+
+  // Set up auto-rotation for the carousel
+  useEffect(() => {
+    // Only run on the client side to avoid hydration issues
+    if (typeof window === 'undefined' || !api) return;
+    
+    // Start auto-rotation
+    intervalRef.current = setInterval(() => {
+      api.scrollNext();
+    }, 5000); // Change slide every 5 seconds
+    
+    // Clean up interval on component unmount
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [api]);
 
   return (
     <section className="relative h-[700px] overflow-hidden">
-      {/* Background Image with Parallax Effect */}
+      {/* Background Image Carousel */}
       <div className="absolute inset-0 transition-transform duration-[2000ms] ease-out"
-        style={{ transform: `translateY(${isLoaded ? '0' : '20px'})` }}
+        style={{ transform: isLoaded ? 'translateY(0)' : 'translateY(20px)' }}
       >
-        <Image
-          src="/images/IMG_3533-1.jpg"
-          alt="MVT Warehousing Hero"
-          fill
-          className="object-cover brightness-50 transition-all duration-1000 ease-out scale-[1.03]"
-          style={{ 
-            transform: `scale(${isLoaded ? 1 : 1.1})`,
-            opacity: isLoaded ? 1 : 0.7
-          }}
-          priority
-        />
+        <Carousel className="w-full h-full" opts={{ loop: true }} setApi={setApi}>
+          <CarouselContent className="h-full" style={{ height: '700px' }}>
+            {warehouseImages.map((image, index) => (
+              <CarouselItem key={index} className="h-full w-full">
+                <div className="relative w-full h-full" style={{ height: '700px' }}>
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover brightness-50 transition-all duration-1000 ease-out scale-[1.03]"
+                    style={{ 
+                      transform: isLoaded ? 'scale(1)' : 'scale(1.1)',
+                      opacity: isLoaded ? 1 : 0.7
+                    }}
+                    priority={index === 0}
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-4 z-10" />
+          <CarouselNext className="right-4 z-10" />
+        </Carousel>
       </div>
 
       {/* Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4">
         <div className="max-w-4xl mx-auto text-center">
           {/* Staggered Animation for Text Elements */}
-          <h1 
-            className="text-4xl md:text-6xl font-bold mb-6 opacity-0"
-            data-aos="fade-up"
-            data-aos-delay="200"
-            data-aos-duration="1000"
-          >
-            MVT Warehousing
-          </h1>
           
           <p 
             className="text-xl md:text-2xl mb-6 opacity-0"
@@ -68,7 +123,7 @@ export default function HeroSection() {
             data-aos-delay="800"
             data-aos-duration="1000"
           >
-            Stagecoach Cartage and Distribution, LLC is an integrated company that provides a full range of transportation and warehousing services.
+            MVT Warehousing is an integrated company that provides a full range of transportation and warehousing services.
           </p>
           
           {/* CTA Buttons */}
