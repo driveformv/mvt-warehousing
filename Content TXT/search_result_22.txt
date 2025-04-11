@@ -1,0 +1,24 @@
+Title: Stagecoach Cartage & Distribution, LP
+
+URL Source: https://mobile.stagecoachcartage.com/Instructions/InstallOSx.htm
+
+Markdown Content:
+	Stagecoach Application Instructions
+ Mac OSx™
+
+Installing Stagecoach App
+Version: 1.2
+Instructions Updated: 03/08/2012
+
+Instuctions for Apple OSx™
+
+
+Step 1:	First Download the installation files from the previous page.   Note: The file cannot be opened from the safari downloads window.
+	
+Step 2:	Navigate to your downloads folder and open the "Stagecoach_DriverApp.air" file.
+	    
+Step 3:	An install wizard will pop-up asking if you would like to install the application. Click on the "Install" button.
+	
+Step 4:	The next window will ask for an installation location. You may change the location if you prefer a different destination, if you do not want to change the install location, click the "Continue" button.
+	
+All Done:	Congratulations, you've finished the installation for the Stagecoach Driver App. All you need to do now, is log in.

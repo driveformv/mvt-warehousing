@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 13% 19%; /* MVT text color: #2D3142 */
+    --card: 0 0% 100%;
+    --card-foreground: 222 13% 19%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 13% 19%;
+    --primary: 219 67% 15%; /* MVT blue: #0A2342 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 358 68% 54%; /* MVT red: #D64045 */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 25% 45.1%;
+    --accent: 210 45% 47%; /* MVT lightBlue: #4A7AA8 */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 95%; /* MVT light: #F2F2F2 */
+    --input: 0 0% 95%;
+    --ring: 219 67% 15%;
+    --chart-1: 219 67% 15%; /* MVT blue */
+    --chart-2: 358 68% 54%; /* MVT red */
+    --chart-3: 210 45% 47%; /* MVT lightBlue */
+    --chart-4: 0 0% 95%; /* MVT light */
+    --chart-5: 222 13% 19%; /* MVT text */
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 219 67% 15%; /* MVT blue: #0A2342 */
+    --foreground: 0 0% 100%;
+    --card: 219 67% 15%;
+    --card-foreground: 0 0% 100%;
+    --popover: 219 67% 15%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 210 45% 47%; /* MVT lightBlue: #4A7AA8 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 358 68% 54%; /* MVT red: #D64045 */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 219 30% 25%;
+    --muted-foreground: 210 20% 70%;
+    --accent: 358 68% 54%; /* MVT red */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 219 30% 25%;
+    --input: 219 30% 25%;
+    --ring: 210 45% 47%;
+    --chart-1: 210 45% 47%; /* MVT lightBlue */
+    --chart-2: 358 68% 54%; /* MVT red */
+    --chart-3: 0 0% 95%; /* MVT light */
+    --chart-4: 219 67% 15%; /* MVT blue */
+    --chart-5: 222 13% 19%; /* MVT text */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom aspect ratio utilities for video embeds */
+@layer utilities {
+  .aspect-w-16 {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  }
+  
+  .aspect-h-9 {
+    position: relative;
+  }
+  
+  .aspect-w-16 iframe,
+  .aspect-h-9 iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

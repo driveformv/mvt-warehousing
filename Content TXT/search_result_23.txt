@@ -1,0 +1,28 @@
+Title: Stagecoach Cartage & Distribution, LP
+
+URL Source: https://mobile.stagecoachcartage.com/Instructions/InstallAndroid.htm
+
+Markdown Content:
+	Stagecoach Application Instructions
+ Android™
+
+Installing Stagecoach App
+Version: 1.2
+Instructions Updated: 03/08/2012
+
+Instuctions for Android™
+
+
+Step 1:	First Download the installation files from the previous page.
+	
+Step 2:	Once the download has started, an icon will appear in your phones notification tray.
+	
+Step 3:	When the download has finished, slide down the tray and click on the Stagecoach_App-1.apk icon.
+
+	
+	OPTIONAL:
+If your settings prevent Installation from "Unknown sources" a pop-up will appear. Click the "Settings" button. A checkbox labeled "Unknown Sources" will bedisplayed. Check this checkbox then repeat step 3.
+	  
+Step 4:	Next click on "Install"
+	
+All Done:	The application has been installed. You may click on "Open" or "Done" if you do not want to immediately use the application.

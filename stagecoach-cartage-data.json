@@ -1,0 +1,88 @@
+{
+  "home": {
+    "title": "Premium Integrated Logistics Services",
+    "tagline": "We make it work",
+    "description": "MVT Warehousing is an integrated company that provides a full range of transportation and warehousing services.",
+    "mainImage": "/images/IMG_3533-1.jpg",
+    "services": [
+      {
+        "title": "Full Truckload Transportation",
+        "description": "We are a bonded (US Customs) carrier providing both solo and team driver service. All tractors and trailers are equipped with satellite tracking and on demand location reporting. Your freight will be delivered safely and on-time by one of our great drivers.",
+        "image": "/images/warehouse1.jpg",
+        "link": "/contact-us/"
+      },
+      {
+        "title": "Warehouse and Distribution",
+        "description": "With over 550,000 square feet of space, MVT Warehousing has a strong commitment to warehousing on the border providing contract and public warehousing with complete account management. Our facilities are rail served with access to both UPRR and BNSF.",
+        "image": "/images/Tanker.jpg",
+        "link": "/warehouse/"
+      },
+      {
+        "title": "Bulk Transfer / Packaging",
+        "description": "With more than 30 years of experience in the industry, MVT Warehousing can unload from railcar or ocean containers and deliver to the customer silo or box. As the first US carrier to be granted authority to operate in Mexico under NAFTA, we can provide services at any point in Mexico with our own assets. Receiving railcar capacity of 100+ cars.",
+        "image": "/images/4-1.jpg",
+        "link": "/contact-us/"
+      }
+    ],
+    "moreServices": [
+      {
+        "title": "Intermodal",
+        "description": "With 20+ years of experience, we specialize in moving intermodal boxes on the Texas / Mexico border and have extensive experience with TOFC and COFC equipment.",
+        "link": "/contact-us/"
+      },
+      {
+        "title": "Local Cartage",
+        "description": "MVT Warehousing offers comprehensive local cartage services at all of our border locations. Our program designs are flexible and can be customized to fit your individual needs.",
+        "link": "/contact-us/"
+      },
+      {
+        "title": "Transloading",
+        "description": "With 45+ lift trucks ranging from 5,000 lbs. to 55,000 lbs. and a wide variety of truck attachments we can virtually transload almost any commodity. Trailer to trailer, trailer to railcar, railcar to trailer.",
+        "link": "/contact-us/"
+      },
+      {
+        "title": "Bonded Warehouse",
+        "description": "Our secured and monitored US Customs bonded warehouse allows you to import dutiable merchandise to be stored, manipulated in our facility without payment of duty.",
+        "link": "/warehouse/"
+      },
+      {
+        "title": "LTL Less Than Truck Load",
+        "description": "Our \"Border Express\" LTL service will carry your goods with next-business-day delivery from El Paso to Del Rio, Eagle Pass, and Laredo, TX.",
+        "link": "/contact-us/"
+      }
+    ],
+    "about": {
+      "title": "About Us",
+      "description": "Based in El Paso, TX, and established in 1986 MVT Warehousing has always been passionate about the trucking and warehousing industry, providing excellent service and building long-term relationships with our customers. Our drivers and personnel have been pivotal in achieving such success. After 36 years of operating in the commercial zone between Mexico and the US, we are your #1 trucking and warehousing strategic partner."
+    },
+    "teamImages": [
+      "/images/4-1.jpg",
+      "/images/1.jpg",
+      "/images/1-1.jpg",
+      "/images/7.jpg",
+      "/images/3-1.jpg",
+      "/images/2-1.jpg",
+      "/images/2.jpg",
+      "/images/6.jpg",
+      "/images/3.jpg",
+      "/images/5.jpg",
+      "/images/4.jpg"
+    ],
+    "partnerImages": [
+      "/images/1-2.jpg",
+      "/images/2-2.jpg",
+      "/images/3-2.jpg",
+      "/images/4-2.jpg",
+      "/images/4-5.jpg"
+    ],
+    "contact": {
+      "phone": "(800) 327-1204",
+      "locations": [
+        "7167 Chino Drive. El Paso, TX 79915",
+        "195 Frontera Rd. Del Rio, TX 78840",
+        "8900 San Gabriel Dr. Laredo, TX 78045"
+      ],
+      "email": "sales@mvtwarehousing.com"
+    }
+  }
+}
