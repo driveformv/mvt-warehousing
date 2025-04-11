@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import AboutClient from "./about-client";
+import { generateMetadata } from "./metadata";
 
 export const metadata = {
   title: "About Us | MVT Warehousing",

@@ -29,20 +29,24 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className={`${inter.className} antialiased`}>
-        <AnalyticsProvider>
-          <AOSProvider>
-            <Suspense fallback={<div className="fixed top-0 left-0 right-0 h-32 bg-white"></div>}>
-              <LoginSection />
-              <MainNav />
-            </Suspense>
-            
-            <main className="min-h-screen pt-32">
-              {children}
-            </main>
-            
-            <Footer />
-          </AOSProvider>
-        </AnalyticsProvider>
+        <Suspense fallback={<>Loading analytics...</>}>
+          <AnalyticsProvider>
+            <AOSProvider>
+              <Suspense fallback={<div className="fixed top-0 left-0 right-0 h-32 bg-white"></div>}>
+                <LoginSection />
+                <MainNav />
+              </Suspense>
+              
+              <main className="min-h-screen pt-32">
+                <Suspense fallback={<div>Loading...</div>}>
+                  {children}
+                </Suspense>
+              </main>
+              
+              <Footer />
+            </AOSProvider>
+          </AnalyticsProvider>
+        </Suspense>
       </body>
     </html>
   );
