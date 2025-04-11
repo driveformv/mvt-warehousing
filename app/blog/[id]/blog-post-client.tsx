@@ -1,200 +1,197 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Calendar, Tag, ArrowLeft } from 'lucide-react';
-import Image from 'next/image';
+import { Calendar, Tag, ArrowLeft, Share2, Youtube } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-// Import supabase client for client component
-import { supabase as supabaseClient, isSupabaseConfigured } from '@/lib/supabase';
 
 // Define the blog post type
 interface BlogPost {
   id: number;
   title: string;
-  excerpt: string;
+  excerpt?: string;
   content: string;
-  published_date: string;
-  date: string;
-  category: string;
-  tags: string[];
-  video_id: string;
-  seo_title?: string;
-  seo_description?: string;
-  seo_keywords?: string[];
+  published_date?: string;
+  publishedDate?: string;
+  date?: string;
+  category?: string;
+  categories?: string[];
+  tags?: string[];
+  hashtags?: string[];
+  video_id?: string;
+  videoId?: string;
 }
 
-export default function BlogPostClient({ postId }: { postId: string }) {
-  const router = useRouter();
+export default function BlogPostClient({ id }: { id: string }) {
   const [post, setPost] = useState<BlogPost | null>(null);
-  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
   
-  // Fetch the blog post when the post ID changes
+  // Fetch blog post when the component mounts
   useEffect(() => {
-    if (!postId) return;
-    
     async function fetchBlogPost() {
       try {
-        // Check if Supabase is configured
-        if (!isSupabaseConfigured() || !supabaseClient) {
-          setError('Database connection not available');
+        setLoading(true);
+        
+        // Fetch blog post from the API
+        const res = await fetch(`/api/blog?id=${id}`, {
+          cache: 'no-store'
+        });
+        
+        if (!res.ok) {
+          throw new Error('Failed to fetch blog post');
+        }
+        
+        const data = await res.json();
+        
+        if (!data) {
+          setError('Blog post not found.');
           setLoading(false);
           return;
         }
         
-        const id = parseInt(postId);
-        
-        // Fetch the blog post
-        const { data, error } = await supabaseClient
-          .from('blog_posts')
-          .select('*')
-          .eq('id', id)
-          .single();
-        
-        if (error) {
-          console.error('Error fetching blog post:', error);
-          setError('Failed to load blog post. Please try again later.');
-          return;
-        }
-        
-        if (!data) {
-          router.push('/blog');
-          return;
-        }
-        
         // Format the date
-        const date = new Date(data.published_date);
-        const formattedDate = date.toLocaleDateString('en-US', {
-          month: 'long',
-          day: 'numeric',
-          year: 'numeric'
-        });
+        const dateStr = data.published_date || data.publishedDate;
+        let formattedDate = '';
         
-        // Create excerpt from content if not provided
-        const excerpt = data.excerpt || (data.content.length > 150
-          ? data.content.substring(0, 150) + '...'
-          : data.content);
+        if (dateStr) {
+          try {
+            const date = new Date(dateStr);
+            formattedDate = date.toLocaleDateString('en-US', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric'
+            });
+          } catch (e) {
+            console.error('Error formatting date:', e);
+            formattedDate = dateStr;
+          }
+        }
         
-        // Generate HTML content with embedded video
-        const htmlContent = `
-          <p>${data.content}</p>
-          
-          ${data.video_id ? `
-          <div class="aspect-w-16 aspect-h-9 my-6">
-            <iframe
-              src="https://www.youtube.com/embed/${data.video_id}"
-              title="${data.title}"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              class="w-full h-full rounded-lg"
-            ></iframe>
-          </div>
-          ` : ''}
-          
-          <p>Learn more about our services at MVT Warehousing by visiting our website or contacting us directly.</p>
-        `;
+        // Ensure tags is an array
+        let tags = data.tags || data.hashtags || ['Transportation', 'Logistics'];
+        if (!Array.isArray(tags)) {
+          tags = [tags];
+        }
         
-        // Process tags
-        const tags = data.tags || ['Transportation', 'Logistics'];
+        // Get category from categories array if available
+        const category = data.category || 
+          (data.categories && data.categories.length > 0 ? data.categories[0] : 'General');
         
         const processedPost = {
           id: data.id,
           title: data.title,
-          excerpt: excerpt,
-          content: htmlContent,
-          published_date: data.published_date,
+          excerpt: data.excerpt || '',
+          content: data.content,
+          published_date: data.published_date || data.publishedDate,
           date: formattedDate,
-          category: data.category || 'General',
+          category: category,
           tags: tags,
-          video_id: data.video_id || '',
-          seo_title: data.seo_title,
-          seo_description: data.seo_description,
-          seo_keywords: data.seo_keywords
+          video_id: data.video_id || data.videoId
         };
         
         setPost(processedPost);
         
-        // Fetch related posts
-        fetchRelatedPosts(data.id, data.category || 'General');
+        // Fetch related posts (posts with the same category)
+        fetchRelatedPosts(processedPost.category);
+        
+        setLoading(false);
       } catch (err) {
         console.error('Error in fetchBlogPost:', err);
         setError('An error occurred while loading the blog post.');
-      } finally {
         setLoading(false);
       }
     }
     
-    async function fetchRelatedPosts(currentPostId: number, category: string) {
+    async function fetchRelatedPosts(category: string) {
       try {
-        // Check if Supabase is configured
-        if (!isSupabaseConfigured() || !supabaseClient) {
+        const res = await fetch('/api/blog', {
+          cache: 'no-store'
+        });
+        
+        if (!res.ok) {
+          throw new Error('Failed to fetch related posts');
+        }
+        
+        const data = await res.json();
+        
+        if (!data || data.length === 0) {
           return;
         }
         
-        // First try to get posts with the same category
-        let { data, error } = await supabaseClient
-          .from('blog_posts')
-          .select('*')
-          .eq('category', category)
-          .neq('id', currentPostId)
-          .order('published_date', { ascending: false })
-          .limit(3);
+        // Filter posts by category and exclude the current post
+        const filtered = data
+          .filter((p: any) => {
+            const postCategory = p.category || 
+              (p.categories && p.categories.length > 0 ? p.categories[0] : 'General');
+            return postCategory === category && p.id.toString() !== id;
+          })
+          .slice(0, 3);
         
-        if (error) throw error;
-        
-        // If we don't have enough related posts, get the most recent posts
-        if (!data || data.length < 3) {
-          const { data: recentPosts, error: recentError } = await supabaseClient
-            .from('blog_posts')
-            .select('*')
-            .neq('id', currentPostId)
-            .order('published_date', { ascending: false })
-            .limit(3 - (data?.length || 0));
-          
-          if (recentError) throw recentError;
-          
-          data = [...(data || []), ...(recentPosts || [])];
-        }
-        
-        // Process the posts
-        const processedPosts = data.map(post => {
+        // Process the related posts
+        const processed = filtered.map((post: any) => {
           // Format the date
-          const date = new Date(post.published_date);
-          const formattedDate = date.toLocaleDateString('en-US', {
-            month: 'long',
-            day: 'numeric',
-            year: 'numeric'
-          });
+          const dateStr = post.published_date || post.publishedDate;
+          let formattedDate = '';
+          
+          if (dateStr) {
+            try {
+              const date = new Date(dateStr);
+              formattedDate = date.toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric'
+              });
+            } catch (e) {
+              console.error('Error formatting date:', e);
+              formattedDate = dateStr;
+            }
+          }
           
           // Create excerpt from content if not provided
-          const excerpt = post.excerpt || (post.content.length > 150
+          const excerpt = post.excerpt || (post.content && post.content.length > 150
             ? post.content.substring(0, 150) + '...'
             : post.content);
+          
+          // Ensure tags is an array
+          let tags = post.tags || post.hashtags || ['Transportation', 'Logistics'];
+          if (!Array.isArray(tags)) {
+            tags = [tags];
+          }
+          
+          // Get category from categories array if available
+          const category = post.category || 
+            (post.categories && post.categories.length > 0 ? post.categories[0] : 'General');
           
           return {
             id: post.id,
             title: post.title,
             excerpt: excerpt,
             content: post.content,
-            published_date: post.published_date,
+            published_date: post.published_date || post.publishedDate,
             date: formattedDate,
-            category: post.category || 'General',
-            tags: post.tags || ['Transportation', 'Logistics'],
-            video_id: post.video_id || ''
+            category: category,
+            tags: tags,
+            video_id: post.video_id || post.videoId
           };
         });
         
-        setRelatedPosts(processedPosts);
-      } catch (error) {
-        console.error('Error fetching related posts:', error);
+        setRelatedPosts(processed);
+      } catch (err) {
+        console.error('Error in fetchRelatedPosts:', err);
       }
     }
     
     fetchBlogPost();
-  }, [postId, router]);
+  }, [id]);
+  
+  // Format content with paragraphs
+  const formatContent = (content: string) => {
+    return content.split('\n').map((paragraph, index) => {
+      if (paragraph.trim() === '') return null;
+      return <p key={index} className="mb-4">{paragraph}</p>;
+    });
+  };
   
   if (loading) {
     return (
@@ -207,10 +204,11 @@ export default function BlogPostClient({ postId }: { postId: string }) {
   if (error || !post) {
     return (
       <div className="max-w-4xl mx-auto py-16 px-4 text-center">
-        <h1 className="text-3xl font-bold mb-6">Error Loading Blog Post</h1>
-        <p className="text-gray-600 mb-8">{error || 'The requested blog post could not be found.'}</p>
-        <Link href="/blog" className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors">
-          Return to Blog
+        <h1 className="text-3xl font-bold mb-6">Blog Post</h1>
+        <p className="text-gray-600 mb-8">{error || 'This blog post is currently unavailable.'}</p>
+        <Link href="/blog" className="text-blue-600 hover:text-blue-800 font-semibold inline-flex items-center">
+          <ArrowLeft size={16} className="mr-2" />
+          Back to Blog
         </Link>
       </div>
     );
@@ -219,67 +217,156 @@ export default function BlogPostClient({ postId }: { postId: string }) {
   return (
     <main>
       {/* Hero Section */}
-      <section className="relative h-[400px]">
+      <section className="relative h-[300px]">
         <div className="absolute inset-0 bg-gray-900"></div>
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Tag size={18} />
-              <span className="text-lg">{post.category}</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
-            <div className="flex flex-wrap items-center justify-center gap-6 text-sm md:text-base">
-              <div className="flex items-center gap-2">
-                <Calendar size={18} />
-                <span>{post.date}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Content */}
-      <section className="py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <Link href="/blog" className="flex items-center gap-2 text-blue-600 hover:text-blue-800 mb-8">
-            <ArrowLeft size={20} />
-            <span>Back to all posts</span>
-          </Link>
-          
-          <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
-          
-          <div className="mt-12 pt-8 border-t">
-            <h3 className="text-xl font-bold mb-4">Tags</h3>
-            <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
-                <span key={tag} className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
-                  {tag}
-                </span>
-              ))}
+            <h1 className="text-3xl md:text-4xl font-bold mb-6">{post.title}</h1>
+            <div className="flex flex-wrap justify-center items-center gap-4 text-white/80">
+              {post.date && (
+                <div className="flex items-center">
+                  <Calendar size={16} className="mr-1" />
+                  <span>{post.date}</span>
+                </div>
+              )}
+              {post.category && (
+                <div className="flex items-center">
+                  <Tag size={16} className="mr-1" />
+                  <span>{post.category}</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </section>
       
-      {/* Related Posts */}
-      <section className="bg-gray-50 py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10 text-center">Related Posts</h2>
-          {relatedPosts.length > 0 ? (
-            <div className="grid md:grid-cols-3 gap-8">
+      {/* Blog Post Content */}
+      <section className="py-16 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex justify-between items-center mb-8">
+            <Link href="/blog" className="text-blue-600 hover:text-blue-800 font-semibold inline-flex items-center">
+              <ArrowLeft size={16} className="mr-2" />
+              Back to Blog
+            </Link>
+            <button 
+              onClick={() => {
+                if (typeof navigator !== 'undefined') {
+                  if (navigator.share) {
+                    navigator.share({
+                      title: post.title,
+                      text: post.excerpt,
+                      url: window.location.href,
+                    }).catch(err => {
+                      console.error('Error sharing:', err);
+                      if (navigator.clipboard) {
+                        navigator.clipboard.writeText(window.location.href);
+                        alert('Link copied to clipboard!');
+                      }
+                    });
+                  } else if (navigator.clipboard) {
+                    navigator.clipboard.writeText(window.location.href);
+                    alert('Link copied to clipboard!');
+                  }
+                }
+              }}
+              className="text-gray-600 hover:text-gray-800 inline-flex items-center"
+            >
+              <Share2 size={16} className="mr-2" />
+              Share
+            </button>
+          </div>
+          
+          {/* Tags */}
+          {post.tags && post.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-8">
+              {post.tags.map((tag, index) => (
+                <span key={index} className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+          
+          {/* YouTube Video (if available) */}
+          {post.video_id && (
+            <div className="mb-8">
+              <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg">
+                <iframe 
+                  src={`https://www.youtube.com/embed/${post.video_id}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute top-0 left-0 w-full h-full"
+                ></iframe>
+              </div>
+            </div>
+          )}
+          
+          {/* Content */}
+          <div className="prose prose-lg max-w-none">
+            {formatContent(post.content)}
+          </div>
+          
+          {/* Share Button (Bottom) */}
+          <div className="mt-12 flex justify-center">
+            <button 
+              onClick={() => {
+                if (typeof navigator !== 'undefined') {
+                  if (navigator.share) {
+                    navigator.share({
+                      title: post.title,
+                      text: post.excerpt,
+                      url: window.location.href,
+                    }).catch(err => {
+                      console.error('Error sharing:', err);
+                      if (navigator.clipboard) {
+                        navigator.clipboard.writeText(window.location.href);
+                        alert('Link copied to clipboard!');
+                      }
+                    });
+                  } else if (navigator.clipboard) {
+                    navigator.clipboard.writeText(window.location.href);
+                    alert('Link copied to clipboard!');
+                  }
+                }
+              }}
+              className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-3 rounded-md font-semibold inline-flex items-center transition-colors"
+            >
+              <Share2 size={18} className="mr-2" />
+              Share This Article
+            </button>
+          </div>
+        </div>
+      </section>
+      
+      {/* Related Posts Section */}
+      {relatedPosts.length > 0 && (
+        <section className="py-16 px-4 bg-gray-50">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-bold mb-12 text-center">Related Posts</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {relatedPosts.map((relatedPost) => (
-                <div key={relatedPost.id} className="bg-white rounded-xl shadow-md overflow-hidden">
+                <div key={relatedPost.id} className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow">
                   <div className="p-6">
-                    <div className="flex items-center gap-2 text-sm text-blue-600 mb-3">
-                      <Tag size={16} />
-                      <span>{relatedPost.category}</span>
-                    </div>
-                    <h3 className="text-xl font-bold mb-3">
+                    {relatedPost.category && (
+                      <div className="flex items-center gap-2 text-sm text-blue-600 mb-3">
+                        <Tag size={16} />
+                        <span>{relatedPost.category}</span>
+                      </div>
+                    )}
+                    <h3 className="text-xl font-bold mb-3 line-clamp-2">
                       <Link href={`/blog/${relatedPost.id}`} className="hover:text-blue-600 transition-colors">
                         {relatedPost.title}
                       </Link>
                     </h3>
-                    <p className="text-gray-600 mb-4 line-clamp-2">{relatedPost.excerpt}</p>
+                    {relatedPost.excerpt && (
+                      <p className="text-gray-600 mb-4 line-clamp-3">{relatedPost.excerpt}</p>
+                    )}
+                    {relatedPost.date && (
+                      <div className="flex items-center text-sm text-gray-500 mb-4">
+                        <Calendar size={16} className="mr-1" />
+                        <span>{relatedPost.date}</span>
+                      </div>
+                    )}
                     <Link 
                       href={`/blog/${relatedPost.id}`}
                       className="text-blue-600 hover:text-blue-800 font-semibold inline-flex items-center"
@@ -293,14 +380,12 @@ export default function BlogPostClient({ postId }: { postId: string }) {
                 </div>
               ))}
             </div>
-          ) : (
-            <p className="text-center text-gray-500">No related posts found</p>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
       
       {/* Newsletter Section */}
-      <section className="bg-mvt-blue text-white py-16 px-4">
+      <section className="bg-blue-600 text-white py-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6">Subscribe to Our Newsletter</h2>
           <p className="text-xl text-white/80 mb-8">
@@ -320,7 +405,7 @@ export default function BlogPostClient({ postId }: { postId: string }) {
             />
             <button
               type="submit"
-              className="bg-white text-mvt-blue hover:bg-gray-100 px-6 py-3 rounded-md font-semibold transition-colors"
+              className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-md font-semibold transition-colors"
             >
               Subscribe
             </button>

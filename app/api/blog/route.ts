@@ -1,41 +1,27 @@
 import { NextResponse } from 'next/server';
-import { supabase, isSupabaseConfigured } from '@/lib/supabase';
+import blogData from '@/stagecoach-blog-data.json';
 
 export async function GET(request: Request) {
   try {
-    // Check if Supabase is configured
-    if (!isSupabaseConfigured() || !supabase) {
-      console.error('Supabase is not configured');
-      return NextResponse.json(
-        { error: 'Database connection not available' },
-        { status: 503 }
-      );
-    }
-    
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
     
+    // Use local blog data
     if (id) {
       // Get a single blog post
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select('*')
-        .eq('id', id)
-        .single();
+      const post = blogData.blogPosts.find(post => post.id.toString() === id);
       
-      if (error) throw error;
+      if (!post) {
+        return NextResponse.json(
+          { error: 'Blog post not found' },
+          { status: 404 }
+        );
+      }
       
-      return NextResponse.json(data);
+      return NextResponse.json(post);
     } else {
       // Get all blog posts
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select('*')
-        .order('published_date', { ascending: false });
-      
-      if (error) throw error;
-      
-      return NextResponse.json(data);
+      return NextResponse.json(blogData.blogPosts);
     }
   } catch (error) {
     console.error('Error fetching blog posts:', error);
@@ -48,47 +34,10 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    // Check if Supabase is configured
-    if (!isSupabaseConfigured() || !supabase) {
-      console.error('Supabase is not configured');
-      return NextResponse.json(
-        { error: 'Database connection not available' },
-        { status: 503 }
-      );
-    }
-    
-    const body = await request.json();
-    
-    // Validate required fields
-    if (!body.title || !body.content || !body.slug) {
-      return NextResponse.json(
-        { error: 'Title, content, and slug are required' },
-        { status: 400 }
-      );
-    }
-    
-    // Create a new blog post
-    const { data, error } = await supabase
-      .from('blog_posts')
-      .insert([
-        {
-          title: body.title,
-          slug: body.slug,
-          content: body.content,
-          excerpt: body.excerpt,
-          category: body.category,
-          tags: body.tags,
-          video_id: body.videoId,
-          seo_title: body.seoTitle,
-          seo_description: body.seoDescription,
-          seo_keywords: body.seoKeywords
-        }
-      ])
-      .select();
-    
-    if (error) throw error;
-    
-    return NextResponse.json(data[0]);
+    return NextResponse.json(
+      { error: 'This API is currently in read-only mode' },
+      { status: 403 }
+    );
   } catch (error) {
     console.error('Error creating blog post:', error);
     return NextResponse.json(
@@ -100,49 +49,10 @@ export async function POST(request: Request) {
 
 export async function PUT(request: Request) {
   try {
-    // Check if Supabase is configured
-    if (!isSupabaseConfigured() || !supabase) {
-      console.error('Supabase is not configured');
-      return NextResponse.json(
-        { error: 'Database connection not available' },
-        { status: 503 }
-      );
-    }
-    
-    const { searchParams } = new URL(request.url);
-    const id = searchParams.get('id');
-    
-    if (!id) {
-      return NextResponse.json(
-        { error: 'Blog post ID is required' },
-        { status: 400 }
-      );
-    }
-    
-    const body = await request.json();
-    
-    // Update the blog post
-    const { data, error } = await supabase
-      .from('blog_posts')
-      .update({
-        title: body.title,
-        slug: body.slug,
-        content: body.content,
-        excerpt: body.excerpt,
-        category: body.category,
-        tags: body.tags,
-        video_id: body.videoId,
-        seo_title: body.seoTitle,
-        seo_description: body.seoDescription,
-        seo_keywords: body.seoKeywords,
-        updated_date: new Date()
-      })
-      .eq('id', id)
-      .select();
-    
-    if (error) throw error;
-    
-    return NextResponse.json(data[0]);
+    return NextResponse.json(
+      { error: 'This API is currently in read-only mode' },
+      { status: 403 }
+    );
   } catch (error) {
     console.error('Error updating blog post:', error);
     return NextResponse.json(
@@ -154,34 +64,10 @@ export async function PUT(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
-    // Check if Supabase is configured
-    if (!isSupabaseConfigured() || !supabase) {
-      console.error('Supabase is not configured');
-      return NextResponse.json(
-        { error: 'Database connection not available' },
-        { status: 503 }
-      );
-    }
-    
-    const { searchParams } = new URL(request.url);
-    const id = searchParams.get('id');
-    
-    if (!id) {
-      return NextResponse.json(
-        { error: 'Blog post ID is required' },
-        { status: 400 }
-      );
-    }
-    
-    // Delete the blog post
-    const { error } = await supabase
-      .from('blog_posts')
-      .delete()
-      .eq('id', id);
-    
-    if (error) throw error;
-    
-    return NextResponse.json({ success: true });
+    return NextResponse.json(
+      { error: 'This API is currently in read-only mode' },
+      { status: 403 }
+    );
   } catch (error) {
     console.error('Error deleting blog post:', error);
     return NextResponse.json(
