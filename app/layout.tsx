@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Suspense } from 'react';
+import { Analytics } from "@vercel/analytics/react";
 import MainNav from '@/components/layout/main-nav';
 import LoginSection from '@/components/layout/login-section';
 import Footer from '@/components/layout/footer';
@@ -47,6 +48,7 @@ export default function RootLayout({
             </AOSProvider>
           </AnalyticsProvider>
         </Suspense>
+        <Analytics />
       </body>
     </html>
   );
