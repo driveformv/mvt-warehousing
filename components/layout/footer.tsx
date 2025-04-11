@@ -140,11 +140,11 @@ export default function Footer() {
                   </svg>
                 </span>
                 <span>
-                  7167 Chino Drive.<br />
+                  7167 Chino Drive<br />
                   El Paso, TX 79915<br /><br />
-                  195 Frontera Rd.<br />
+                  195 Frontera Rd<br />
                   Del Rio, TX 78840<br /><br />
-                  8900 San Gabriel Dr.<br />
+                  8900 San Gabriel Dr<br />
                   Laredo, TX 78045
                 </span>
               </p>
