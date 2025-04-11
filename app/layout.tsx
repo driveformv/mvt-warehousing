@@ -2,8 +2,10 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import MainNav from '@/components/layout/main-nav';
+import LoginSection from '@/components/layout/login-section';
 import Footer from '@/components/layout/footer';
 import AOSProvider from '@/components/aos-provider';
+import AnalyticsProvider from '@/components/analytics-provider';
 
 // Import Inter with multiple weights for better typography hierarchy
 const inter = Inter({ 
@@ -26,15 +28,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className={`${inter.className} antialiased`}>
-        <AOSProvider>
-          <MainNav />
-          
-          <main className="min-h-screen pt-20">
-            {children}
-          </main>
-          
-          <Footer />
-        </AOSProvider>
+        <AnalyticsProvider>
+          <AOSProvider>
+            <LoginSection />
+            <MainNav />
+            
+            <main className="min-h-screen pt-32">
+              {children}
+            </main>
+            
+            <Footer />
+          </AOSProvider>
+        </AnalyticsProvider>
       </body>
     </html>
   );

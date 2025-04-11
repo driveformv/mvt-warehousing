@@ -1,3 +1,10 @@
+import { Metadata } from 'next';
+import { generateMetadata as getMetadata } from '@/lib/get-seo-metadata';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return await getMetadata('/services');
+}
+
 "use client";
 
 import { Warehouse, Package, TruckIcon, BarChart3, Clock, Globe2, Shield, CheckCircle } from "lucide-react";

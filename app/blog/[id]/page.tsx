@@ -1,16 +1,12 @@
-import { Calendar, Tag, ArrowLeft } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import fs from 'fs';
-import path from 'path';
+'use client';
 
-// Read blog data directly from the file system
-const getBlogData = () => {
-  const filePath = path.join(process.cwd(), 'stagecoach-blog-data.json');
-  const fileContents = fs.readFileSync(filePath, 'utf8');
-  return JSON.parse(fileContents);
-};
+import { useEffect, useState } from 'react';
+import { Calendar, Tag, ArrowLeft } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+// Import supabase client for client component
+import { supabase as supabaseClient } from '@/lib/supabase';
 
 // Define the blog post type
 interface BlogPost {
@@ -18,96 +14,202 @@ interface BlogPost {
   title: string;
   excerpt: string;
   content: string;
+  published_date: string;
   date: string;
   category: string;
   tags: string[];
-  videoId: string;
+  video_id: string;
+  seo_title?: string;
+  seo_description?: string;
+  seo_keywords?: string[];
 }
 
-// Process blog data to include additional fields needed for display
-const processBlogPosts = (): BlogPost[] => {
-  const blogData = getBlogData();
-  return blogData.blogPosts.map((post: any) => {
-    // Format the date
-    const date = new Date(post.publishedDate);
-    const formattedDate = date.toLocaleDateString('en-US', {
-      month: 'long',
-      day: 'numeric',
-      year: 'numeric'
-    });
+export default function BlogPost({ params }: { params: { id: string } }) {
+  const router = useRouter();
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [postId, setPostId] = useState<number | null>(null);
+  
+  // Set the post ID once when the component mounts
+  useEffect(() => {
+    if (params && params.id) {
+      setPostId(parseInt(params.id));
+    }
+  }, [params]);
+  
+  // Fetch the blog post when the post ID changes
+  useEffect(() => {
+    if (postId === null) return;
     
-    // Create excerpt from content
-    const excerpt = post.content.length > 150 
-      ? post.content.substring(0, 150) + "..." 
-      : post.content;
+    async function fetchBlogPost() {
+      try {
+        const id = postId;
+        
+        // Fetch the blog post
+        const { data, error } = await supabaseClient
+          .from('blog_posts')
+          .select('*')
+          .eq('id', id)
+          .single();
+        
+        if (error) {
+          console.error('Error fetching blog post:', error);
+          setError('Failed to load blog post. Please try again later.');
+          return;
+        }
+        
+        if (!data) {
+          router.push('/blog');
+          return;
+        }
+        
+        // Format the date
+        const date = new Date(data.published_date);
+        const formattedDate = date.toLocaleDateString('en-US', {
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric'
+        });
+        
+        // Create excerpt from content if not provided
+        const excerpt = data.excerpt || (data.content.length > 150
+          ? data.content.substring(0, 150) + '...'
+          : data.content);
+        
+        // Generate HTML content with embedded video
+        const htmlContent = `
+          <p>${data.content}</p>
+          
+          ${data.video_id ? `
+          <div class="aspect-w-16 aspect-h-9 my-6">
+            <iframe
+              src="https://www.youtube.com/embed/${data.video_id}"
+              title="${data.title}"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              class="w-full h-full rounded-lg"
+            ></iframe>
+          </div>
+          ` : ''}
+          
+          <p>Learn more about our services at MVT Warehousing by visiting our website or contacting us directly.</p>
+        `;
+        
+        // Process tags
+        const tags = data.tags || ['Transportation', 'Logistics'];
+        
+        const processedPost = {
+          id: data.id,
+          title: data.title,
+          excerpt: excerpt,
+          content: htmlContent,
+          published_date: data.published_date,
+          date: formattedDate,
+          category: data.category || 'General',
+          tags: tags,
+          video_id: data.video_id || '',
+          seo_title: data.seo_title,
+          seo_description: data.seo_description,
+          seo_keywords: data.seo_keywords
+        };
+        
+        setPost(processedPost);
+        
+        // Fetch related posts
+        fetchRelatedPosts(data.id, data.category || 'General');
+      } catch (err) {
+        console.error('Error in fetchBlogPost:', err);
+        setError('An error occurred while loading the blog post.');
+      } finally {
+        setLoading(false);
+      }
+    }
     
-    // Use the videoId directly if available
-    const videoId = post.videoId || '';
+    async function fetchRelatedPosts(currentPostId: number, category: string) {
+      try {
+        // First try to get posts with the same category
+        let { data, error } = await supabaseClient
+          .from('blog_posts')
+          .select('*')
+          .eq('category', category)
+          .neq('id', currentPostId)
+          .order('published_date', { ascending: false })
+          .limit(3);
+        
+        if (error) throw error;
+        
+        // If we don't have enough related posts, get the most recent posts
+        if (!data || data.length < 3) {
+          const { data: recentPosts, error: recentError } = await supabaseClient
+            .from('blog_posts')
+            .select('*')
+            .neq('id', currentPostId)
+            .order('published_date', { ascending: false })
+            .limit(3 - (data?.length || 0));
+          
+          if (recentError) throw recentError;
+          
+          data = [...(data || []), ...(recentPosts || [])];
+        }
+        
+        // Process the posts
+        const processedPosts = data.map(post => {
+          // Format the date
+          const date = new Date(post.published_date);
+          const formattedDate = date.toLocaleDateString('en-US', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+          });
+          
+          // Create excerpt from content if not provided
+          const excerpt = post.excerpt || (post.content.length > 150
+            ? post.content.substring(0, 150) + '...'
+            : post.content);
+          
+          return {
+            id: post.id,
+            title: post.title,
+            excerpt: excerpt,
+            content: post.content,
+            published_date: post.published_date,
+            date: formattedDate,
+            category: post.category || 'General',
+            tags: post.tags || ['Transportation', 'Logistics'],
+            video_id: post.video_id || ''
+          };
+        });
+        
+        setRelatedPosts(processedPosts);
+      } catch (error) {
+        console.error('Error fetching related posts:', error);
+      }
+    }
     
-    // Generate HTML content with embedded video
-    const htmlContent = `
-      <p>${post.content}</p>
-      
-      ${videoId ? `
-      <div class="aspect-w-16 aspect-h-9 my-6">
-        <iframe
-          src="https://www.youtube.com/embed/${videoId}"
-          title="${post.title}"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          class="w-full h-full rounded-lg"
-        ></iframe>
+    fetchBlogPost();
+  }, [postId, router]);
+  
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-700"></div>
       </div>
-      ` : ''}
-      
-      <p>Learn more about our services at Stagecoach Cartage and Distribution by visiting our website or contacting us directly.</p>
-    `;
-    
-    // Generate tags from hashtags or categories
-    const tags = post.hashtags && post.hashtags.length > 0 
-      ? post.hashtags.slice(0, 5) 
-      : post.categories || ["Transportation", "Logistics"];
-    
-    return {
-      id: post.id,
-      title: post.title,
-      excerpt: excerpt,
-      content: htmlContent,
-      date: formattedDate,
-      category: post.categories && post.categories.length > 0 ? post.categories[0] : "General",
-      tags: tags,
-      videoId: videoId
-    };
-  });
-};
-
-// Get the blog posts
-const getBlogPosts = (): BlogPost[] => {
-  return processBlogPosts();
-};
-
-export function generateStaticParams() {
-  const blogPosts = getBlogPosts();
-  return blogPosts.map((post: BlogPost) => ({
-    id: post.id.toString(),
-  }));
-}
-
-// Use a server component to avoid the params.id warning
-export default async function BlogPost({ params }: { params: Promise<{ id: string }> }) {
-  // Parse the ID from params - await the params to fix the Next.js 15 warning
-  const resolvedParams = await params;
-  const id = parseInt(resolvedParams.id);
+    );
+  }
   
-  // Get all blog posts
-  const blogPosts = getBlogPosts();
-  
-  // Find the post with the matching ID
-  const post = blogPosts.find((post: BlogPost) => post.id === id);
-
-  if (!post) {
-    notFound();
+  if (error || !post) {
+    return (
+      <div className="max-w-4xl mx-auto py-16 px-4 text-center">
+        <h1 className="text-3xl font-bold mb-6">Error Loading Blog Post</h1>
+        <p className="text-gray-600 mb-8">{error || 'The requested blog post could not be found.'}</p>
+        <Link href="/blog" className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors">
+          Return to Blog
+        </Link>
+      </div>
+    );
   }
 
   return (
@@ -155,21 +257,13 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
         </div>
       </section>
       
-      {/* Related Posts - sorted by date */}
+      {/* Related Posts */}
       <section className="bg-gray-50 py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold mb-10 text-center">Related Posts</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {blogPosts
-              .filter((p) => p.id !== post.id)
-              // Sort by date, newest first
-              .sort((a, b) => {
-                const dateA = new Date(a.date);
-                const dateB = new Date(b.date);
-                return dateB.getTime() - dateA.getTime();
-              })
-              .slice(0, 3)
-              .map((relatedPost) => (
+          {relatedPosts.length > 0 ? (
+            <div className="grid md:grid-cols-3 gap-8">
+              {relatedPosts.map((relatedPost) => (
                 <div key={relatedPost.id} className="bg-white rounded-xl shadow-md overflow-hidden">
                   <div className="p-6">
                     <div className="flex items-center gap-2 text-sm text-blue-600 mb-3">
@@ -194,32 +288,40 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
                   </div>
                 </div>
               ))}
-          </div>
+            </div>
+          ) : (
+            <p className="text-center text-gray-500">No related posts found</p>
+          )}
         </div>
       </section>
       
-      {/* Newsletter Section - Using the original color */}
-      <section className="bg-gray-900 text-white py-16 px-4">
+      {/* Newsletter Section */}
+      <section className="bg-mvt-blue text-white py-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6">Subscribe to Our Newsletter</h2>
-          <p className="text-xl text-gray-300 mb-8">
+          <p className="text-xl text-white/80 mb-8">
             Stay updated with the latest insights and news from the world of transportation and logistics
           </p>
-          <form className="flex flex-col md:flex-row gap-4 max-w-xl mx-auto">
+          <form 
+            className="flex flex-col md:flex-row gap-4 max-w-xl mx-auto"
+            action="/api/newsletter"
+            method="POST"
+          >
             <input
               type="email"
+              name="email"
               placeholder="Your email address"
               className="flex-grow px-4 py-3 rounded-md text-gray-900 focus:outline-none"
               required
             />
             <button
               type="submit"
-              className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md font-semibold transition-colors"
+              className="bg-white text-mvt-blue hover:bg-gray-100 px-6 py-3 rounded-md font-semibold transition-colors"
             >
               Subscribe
             </button>
           </form>
-          <p className="text-sm text-gray-400 mt-4">
+          <p className="text-sm text-white/60 mt-4">
             We respect your privacy. Unsubscribe at any time.
           </p>
         </div>

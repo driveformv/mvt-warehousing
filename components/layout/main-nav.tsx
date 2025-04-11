@@ -33,7 +33,7 @@ export default function MainNav() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-[32px] left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled 
           ? "bg-white/95 backdrop-blur-sm shadow-md py-2" 
           : "bg-white shadow-sm py-4"
