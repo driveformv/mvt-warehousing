@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 export const metadata = {
   title: "Privacy Policy | MVT Warehousing",
   description: "Privacy Policy for MVT Warehousing - Learn how we collect, use, and protect your personal information.",
 };
 
-export default function PrivacyPolicyPage() {
+function PrivacyPolicyContent() {
   return (
     <main className="flex-1">
       <div className="bg-mvt-blue py-16">
@@ -101,5 +101,13 @@ export default function PrivacyPolicyPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function PrivacyPolicyPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PrivacyPolicyContent />
+    </Suspense>
   );
 }

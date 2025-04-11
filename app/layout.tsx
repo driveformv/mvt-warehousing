@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { Suspense } from 'react';
 import MainNav from '@/components/layout/main-nav';
 import LoginSection from '@/components/layout/login-section';
 import Footer from '@/components/layout/footer';
@@ -30,8 +31,10 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <AnalyticsProvider>
           <AOSProvider>
-            <LoginSection />
-            <MainNav />
+            <Suspense fallback={<div className="fixed top-0 left-0 right-0 h-32 bg-white"></div>}>
+              <LoginSection />
+              <MainNav />
+            </Suspense>
             
             <main className="min-h-screen pt-32">
               {children}
