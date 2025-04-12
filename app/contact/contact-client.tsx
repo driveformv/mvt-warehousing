@@ -45,8 +45,28 @@ export default function ContactClient() {
                   <h3 className="text-xl font-semibold mb-2">Our Locations</h3>
                   <div className="space-y-4">
                     <div>
-                      <p className="font-medium">El Paso (Headquarters)</p>
+                      <p className="font-medium">El Paso - Chino (Headquarters)</p>
                       <p className="text-gray-600">7167 Chino Drive, El Paso, TX 79915</p>
+                    </div>
+                    <div>
+                      <p className="font-medium">El Paso - Merchant</p>
+                      <p className="text-gray-600">7180 Merchant, El Paso, TX</p>
+                    </div>
+                    <div>
+                      <p className="font-medium">El Paso - Welch</p>
+                      <p className="text-gray-600">5850 Welch, El Paso, TX</p>
+                    </div>
+                    <div>
+                      <p className="font-medium">El Paso - Welch II</p>
+                      <p className="text-gray-600">5830 Welch, El Paso, TX</p>
+                    </div>
+                    <div>
+                      <p className="font-medium">El Paso - Cross Dock</p>
+                      <p className="text-gray-600">7131 Copper Queen, El Paso, TX</p>
+                    </div>
+                    <div>
+                      <p className="font-medium">Santa Teresa</p>
+                      <p className="text-gray-600">4950 Avenida Creel, Santa Teresa, NM</p>
                     </div>
                     <div>
                       <p className="font-medium">Del Rio</p>
@@ -93,7 +113,7 @@ export default function ContactClient() {
             </div>
             
             <h3 className="text-2xl font-bold mb-6">Our Services</h3>
-            <div className="grid grid-cols-3 gap-4 mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               <div className="bg-blue-50 p-4 rounded-lg text-center">
                 <TruckIcon className="text-blue-600 mx-auto mb-2" size={24} />
                 <p className="font-medium">Transportation</p>
@@ -105,6 +125,10 @@ export default function ContactClient() {
               <div className="bg-blue-50 p-4 rounded-lg text-center">
                 <Package className="text-blue-600 mx-auto mb-2" size={24} />
                 <p className="font-medium">Bulk Transfer</p>
+              </div>
+              <div className="bg-blue-50 p-4 rounded-lg text-center">
+                <MapPin className="text-blue-600 mx-auto mb-2" size={24} />
+                <p className="font-medium">Transloading</p>
               </div>
             </div>
           </div>
@@ -118,19 +142,81 @@ export default function ContactClient() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Our Locations</h2>
+            <h2 className="text-3xl font-bold mb-4">Our Strategic Locations</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Strategically located facilities to serve your business needs
+              Seven strategically located facilities across the US-Mexico border regions
             </p>
           </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <div className="bg-white p-6 rounded-xl shadow-lg">
+              <h3 className="text-xl font-bold mb-4 flex items-center">
+                <MapPin className="text-blue-600 mr-2" size={20} />
+                El Paso Facilities
+              </h3>
+              <p className="text-gray-600 mb-4">Our El Paso operations include five facilities with over 430,000 square feet of space:</p>
+              <ul className="space-y-2 text-gray-600">
+                <li className="flex items-center">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
+                  <span>7167 Chino Drive - 100,000 sq ft (Headquarters)</span>
+                </li>
+                <li className="flex items-center">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
+                  <span>7180 Merchant - 110,000 sq ft with rail service</span>
+                </li>
+                <li className="flex items-center">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
+                  <span>5850 Welch - 170,000 sq ft bonded warehouse</span>
+                </li>
+                <li className="flex items-center">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
+                  <span>5830 Welch - 40,000 sq ft storage facility</span>
+                </li>
+                <li className="flex items-center">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
+                  <span>7131 Copper Queen - 10,000 sq ft cross-dock</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="bg-white p-6 rounded-xl shadow-lg">
+              <h3 className="text-xl font-bold mb-4 flex items-center">
+                <MapPin className="text-blue-600 mr-2" size={20} />
+                Additional Border Locations
+              </h3>
+              <p className="text-gray-600 mb-4">Strategic facilities across key border areas:</p>
+              <ul className="space-y-2 text-gray-600 mb-6">
+                <li className="flex items-center">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
+                  <span>Santa Teresa, NM - 70,000 sq ft with rail service</span>
+                </li>
+                <li className="flex items-center">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
+                  <span>Del Rio, TX - 10,800 sq ft cross-dock on 5 acres</span>
+                </li>
+                <li className="flex items-center">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
+                  <span>Laredo, TX - 40,000 sq ft warehouse on 7.7 acres</span>
+                </li>
+              </ul>
+              
+              <p className="text-gray-700 font-medium">Total warehouse space: Over 550,000 square feet</p>
+            </div>
+          </div>
+          
           <div className="bg-white p-4 rounded-xl shadow-lg">
-            <div className="aspect-w-16 aspect-h-9 w-full h-[500px] relative">
+            <div className="aspect-w-16 aspect-h-9 w-full h-[400px] relative">
               <Image
-                src="/images/4-1.jpg"
-                alt="Map of our locations"
+                src="/images/map-locations.jpg"
+                alt="Map of MVT Warehousing's seven strategic locations"
                 fill
                 className="object-cover rounded-lg"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-lg"></div>
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <h4 className="font-bold text-xl mb-1">Strategic Border Locations</h4>
+                <p>Positioned across key US-Mexico border crossing points</p>
+              </div>
             </div>
           </div>
         </div>

@@ -1,28 +1,35 @@
 import Link from "next/link";
-import { TruckIcon, Warehouse, Package, ArrowRight } from "lucide-react";
+import { TruckIcon, Warehouse, Package, ArrowRight, Forklift, RefreshCcw } from "lucide-react";
 
 export default function ServicesSection() {
   const services = [
     {
-      icon: <TruckIcon className="text-white" size={28} />,
-      title: "Full Truckload Transportation",
-      description: "We are a bonded (US Customs) carrier providing both solo and team driver service. All tractors and trailers are equipped with satellite tracking and on demand location reporting.",
-      link: "/services#transportation",
+      icon: <Warehouse className="text-white" size={28} />,
+      title: "Public Warehousing",
+      description: "Over 550,000 square feet of warehousing space with rail-served facilities across multiple strategic locations on the border, providing contract and public warehousing solutions.",
+      link: "/services#warehousing",
       delay: 100,
     },
     {
-      icon: <Warehouse className="text-white" size={28} />,
-      title: "Warehouse and Distribution",
-      description: "With over 550,000 square feet of space, MVT Warehousing has a strong commitment to warehousing on the border providing contract and public warehousing with complete account management.",
-      link: "/services#warehousing",
+      icon: <TruckIcon className="text-white" size={28} />,
+      title: "Intermodal & Local Cartage",
+      description: "Local pickup and delivery, dedicated yard spotting operations, intermodal dray services in El Paso and Laredo with over 2,000 moves per month on domestic containers.",
+      link: "/services#transportation",
       delay: 300,
     },
     {
       icon: <Package className="text-white" size={28} />,
       title: "Bulk Transfer / Packaging",
-      description: "With more than 30 years of experience in the industry, MVT Warehousing can unload from railcar or ocean containers and deliver to the customer silo or box.",
+      description: "Full menu of bulk transportation and packaging services, unloading from railcars or ocean containers with direct delivery to customer silos, with capacity to pack 200,000 lbs per day.",
       link: "/services#bulk-transfer",
       delay: 500,
+    },
+    {
+      icon: <RefreshCcw className="text-white" size={28} />,
+      title: "Transloading & Cross Dock",
+      description: "Premier freight-management transloading solutions from ocean containers, dry vans, flatbeds, railcars, gondolas, and A-frames with real-time information tracking.",
+      link: "/services#transloading",
+      delay: 700,
     },
   ];
 
@@ -32,11 +39,11 @@ export default function ServicesSection() {
         <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Integrated transportation and warehousing services tailored to your business needs
+            Integrated transportation and warehousing services with 38 years of excellence
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <div 
               key={index}
@@ -44,11 +51,11 @@ export default function ServicesSection() {
               data-aos="fade-up"
               data-aos-delay={service.delay}
             >
-              <div className="p-8">
+              <div className="p-6">
                 <div className="bg-mvt-blue p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6 group-hover:bg-mvt-red transition-colors duration-300">
                   {service.icon}
                 </div>
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
+                <h3 className="text-xl font-bold mb-4">{service.title}</h3>
                 <p className="text-gray-600 mb-6 flex-grow">
                   {service.description}
                 </p>

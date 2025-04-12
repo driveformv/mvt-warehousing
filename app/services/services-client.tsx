@@ -30,18 +30,18 @@ export default function ServicesClient() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">End-to-End Logistics Solutions</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              MVT Warehousing offers a complete range of transportation and warehousing services designed to optimize your supply chain and improve your bottom line.
+              MVT Warehousing offers a complete range of transportation and warehousing services designed to optimize your supply chain and improve your bottom line, with over 30 years of industry experience.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-white p-8 rounded-xl shadow-md text-center">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <TruckIcon className="text-blue-600" size={32} />
               </div>
               <h3 className="text-xl font-bold mb-3">Full Truckload Transportation</h3>
               <p className="text-gray-600">
-                Bonded carrier providing both solo and team driver service with satellite tracking and on-demand location reporting.
+                US Customs bonded carrier providing both solo and team driver service with satellite tracking and on-demand location reporting across the United States.
               </p>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-md text-center">
@@ -50,7 +50,7 @@ export default function ServicesClient() {
               </div>
               <h3 className="text-xl font-bold mb-3">Warehouse and Distribution</h3>
               <p className="text-gray-600">
-                Over 550,000 square feet of space with contract and public warehousing with complete account management.
+                Over 550,000 square feet of space across 7 strategic locations with rail-served facilities and complete inventory management systems.
               </p>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-md text-center">
@@ -59,7 +59,16 @@ export default function ServicesClient() {
               </div>
               <h3 className="text-xl font-bold mb-3">Bulk Transfer / Packaging</h3>
               <p className="text-gray-600">
-                Unload from railcar or ocean containers and deliver to customer silo or box with receiving railcar capacity of 100+ cars.
+                Specialized in handling PVC, PE, PP, and PET resins with capacity to pack 200,000 lbs per day using modern automated packaging systems.
+              </p>
+            </div>
+            <div className="bg-white p-8 rounded-xl shadow-md text-center">
+              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <BarChart3 className="text-blue-600" size={32} />
+              </div>
+              <h3 className="text-xl font-bold mb-3">Value-Added Services</h3>
+              <p className="text-gray-600">
+                Custom solutions including packaging, cross-docking, pick and pack, inventory management, and just-in-time delivery services.
               </p>
             </div>
           </div>
@@ -72,29 +81,24 @@ export default function ServicesClient() {
           <div className="order-2 md:order-1">
             <h2 className="text-3xl font-bold mb-6">Warehouse and Distribution</h2>
             <p className="text-gray-600 mb-8">
-              With over 550,000 square feet of space, MVT Warehousing has a strong commitment to warehousing on the border providing contract and public warehousing with complete account management. Our facilities are rail served with access to both UPRR and BNSF.
+              With over 550,000 square feet of space across 7 strategic locations, MVT Warehousing provides contract and public warehousing solutions with complete inventory management. Our facilities are rail-served with access to both Union Pacific and BNSF railroads.
             </p>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
-                <div>
-                  <h3 className="font-semibold">Rail Served Facilities</h3>
-                  <p className="text-gray-600">Access to both UPRR and BNSF railways for efficient transportation.</p>
-                </div>
+                <span className="text-gray-600">Industry-proven Warehouse Management System (Cadre Accuplus) with 24/7 web access</span>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
-                <div>
-                  <h3 className="font-semibold">Complete Account Management</h3>
-                  <p className="text-gray-600">Dedicated account managers to ensure your needs are met.</p>
-                </div>
+                <span className="text-gray-600">RF scanning technology for receiving, shipping, and inventories</span>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
-                <div>
-                  <h3 className="font-semibold">Strategic Border Locations</h3>
-                  <p className="text-gray-600">Facilities in key border locations for cross-border logistics.</p>
-                </div>
+                <span className="text-gray-600">US Customs bonded facilities and CME certified warehouse for copper cathode storage</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <span className="text-gray-600">Bar coding, labeling, and shrink wrapping services available</span>
               </div>
             </div>
           </div>
@@ -109,43 +113,63 @@ export default function ServicesClient() {
         </div>
       </section>
 
-      {/* Transportation Section */}
-      <section className="py-20 px-4 max-w-7xl mx-auto bg-gray-50" id="transportation">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div className="relative h-[400px]">
-            <Image
-              src="/images/4-1.jpg"
-              alt="Transportation Services"
-              fill
-              className="object-cover rounded-xl shadow-lg"
-            />
-          </div>
-          <div>
-            <h2 className="text-3xl font-bold mb-6">Full Truckload Transportation</h2>
-            <p className="text-gray-600 mb-8">
-              We are a bonded (US Customs) carrier providing both solo and team driver service. All tractors and trailers are equipped with satellite tracking and on demand location reporting. Your freight will be delivered safely and on-time by one of our great drivers.
-            </p>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
-                <div>
-                  <h3 className="font-semibold">US Customs Bonded Carrier</h3>
-                  <p className="text-gray-600">Authorized to transport bonded shipments across borders.</p>
+      {/* Full Truckload Transportation Section */}
+      <section className="py-16 bg-white" id="transportation">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="lg:flex items-center gap-12">
+            <div className="lg:w-1/2 mb-8 lg:mb-0">
+              <Image 
+                src="/images/4-1.jpg"
+                alt="MVT Warehousing Trucks"
+                width={600}
+                height={400}
+                className="rounded-xl shadow-md object-cover w-full h-80 lg:h-96"
+              />
+            </div>
+            <div className="lg:w-1/2">
+              <h2 className="text-3xl font-bold mb-6">Full Truckload Transportation</h2>
+              <p className="mb-6 text-gray-600 text-lg">
+                Our modern fleet of trucks provides reliable and efficient transportation services across the United States with both solo and team driver options to meet your specific needs.
+              </p>
+              
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <CheckCircle className="text-blue-600 mr-3 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-medium">US Customs Bonded Carrier</h4>
+                    <p className="text-gray-600">Authorized to transport bonded shipments with full compliance to customs regulations</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="text-blue-600 mr-3 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-medium">Advanced Tracking Technology</h4>
+                    <p className="text-gray-600">24/7 satellite tracking with real-time location updates and detailed reporting</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="text-blue-600 mr-3 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-medium">Nationwide Coverage</h4>
+                    <p className="text-gray-600">Service throughout the continental United States with strategic terminals in key locations</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="text-blue-600 mr-3 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-medium">Solo & Team Driver Service</h4>
+                    <p className="text-gray-600">Flexible driver options to accommodate time-sensitive deliveries and long-haul requirements</p>
+                  </div>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
-                <div>
-                  <h3 className="font-semibold">Satellite Tracking</h3>
-                  <p className="text-gray-600">Real-time tracking and on-demand location reporting for all shipments.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
-                <div>
-                  <h3 className="font-semibold">Solo and Team Driver Service</h3>
-                  <p className="text-gray-600">Flexible driver options to meet your delivery timeline requirements.</p>
-                </div>
+              
+              <div className="mt-8">
+                <Link 
+                  href="/contact"
+                  className="inline-flex items-center px-6 py-3 bg-mvt-blue text-white rounded-md hover:bg-mvt-blue/90 transition-colors"
+                >
+                  Request Transportation Quote
+                </Link>
               </div>
             </div>
           </div>
@@ -158,28 +182,28 @@ export default function ServicesClient() {
           <div className="order-2 md:order-1">
             <h2 className="text-3xl font-bold mb-6">Bulk Transfer / Packaging</h2>
             <p className="text-gray-600 mb-8">
-              With more than 30 years of experience in the industry, MVT Warehousing can unload from railcar or ocean containers and deliver to the customer silo or box. As the first US carrier to be granted authority to operate in Mexico under NAFTA, we can provide services at any point in Mexico with our own assets.
+              With more than 30 years of experience in the industry, MVT Warehousing provides a full menu of bulk transportation and packaging services. We can unload from railcar or ocean containers and deliver directly to customer silos or boxes.
             </p>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
                 <div>
-                  <h3 className="font-semibold">Railcar Capacity</h3>
-                  <p className="text-gray-600">Receiving railcar capacity of 100+ cars for efficient bulk transfer operations.</p>
+                  <h3 className="font-semibold">High-Volume Capacity</h3>
+                  <p className="text-gray-600">Capacity to pack 200,000 lbs per day with modern automated systems.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
                 <div>
-                  <h3 className="font-semibold">Mexico Operations</h3>
-                  <p className="text-gray-600">First US carrier granted authority to operate in Mexico under NAFTA with our own assets.</p>
+                  <h3 className="font-semibold">Railcar Processing</h3>
+                  <p className="text-gray-600">Receiving railcar capacity of 100+ cars with rail service to both UPRR and BNSF.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
                 <div>
-                  <h3 className="font-semibold">Container Unloading</h3>
-                  <p className="text-gray-600">Efficient unloading from railcar or ocean containers with delivery to customer silo or box.</p>
+                  <h3 className="font-semibold">Specialized Equipment</h3>
+                  <p className="text-gray-600">24 pneumatic tankers with 1630 cubic feet capacity for bulk resin delivery.</p>
                 </div>
               </div>
             </div>
@@ -195,46 +219,212 @@ export default function ServicesClient() {
         </div>
       </section>
 
-      {/* Additional Services Section */}
-      <section className="py-20 px-4 max-w-7xl mx-auto bg-gray-50" id="additional-services">
+      {/* Transloading Section */}
+      <section className="py-20 px-4 max-w-7xl mx-auto bg-gray-50" id="transloading">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="relative h-[400px]">
             <Image
-              src="/images/3.jpg"
-              alt="Additional Services"
+              src="/images/transloading.jpg"
+              alt="Transloading Services"
               fill
               className="object-cover rounded-xl shadow-lg"
             />
           </div>
           <div>
-            <h2 className="text-3xl font-bold mb-6">Additional Services</h2>
+            <h2 className="text-3xl font-bold mb-6">Transloading & Cross Dock</h2>
             <p className="text-gray-600 mb-8">
-              MVT Warehousing offers a comprehensive range of additional logistics services to meet all your transportation and warehousing needs.
+              We offer premier domestic and international freight-management transloading solutions from ocean containers, dry vans, flatbeds, railcars, gondolas, and A-frames. Our specialized equipment and expertise make us a trusted partner for complex transloading operations.
             </p>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
                 <div>
-                  <h3 className="font-semibold">Intermodal</h3>
-                  <p className="text-gray-600">With 20+ years of experience, we specialize in moving intermodal boxes on the Texas / Mexico border.</p>
+                  <h3 className="font-semibold">Versatile Equipment</h3>
+                  <p className="text-gray-600">50+ lift trucks ranging from 5,000 to 55,000 lbs capacity with specialized attachments.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
                 <div>
-                  <h3 className="font-semibold">Local Cartage</h3>
-                  <p className="text-gray-600">Comprehensive local cartage services at all of our border locations with flexible program designs.</p>
+                  <h3 className="font-semibold">Real-Time Tracking</h3>
+                  <p className="text-gray-600">Transload app providing real-time information and detailed reporting.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
                 <div>
-                  <h3 className="font-semibold">LTL Less Than Truck Load</h3>
-                  <p className="text-gray-600">Our "Border Express" LTL service with next-business-day delivery across Texas border cities.</p>
+                  <h3 className="font-semibold">High-Volume Handling</h3>
+                  <p className="text-gray-600">Cross-dock facility handling up to 1.4 million lbs weekly with 19 dock doors.</p>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Additional Services Section */}
+      <section className="py-20 px-4 max-w-7xl mx-auto" id="additional-services">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Additional Specialized Services</h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            MVT Warehousing offers an extensive range of specialized logistics services to complement our core offerings
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div className="bg-white p-6 rounded-xl shadow-md">
+            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <TruckIcon className="text-blue-600" size={24} />
+            </div>
+            <h3 className="text-xl font-bold mb-3">Intermodal & Local Cartage</h3>
+            <p className="text-gray-600 mb-4">
+              Local pickup and delivery services with over 2,000 moves per month on domestic containers in El Paso and Laredo.
+            </p>
+            <ul className="space-y-2 text-gray-600">
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>Dedicated yard spotting operations</span>
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>Experienced border crossing specialists</span>
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>Flexible program designs</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div className="bg-white p-6 rounded-xl shadow-md">
+            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <Warehouse className="text-blue-600" size={24} />
+            </div>
+            <h3 className="text-xl font-bold mb-3">Bonded & CME Warehouse</h3>
+            <p className="text-gray-600 mb-4">
+              US Customs bonded warehouse facilities and Chicago Mercantile Exchange (CME) certified warehouse for copper cathode storage.
+            </p>
+            <ul className="space-y-2 text-gray-600">
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>One of only seven CME-certified warehouses in the US</span>
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>Store dutiable merchandise without duty payment</span>
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>Secure monitored facilities</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div className="bg-white p-6 rounded-xl shadow-md">
+            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <Globe2 className="text-blue-600" size={24} />
+            </div>
+            <h3 className="text-xl font-bold mb-3">Cross-Border Services</h3>
+            <p className="text-gray-600 mb-4">
+              First U.S. carrier certified under NAFTA to obtain Mexico operating authority with extensive cross-border experience.
+            </p>
+            <ul className="space-y-2 text-gray-600">
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>Daily deliveries to Juarez</span>
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>On-demand deliveries into Mexico's interior</span>
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>Extensive knowledge of border logistics</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div className="bg-white p-6 rounded-xl shadow-md">
+            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <Package className="text-blue-600" size={24} />
+            </div>
+            <h3 className="text-xl font-bold mb-3">LTL Less Than Truck Load</h3>
+            <p className="text-gray-600 mb-4">
+              Our "Border Express" LTL service offers next-business-day delivery along key Texas border cities.
+            </p>
+            <ul className="space-y-2 text-gray-600">
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>Service from El Paso to Del Rio, Eagle Pass, and Laredo</span>
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>Cost-effective solutions for smaller shipments</span>
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>Reliable scheduled service</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div className="bg-white p-6 rounded-xl shadow-md">
+            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <BarChart3 className="text-blue-600" size={24} />
+            </div>
+            <h3 className="text-xl font-bold mb-3">Rail Service</h3>
+            <p className="text-gray-600 mb-4">
+              Access to both Union Pacific and BNSF railroads with multiple rail-served facilities throughout our network.
+            </p>
+            <ul className="space-y-2 text-gray-600">
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>Over 50 rail spots across our locations</span>
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>RailCar Tracker app for real-time monitoring</span>
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>Efficient bulk transportation solutions</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div className="bg-white p-6 rounded-xl shadow-md">
+            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <Shield className="text-blue-600" size={24} />
+            </div>
+            <h3 className="text-xl font-bold mb-3">Specialized Systems</h3>
+            <p className="text-gray-600 mb-4">
+              We leverage advanced technology for transparent, efficient operations and detailed reporting.
+            </p>
+            <ul className="space-y-2 text-gray-600">
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>Warehouse Management System (WMS)</span>
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>RF scanning technology</span>
+              </li>
+              <li className="flex items-center">
+                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <span>Transload app with web access reports</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="text-center">
+          <Link 
+            href="/contact" 
+            className="inline-flex items-center px-6 py-3 bg-mvt-blue text-white rounded-md hover:bg-mvt-blue/90 transition-colors"
+          >
+            <span>Contact Us About Specialized Services</span>
+            <CheckCircle className="ml-2 h-5 w-5" />
+          </Link>
         </div>
       </section>
 

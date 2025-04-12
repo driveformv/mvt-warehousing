@@ -30,13 +30,13 @@ export default function AboutClient() {
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Story</h2>
             <p className="text-gray-600 mb-6 text-lg">
-              Based in El Paso, TX, and established in 1986 MVT Warehousing has always been passionate about the trucking and warehousing industry, providing excellent service and building long-term relationships with our customers.
+              Based in El Paso, TX, and established in 1986, MVT Warehousing started with a passionate commitment to excellence in the trucking and warehousing industry. With 38 years of dedicated service, we've built our reputation on providing reliable logistics solutions and fostering long-term relationships with our customers.
             </p>
             <p className="text-gray-600 mb-6 text-lg">
-              What began as a small operation has evolved into a comprehensive logistics provider with over 550,000 square feet of space across strategic locations. Our growth has been fueled by our unwavering dedication to meeting our clients' needs and exceeding their expectations.
+              What began as a small operation has evolved into a comprehensive logistics provider with over 550,000 square feet of space across 7 strategic locations. We now offer access to both Union Pacific and BNSF railroads with over 50 rail spots across our facilities.
             </p>
             <p className="text-gray-600 text-lg">
-              Our drivers and personnel have been pivotal in achieving such success. After 36 years of operating in the commercial zone between Mexico and the US, we are your #1 trucking and warehousing strategic partner.
+              Our focus on safety, innovative technology, and exceptional personnel has been pivotal in our success. With decades of experience operating in the commercial zone between Mexico and the US, we are your premier trucking and warehousing strategic partner.
             </p>
           </div>
           <div className="relative h-[450px]">
@@ -226,23 +226,23 @@ export default function AboutClient() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Facilities</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              State-of-the-art warehousing facilities strategically located to serve your business needs
+              Over 550,000 square feet of warehousing space strategically located across 7 facilities
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             <div className="bg-white rounded-xl shadow-md overflow-hidden">
-              <div className="relative h-[250px]">
+              <div className="relative h-[200px]">
                 <Image
                   src="/images/3-1.jpg"
-                  alt="El Paso Facility"
+                  alt="El Paso Facility - Chino"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">El Paso, TX</h3>
+                <h3 className="text-xl font-bold mb-2">El Paso, TX - Chino</h3>
                 <p className="text-gray-600 mb-4">
-                  Our headquarters and main distribution center, featuring over 300,000 square feet of warehousing space.
+                  Corporate headquarters with 100,000 square feet and 27 dock doors handling various commodities.
                 </p>
                 <p className="text-gray-600">
                   <strong>Address:</strong> 7167 Chino Drive, El Paso, TX 79915
@@ -250,7 +250,102 @@ export default function AboutClient() {
               </div>
             </div>
             <div className="bg-white rounded-xl shadow-md overflow-hidden">
-              <div className="relative h-[250px]">
+              <div className="relative h-[200px]">
+                <Image
+                  src="/images/warehouse-1.jpg"
+                  alt="El Paso Facility - Merchant"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">El Paso, TX - Merchant</h3>
+                <p className="text-gray-600 mb-4">
+                  110,000 sq ft facility with 15 dock doors and rail service (13 cars), specializing in plastic packout operations.
+                </p>
+                <p className="text-gray-600">
+                  <strong>Address:</strong> 7180 Merchant, El Paso, TX
+                </p>
+              </div>
+            </div>
+            <div className="bg-white rounded-xl shadow-md overflow-hidden">
+              <div className="relative h-[200px]">
+                <Image
+                  src="/images/warehouse-2.jpg"
+                  alt="El Paso Facility - Welch"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">El Paso, TX - Welch</h3>
+                <p className="text-gray-600 mb-4">
+                  170,000 sq ft bonded warehouse with rail service (20 cars) and Chicago Mercantile Exchange (CME) certification.
+                </p>
+                <p className="text-gray-600">
+                  <strong>Address:</strong> 5850 Welch, El Paso, TX
+                </p>
+              </div>
+            </div>
+            <div className="bg-white rounded-xl shadow-md overflow-hidden">
+              <div className="relative h-[200px]">
+                <Image
+                  src="/images/warehouse-3.jpg"
+                  alt="El Paso Facility - Welch II"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">El Paso, TX - Welch II</h3>
+                <p className="text-gray-600 mb-4">
+                  40,000 sq ft storage facility with rail service (5 cars) and specialized steel storage capabilities.
+                </p>
+                <p className="text-gray-600">
+                  <strong>Address:</strong> 5830 Welch, El Paso, TX
+                </p>
+              </div>
+            </div>
+            <div className="bg-white rounded-xl shadow-md overflow-hidden">
+              <div className="relative h-[200px]">
+                <Image
+                  src="/images/cross-dock.jpg"
+                  alt="El Paso Facility - Cross Dock"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">El Paso, TX - Cross Dock</h3>
+                <p className="text-gray-600 mb-4">
+                  10,000 sq ft cross-dock facility with 19 dock doors, handling up to 1.4 million lbs weekly.
+                </p>
+                <p className="text-gray-600">
+                  <strong>Address:</strong> 7131 Copper Queen, El Paso, TX
+                </p>
+              </div>
+            </div>
+            <div className="bg-white rounded-xl shadow-md overflow-hidden">
+              <div className="relative h-[200px]">
+                <Image
+                  src="/images/warehouse-4.jpg"
+                  alt="Santa Teresa Facility"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">Santa Teresa, NM</h3>
+                <p className="text-gray-600 mb-4">
+                  70,000 sq ft warehouse with rail service (15 cars) and no ad valorem tax, with potential expansion of 84,000 sq ft.
+                </p>
+                <p className="text-gray-600">
+                  <strong>Address:</strong> 4950 Avenida Creel, Santa Teresa, NM
+                </p>
+              </div>
+            </div>
+            <div className="bg-white rounded-xl shadow-md overflow-hidden">
+              <div className="relative h-[200px]">
                 <Image
                   src="/images/2.jpg"
                   alt="Del Rio Facility"
@@ -261,7 +356,7 @@ export default function AboutClient() {
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2">Del Rio, TX</h3>
                 <p className="text-gray-600 mb-4">
-                  Strategic border location with 100,000 square feet of space, specializing in cross-border logistics.
+                  10,800 sq ft cross-dock facility with 8 doors, situated on 5 acres with trailer yard.
                 </p>
                 <p className="text-gray-600">
                   <strong>Address:</strong> 195 Frontera Rd, Del Rio, TX 78840
@@ -269,7 +364,7 @@ export default function AboutClient() {
               </div>
             </div>
             <div className="bg-white rounded-xl shadow-md overflow-hidden">
-              <div className="relative h-[250px]">
+              <div className="relative h-[200px]">
                 <Image
                   src="/images/4-1.jpg"
                   alt="Laredo Facility"
@@ -280,11 +375,35 @@ export default function AboutClient() {
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2">Laredo, TX</h3>
                 <p className="text-gray-600 mb-4">
-                  Our newest facility with 150,000 square feet of modern warehousing space and advanced technology.
+                  40,000 sq ft warehouse on 7.7 acres with trailer yard capacity for expanding operations.
                 </p>
                 <p className="text-gray-600">
                   <strong>Address:</strong> 8900 San Gabriel Dr, Laredo, TX 78045
                 </p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="max-w-4xl mx-auto bg-blue-50 p-6 rounded-lg shadow-sm">
+            <h3 className="text-xl font-bold mb-4 text-center">Warehouse Management Features</h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="flex items-start">
+                <div className="bg-blue-100 p-2 rounded-full mr-3">
+                  <Warehouse className="h-5 w-5 text-blue-600" />
+                </div>
+                <p className="text-gray-700">Industry-proven WMS (Cadre Accuplus)</p>
+              </div>
+              <div className="flex items-start">
+                <div className="bg-blue-100 p-2 rounded-full mr-3">
+                  <TrendingUp className="h-5 w-5 text-blue-600" />
+                </div>
+                <p className="text-gray-700">RF scanning for receiving, shipping and inventories</p>
+              </div>
+              <div className="flex items-start">
+                <div className="bg-blue-100 p-2 rounded-full mr-3">
+                  <Target className="h-5 w-5 text-blue-600" />
+                </div>
+                <p className="text-gray-700">24/7 web access to inventory management</p>
               </div>
             </div>
           </div>

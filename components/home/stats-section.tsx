@@ -1,4 +1,4 @@
-import { TrendingUp, MapPin, Clock, Award } from "lucide-react";
+import { TrendingUp, MapPin, Clock, Award, Train } from "lucide-react";
 
 export default function StatsSection() {
   const stats = [
@@ -9,21 +9,21 @@ export default function StatsSection() {
       delay: 100,
     },
     {
-      value: "36+",
+      value: "38+",
       label: "Years of Experience",
       icon: <Clock className="h-8 w-8 text-mvt-blue" />,
       delay: 300,
     },
     {
-      value: "3",
+      value: "7",
       label: "Strategic Locations",
       icon: <MapPin className="h-8 w-8 text-mvt-blue" />,
       delay: 500,
     },
     {
-      value: "100%",
-      label: "Client Satisfaction",
-      icon: <Award className="h-8 w-8 text-mvt-blue" />,
+      value: "Rail",
+      label: "UPRR & BNSF Access",
+      icon: <Train className="h-8 w-8 text-mvt-blue" />,
       delay: 700,
     },
   ];

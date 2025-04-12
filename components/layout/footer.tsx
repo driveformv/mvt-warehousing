@@ -120,6 +120,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
+                  href="/services#transloading" 
+                  className="text-gray-300 hover:text-white transition-colors focus-ring inline-block"
+                >
+                  Transloading
+                </Link>
+              </li>
+              <li>
+                <Link 
                   href="/services#additional-services" 
                   className="text-gray-300 hover:text-white transition-colors focus-ring inline-block"
                 >
@@ -140,18 +148,23 @@ export default function Footer() {
                   </svg>
                 </span>
                 <span>
+                  <strong>El Paso, TX:</strong><br />
                   7167 Chino Drive<br />
-                  El Paso, TX 79915<br /><br />
-                  195 Frontera Rd<br />
-                  Del Rio, TX 78840<br /><br />
-                  8900 San Gabriel Dr<br />
-                  Laredo, TX 78045
+                  7180 Merchant<br />
+                  5850 & 5830 Welch<br />
+                  7131 Copper Queen<br /><br />
+                  <strong>Santa Teresa, NM:</strong><br />
+                  4950 Avenida Creel<br /><br />
+                  <strong>Del Rio, TX:</strong><br />
+                  195 Frontera Rd<br /><br />
+                  <strong>Laredo, TX:</strong><br />
+                  8900 San Gabriel Dr
                 </span>
               </p>
               <p className="flex items-start">
                 <span className="inline-block mr-2 mt-1">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                   </svg>
                 </span>
                 <span>Phone: (800) 327-1204</span>

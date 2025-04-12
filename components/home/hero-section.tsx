@@ -99,22 +99,22 @@ export default function HeroSection() {
         <div className="max-w-4xl mx-auto text-center">
           {/* Staggered Animation for Text Elements */}
           
-          <p 
-            className="text-xl md:text-2xl mb-6 opacity-0"
+          <h1 
+            className="text-4xl md:text-6xl font-bold mb-6 opacity-0"
             data-aos="fade-up"
             data-aos-delay="400"
             data-aos-duration="1000"
           >
-            Premium Integrated Logistics Services
-          </p>
+            Premium Integrated Logistics
+          </h1>
           
           <p 
-            className="text-lg md:text-xl mb-6 opacity-0"
+            className="text-xl md:text-2xl mb-6 opacity-0"
             data-aos="fade-up"
             data-aos-delay="600"
             data-aos-duration="1000"
           >
-            We make it work
+            <span className="font-semibold">We Make It Work</span>
           </p>
           
           <p 
@@ -123,7 +123,7 @@ export default function HeroSection() {
             data-aos-delay="800"
             data-aos-duration="1000"
           >
-            MVT Warehousing is an integrated company that provides a full range of transportation and warehousing services.
+            Founded in 1986, MVT Warehousing provides a full suite of transportation and warehousing services with 550,000+ square feet across 7 strategic locations.
           </p>
           
           {/* CTA Buttons */}
@@ -137,7 +137,7 @@ export default function HeroSection() {
               href="/contact"
               className="btn btn-secondary btn-lg group"
             >
-              <span>Get Started Today</span>
+              <span>Request a Quote</span>
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
             
