@@ -1,27 +1,50 @@
 import { NextResponse } from 'next/server';
-import blogData from '@/stagecoach-blog-data.json';
+import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 
 export async function GET(request: Request) {
   try {
+    // Check if Supabase is configured
+    if (!isSupabaseConfigured() || !supabase) {
+      console.error('Supabase is not configured');
+      return NextResponse.json(
+        { error: 'Database connection not available' },
+        { status: 503 }
+      );
+    }
+    
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
     
-    // Use local blog data
     if (id) {
       // Get a single blog post
-      const post = blogData.blogPosts.find(post => post.id.toString() === id);
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('id', id)
+        .single();
       
-      if (!post) {
+      if (error) {
+        console.error('Error fetching blog post:', error);
         return NextResponse.json(
           { error: 'Blog post not found' },
           { status: 404 }
         );
       }
       
-      return NextResponse.json(post);
+      return NextResponse.json(data);
     } else {
       // Get all blog posts
-      return NextResponse.json(blogData.blogPosts);
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .order('published_date', { ascending: false });
+      
+      if (error) {
+        console.error('Error fetching blog posts:', error);
+        throw error;
+      }
+      
+      return NextResponse.json(data);
     }
   } catch (error) {
     console.error('Error fetching blog posts:', error);

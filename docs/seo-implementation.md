@@ -1,155 +1,138 @@
-# SEO Implementation Documentation
+# SEO Implementation in MVT Warehousing
 
-This document outlines the SEO implementation for the MVT Warehousing website.
+This document outlines the SEO implementation in the MVT Warehousing project, explaining how metadata is managed and how to maintain and update it.
 
 ## Overview
 
-The website uses Next.js metadata API combined with Supabase to provide dynamic SEO metadata for all pages. This approach allows for:
+The project uses Next.js's built-in metadata API combined with a Supabase database to manage SEO metadata for all pages. This approach allows for centralized management of SEO data while leveraging Next.js's powerful metadata capabilities.
 
-1. Centralized management of SEO metadata
-2. Dynamic updates without code changes
-3. Page-specific metadata customization
-4. Proper social media sharing with OpenGraph tags
+## Architecture
 
-## Implementation Details
+### Database Structure
 
-### Architecture
+SEO metadata is stored in two Supabase tables:
 
-- **Storage**: All SEO metadata is stored in Supabase in the `seo_metadata` table
-- **Fetching**: The `getSEOMetadata` function in `lib/get-seo-metadata.ts` retrieves metadata based on page path
-- **Integration**: Each page uses the `generateMetadata` function to fetch and apply SEO metadata
-- **Fallback**: Default metadata is provided if specific metadata is not found
+1. **seo_metadata**: Stores general page metadata
+   - `id`: Primary key
+   - `path`: URL path (e.g., '/about', '/services')
+   - `title`: Page title
+   - `description`: Meta description
+   - `keywords`: Array of keywords
+   - `og_image`: Path to OpenGraph image
+   - `created_at`: Timestamp
+   - `updated_at`: Timestamp
 
-### Database Schema
+2. **blog_posts**: Includes SEO fields for blog posts
+   - `id`: Primary key
+   - `title`: Blog post title
+   - `slug`: URL-friendly version of title
+   - `content`: Blog post content
+   - `excerpt`: Short summary
+   - `published_date`: Publication date
+   - `updated_date`: Last update date
+   - `category`: Blog category
+   - `tags`: Array of tags
+   - `video_id`: YouTube video ID (if applicable)
+   - `seo_title`: SEO-optimized title
+   - `seo_description`: SEO-optimized description
+   - `seo_keywords`: Array of SEO keywords
 
-The `seo_metadata` table has the following structure:
+### Implementation Files
 
-```sql
-CREATE TABLE seo_metadata (
-  id SERIAL PRIMARY KEY,
-  path TEXT UNIQUE NOT NULL,
-  title TEXT NOT NULL,
-  description TEXT NOT NULL,
-  keywords TEXT[] DEFAULT '{}',
-  og_image TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
+The SEO implementation consists of several key files:
+
+1. **lib/get-seo-metadata.ts**: Core utility for fetching metadata from Supabase
+   - `getSEOMetadata()`: Fetches metadata for a specific path
+   - `seoToMetadata()`: Converts SEO data to Next.js Metadata format
+   - `generateMetadata()`: Main function used by page metadata files
+
+2. **app/api/seo/route.ts**: API endpoint for managing SEO metadata
+   - `GET`: Retrieve metadata for a specific path or all metadata
+   - `POST`: Create or update metadata
+   - `DELETE`: Remove metadata
+
+3. **Page-specific metadata.ts files**: Each page has its own metadata.ts file
+   - Located in the page's directory (e.g., app/about/metadata.ts)
+   - Uses the `generateMetadata()` function to fetch metadata for that page
+
+4. **app/blog/[id]/metadata.ts**: Special implementation for dynamic blog posts
+   - Fetches the specific blog post data
+   - Uses the blog post's SEO fields or generates metadata from content
+
+### Data Flow
+
+1. When a page is requested, Next.js calls the page's `generateMetadata()` function
+2. This function calls the utility in `lib/get-seo-metadata.ts`
+3. The utility fetches data from Supabase based on the page path
+4. If data exists, it's formatted as Next.js Metadata and returned
+5. If no data exists, default metadata is returned
+
+## Maintenance
+
+### Adding SEO for a New Page
+
+1. Create a `metadata.ts` file in the page's directory
+2. Import and use the `generateMetadata` function from `lib/get-seo-metadata.ts`
+3. Add the page's metadata to the `seo_metadata` table in Supabase
+
+Example `metadata.ts` file:
+```typescript
+import { Metadata } from 'next';
+import { generateMetadata as getMetadata } from '@/lib/get-seo-metadata';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return await getMetadata('/your-page-path');
+}
 ```
 
-For blog posts, SEO metadata is stored directly in the `blog_posts` table with these additional fields:
+### Updating SEO Metadata
 
+To update metadata for existing pages:
+
+1. Use the API endpoint at `/api/seo` with a POST request
+2. Include the path, title, description, and optional keywords and ogImage
+3. The API will update the existing record or create a new one
+
+Example API request:
+```javascript
+fetch('/api/seo', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    path: '/about',
+    title: 'About MVT Warehousing | Our Story & Mission',
+    description: 'Learn about MVT Warehousing\'s experience in logistics...',
+    keywords: ['about MVT', 'logistics company', 'warehousing history']
+  })
+})
 ```
-seo_title TEXT
-seo_description TEXT
-seo_keywords TEXT[]
-```
 
-### Code Implementation
+### Blog Post SEO
 
-1. **Metadata Fetching**:
-   ```typescript
-   // lib/get-seo-metadata.ts
-   export async function getSEOMetadata(path: string): Promise<SEOMetadata> {
-     // Fetch metadata from Supabase based on path
-     // Return default metadata if not found
-   }
-   ```
+Blog posts have their own SEO fields in the `blog_posts` table. When creating or updating a blog post:
 
-2. **Page Integration**:
-   ```typescript
-   // app/page.tsx (and other pages)
-   import { Metadata } from 'next';
-   import { generateMetadata as getMetadata } from '@/lib/get-seo-metadata';
+1. Set the `seo_title`, `seo_description`, and `seo_keywords` fields
+2. The dynamic metadata implementation will use these fields automatically
 
-   export async function generateMetadata(): Promise<Metadata> {
-     return await getMetadata('/');
-   }
-   ```
+If these fields are not provided, the system will generate metadata from the post's title, excerpt, and content.
 
-3. **Blog Post Integration**:
-   ```typescript
-   // app/blog/[id]/page.tsx
-   export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-     // Fetch blog post
-     // Use blog post's SEO fields or generate from content
-   }
-   ```
+## Scripts
 
-## Populating SEO Metadata
+The project includes scripts for managing SEO data:
 
-Two scripts are provided to populate the SEO metadata:
+1. **scripts/populate-seo-metadata.js**: Populates the `seo_metadata` table with initial data
+2. **scripts/populate-blog-seo.js**: Updates SEO fields for blog posts
 
-1. **General Pages**: `scripts/populate-seo-metadata.js`
-   - Populates metadata for main pages (home, about, services, etc.)
-   - Creates the `seo_metadata` table if it doesn't exist
-
-2. **Blog Posts**: `scripts/populate-blog-seo.js`
-   - Updates all blog posts with SEO metadata
-   - Generates metadata from post content if not explicitly provided
-
-To run these scripts:
-
+Run these scripts when you need to bulk update SEO data:
 ```bash
 node scripts/populate-seo-metadata.js
 node scripts/populate-blog-seo.js
 ```
 
-## Managing SEO Metadata
-
-### Adding/Updating Page Metadata
-
-To add or update SEO metadata for a page:
-
-1. Use the Supabase dashboard to modify the `seo_metadata` table
-2. Or use the API endpoint at `/api/seo` with a POST request:
-
-```javascript
-// Example POST request
-fetch('/api/seo', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    path: '/new-page',
-    title: 'New Page | MVT Warehousing',
-    description: 'Description for the new page',
-    keywords: ['keyword1', 'keyword2'],
-    ogImage: '/images/og-image.jpg'
-  }),
-})
-```
-
-### Updating Blog Post Metadata
-
-Blog post SEO metadata can be updated:
-
-1. Directly in the `blog_posts` table in Supabase
-2. Through the blog post editor interface (if implemented)
-3. By running the `populate-blog-seo.js` script again
-
 ## Best Practices
 
-1. **Titles**: Keep titles under 60 characters, include the brand name
-2. **Descriptions**: Keep descriptions between 120-160 characters
-3. **Keywords**: Use 5-8 relevant keywords per page
-4. **Images**: Provide OpenGraph images (1200x630px) for better social sharing
-
-## Troubleshooting
-
-If SEO metadata is not appearing correctly:
-
-1. Check the Supabase connection in `.env.local`
-2. Verify the metadata exists in the `seo_metadata` table
-3. Check the browser console for any errors in the metadata fetching process
-4. Run the population scripts again if needed
-
-## Future Improvements
-
-Potential enhancements to the SEO implementation:
-
-1. Admin interface for managing SEO metadata
-2. Automated SEO analysis and suggestions
-3. Integration with analytics to track SEO performance
-4. Structured data (JSON-LD) for rich search results
+1. **Keep metadata up to date**: Regularly review and update metadata as content changes
+2. **Optimize for search intent**: Ensure titles and descriptions match user search intent
+3. **Use keywords strategically**: Include relevant keywords without keyword stuffing
+4. **Provide OpenGraph images**: Add og_image paths for better social media sharing
+5. **Monitor performance**: Use analytics to track SEO performance and make adjustments

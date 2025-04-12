@@ -196,7 +196,7 @@ export default function BlogPostClient({ id }: { id: string }) {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-700"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-mvt-blue"></div>
       </div>
     );
   }
@@ -206,7 +206,7 @@ export default function BlogPostClient({ id }: { id: string }) {
       <div className="max-w-4xl mx-auto py-16 px-4 text-center">
         <h1 className="text-3xl font-bold mb-6">Blog Post</h1>
         <p className="text-gray-600 mb-8">{error || 'This blog post is currently unavailable.'}</p>
-        <Link href="/blog" className="text-blue-600 hover:text-blue-800 font-semibold inline-flex items-center">
+        <Link href="/blog" className="text-mvt-blue hover:text-mvt-lightBlue font-semibold inline-flex items-center">
           <ArrowLeft size={16} className="mr-2" />
           Back to Blog
         </Link>
@@ -244,7 +244,7 @@ export default function BlogPostClient({ id }: { id: string }) {
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="flex justify-between items-center mb-8">
-            <Link href="/blog" className="text-blue-600 hover:text-blue-800 font-semibold inline-flex items-center">
+            <Link href="/blog" className="text-mvt-blue hover:text-mvt-lightBlue font-semibold inline-flex items-center">
               <ArrowLeft size={16} className="mr-2" />
               Back to Blog
             </Link>
@@ -329,7 +329,7 @@ export default function BlogPostClient({ id }: { id: string }) {
                   }
                 }
               }}
-              className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-3 rounded-md font-semibold inline-flex items-center transition-colors"
+              className="bg-mvt-blue text-white hover:bg-mvt-lightBlue px-6 py-3 rounded-md font-semibold inline-flex items-center transition-colors"
             >
               <Share2 size={18} className="mr-2" />
               Share This Article
@@ -348,13 +348,13 @@ export default function BlogPostClient({ id }: { id: string }) {
                 <div key={relatedPost.id} className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow">
                   <div className="p-6">
                     {relatedPost.category && (
-                      <div className="flex items-center gap-2 text-sm text-blue-600 mb-3">
+                      <div className="flex items-center gap-2 text-sm text-mvt-blue mb-3">
                         <Tag size={16} />
                         <span>{relatedPost.category}</span>
                       </div>
                     )}
                     <h3 className="text-xl font-bold mb-3 line-clamp-2">
-                      <Link href={`/blog/${relatedPost.id}`} className="hover:text-blue-600 transition-colors">
+                      <Link href={`/blog/${relatedPost.id}`} className="hover:text-mvt-blue transition-colors">
                         {relatedPost.title}
                       </Link>
                     </h3>
@@ -369,7 +369,7 @@ export default function BlogPostClient({ id }: { id: string }) {
                     )}
                     <Link 
                       href={`/blog/${relatedPost.id}`}
-                      className="text-blue-600 hover:text-blue-800 font-semibold inline-flex items-center"
+                      className="text-mvt-blue hover:text-mvt-lightBlue font-semibold inline-flex items-center"
                     >
                       Read More
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -385,7 +385,7 @@ export default function BlogPostClient({ id }: { id: string }) {
       )}
       
       {/* Newsletter Section */}
-      <section className="bg-blue-600 text-white py-16 px-4">
+      <section className="bg-mvt-blue text-white py-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6">Subscribe to Our Newsletter</h2>
           <p className="text-xl text-white/80 mb-8">
@@ -405,7 +405,7 @@ export default function BlogPostClient({ id }: { id: string }) {
             />
             <button
               type="submit"
-              className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-md font-semibold transition-colors"
+              className="bg-white text-mvt-blue hover:bg-gray-100 px-6 py-3 rounded-md font-semibold transition-colors"
             >
               Subscribe
             </button>

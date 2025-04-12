@@ -159,7 +159,7 @@ export default function BlogClient() {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-700"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-mvt-blue"></div>
       </div>
     );
   }
@@ -200,7 +200,7 @@ export default function BlogClient() {
               <input
                 type="text"
                 placeholder="Search blog posts..."
-                className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mvt-blue"
                 value={searchQuery}
                 onChange={handleSearchChange}
               />
@@ -212,7 +212,7 @@ export default function BlogClient() {
                 onClick={() => handleCategorySelect(null)}
                 className={`px-3 py-1 rounded-full text-sm ${
                   selectedCategory === null
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-mvt-blue text-white'
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 }`}
               >
@@ -224,7 +224,7 @@ export default function BlogClient() {
                   onClick={() => handleCategorySelect(category)}
                   className={`px-3 py-1 rounded-full text-sm ${
                     selectedCategory === category
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-mvt-blue text-white'
                       : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                   }`}
                 >
@@ -245,13 +245,13 @@ export default function BlogClient() {
                 <div key={post.id} className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow">
                   <div className="p-6">
                     {post.category && (
-                      <div className="flex items-center gap-2 text-sm text-blue-600 mb-3">
+                      <div className="flex items-center gap-2 text-sm text-mvt-blue mb-3">
                         <Tag size={16} />
                         <span>{post.category}</span>
                       </div>
                     )}
                     <h2 className="text-xl font-bold mb-3 line-clamp-2">
-                      <Link href={`/blog/${post.id}`} className="hover:text-blue-600 transition-colors">
+                      <Link href={`/blog/${post.id}`} className="hover:text-mvt-blue transition-colors">
                         {post.title}
                       </Link>
                     </h2>
@@ -280,7 +280,7 @@ export default function BlogClient() {
                     )}
                     <Link 
                       href={`/blog/${post.id}`}
-                      className="text-blue-600 hover:text-blue-800 font-semibold inline-flex items-center"
+                      className="text-mvt-blue hover:text-mvt-lightBlue font-semibold inline-flex items-center"
                     >
                       Read More
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -305,7 +305,7 @@ export default function BlogClient() {
       </section>
       
       {/* Newsletter Section */}
-      <section className="bg-blue-600 text-white py-16 px-4">
+      <section className="bg-mvt-blue text-white py-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6">Subscribe to Our Newsletter</h2>
           <p className="text-xl text-white/80 mb-8">
@@ -325,7 +325,7 @@ export default function BlogClient() {
             />
             <button
               type="submit"
-              className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-md font-semibold transition-colors"
+              className="bg-white text-mvt-blue hover:bg-gray-100 px-6 py-3 rounded-md font-semibold transition-colors"
             >
               Subscribe
             </button>

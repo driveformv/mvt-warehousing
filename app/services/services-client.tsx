@@ -224,7 +224,7 @@ export default function ServicesClient() {
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="relative h-[400px]">
             <Image
-              src="/images/transloading.jpg"
+              src="/images/2-1.jpg"
               alt="Transloading Services"
               fill
               className="object-cover rounded-xl shadow-lg"
@@ -340,30 +340,6 @@ export default function ServicesClient() {
               <li className="flex items-center">
                 <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
                 <span>Extensive knowledge of border logistics</span>
-              </li>
-            </ul>
-          </div>
-          
-          <div className="bg-white p-6 rounded-xl shadow-md">
-            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-              <Package className="text-blue-600" size={24} />
-            </div>
-            <h3 className="text-xl font-bold mb-3">LTL Less Than Truck Load</h3>
-            <p className="text-gray-600 mb-4">
-              Our "Border Express" LTL service offers next-business-day delivery along key Texas border cities.
-            </p>
-            <ul className="space-y-2 text-gray-600">
-              <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
-                <span>Service from El Paso to Del Rio, Eagle Pass, and Laredo</span>
-              </li>
-              <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
-                <span>Cost-effective solutions for smaller shipments</span>
-              </li>
-              <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
-                <span>Reliable scheduled service</span>
               </li>
             </ul>
           </div>
