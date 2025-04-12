@@ -36,7 +36,7 @@ export default function ServicesSection() {
   return (
     <section className="py-20 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16" data-aos="fade-up">
+        <div className="text-center mb-16" data-aos="fade-up" suppressHydrationWarning={true}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Integrated transportation and warehousing services with 38 years of excellence
@@ -50,6 +50,7 @@ export default function ServicesSection() {
               className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col h-full group hover:-translate-y-2"
               data-aos="fade-up"
               data-aos-delay={service.delay}
+              suppressHydrationWarning={true}
             >
               <div className="p-6">
                 <div className="bg-mvt-blue p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6 group-hover:bg-mvt-red transition-colors duration-300">
@@ -71,7 +72,7 @@ export default function ServicesSection() {
           ))}
         </div>
         
-        <div className="mt-16 text-center" data-aos="fade-up" data-aos-delay="700">
+        <div className="mt-16 text-center" data-aos="fade-up" data-aos-delay="700" suppressHydrationWarning={true}>
           <Link 
             href="/services" 
             className="btn btn-primary btn-lg inline-flex items-center group"

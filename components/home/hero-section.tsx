@@ -8,8 +8,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
 
@@ -89,8 +87,6 @@ export default function HeroSection() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="left-4 z-10" />
-          <CarouselNext className="right-4 z-10" />
         </Carousel>
       </div>
 
@@ -104,6 +100,7 @@ export default function HeroSection() {
             data-aos="fade-up"
             data-aos-delay="400"
             data-aos-duration="1000"
+            suppressHydrationWarning={true}
           >
             Premium Integrated Logistics
           </h1>
@@ -113,6 +110,7 @@ export default function HeroSection() {
             data-aos="fade-up"
             data-aos-delay="600"
             data-aos-duration="1000"
+            suppressHydrationWarning={true}
           >
             <span className="font-semibold">We Make It Work</span>
           </p>
@@ -122,16 +120,18 @@ export default function HeroSection() {
             data-aos="fade-up"
             data-aos-delay="800"
             data-aos-duration="1000"
+            suppressHydrationWarning={true}
           >
             Founded in 1986, MVT Warehousing provides a full suite of transportation and warehousing services with 550,000+ square feet across 7 strategic locations.
           </p>
           
           {/* CTA Buttons */}
-          <div 
+          <div
             className="flex flex-col sm:flex-row gap-4 justify-center opacity-0"
             data-aos="fade-up"
             data-aos-delay="1000"
             data-aos-duration="1000"
+            suppressHydrationWarning={true}
           >
             <Link 
               href="/contact"
@@ -152,11 +152,12 @@ export default function HeroSection() {
       </div>
 
       {/* Scroll Indicator */}
-      <div 
+      <div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0"
         data-aos="fade-up"
         data-aos-delay="1200"
         data-aos-duration="1000"
+        suppressHydrationWarning={true}
       >
         <div className="flex flex-col items-center">
           <span className="text-white text-sm mb-2">Scroll Down</span>

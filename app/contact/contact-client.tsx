@@ -1,16 +1,31 @@
 "use client";
 
-import { Mail, Phone, MapPin, Clock, Warehouse, TruckIcon, Package } from "lucide-react";
+import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import Image from "next/image";
+import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from '@react-google-maps/api';
 import ContactForm from "@/components/contact-form";
 import { pageview } from "@/lib/analytics";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { 
+  GOOGLE_MAPS_API_KEY, 
+  DEFAULT_MAP_CENTER, 
+  DEFAULT_CONTAINER_STYLE,
+  DEFAULT_ZOOM_LEVEL,
+  FACILITY_LOCATIONS,
+  BLUE_MAP_STYLE
+} from "@/lib/google-maps";
 
 export default function ContactClient() {
-  // Track page view
   useEffect(() => {
     pageview('/contact');
   }, []);
+
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+    libraries: ['places', 'geometry']
+  });
+  
+  const [selectedFacility, setSelectedFacility] = useState<null | typeof FACILITY_LOCATIONS[0]>(null);
 
   return (
     <main>
@@ -31,9 +46,9 @@ export default function ContactClient() {
         </div>
       </section>
 
+      {/* Contact Information and Form Section */}
       <section className="py-20 px-4 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16">
-          {/* Contact Information */}
           <div>
             <h2 className="text-3xl font-bold mb-8">Contact Information</h2>
             <div className="space-y-8 mb-12">
@@ -54,11 +69,11 @@ export default function ContactClient() {
                     </div>
                     <div>
                       <p className="font-medium">El Paso - Welch</p>
-                      <p className="text-gray-600">5850 Welch, El Paso, TX</p>
+                      <p className="text-gray-600">5850 Welch Ave, El Paso, TX 79905</p>
                     </div>
                     <div>
                       <p className="font-medium">El Paso - Welch II</p>
-                      <p className="text-gray-600">5830 Welch, El Paso, TX</p>
+                      <p className="text-gray-600">5830 Welch Ave, El Paso, TX 79905</p>
                     </div>
                     <div>
                       <p className="font-medium">El Paso - Cross Dock</p>
@@ -111,33 +126,11 @@ export default function ContactClient() {
                 </div>
               </div>
             </div>
-            
-            <h3 className="text-2xl font-bold mb-6">Our Services</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              <div className="bg-blue-50 p-4 rounded-lg text-center">
-                <TruckIcon className="text-blue-600 mx-auto mb-2" size={24} />
-                <p className="font-medium">Transportation</p>
-              </div>
-              <div className="bg-blue-50 p-4 rounded-lg text-center">
-                <Warehouse className="text-blue-600 mx-auto mb-2" size={24} />
-                <p className="font-medium">Warehousing</p>
-              </div>
-              <div className="bg-blue-50 p-4 rounded-lg text-center">
-                <Package className="text-blue-600 mx-auto mb-2" size={24} />
-                <p className="font-medium">Bulk Transfer</p>
-              </div>
-              <div className="bg-blue-50 p-4 rounded-lg text-center">
-                <MapPin className="text-blue-600 mx-auto mb-2" size={24} />
-                <p className="font-medium">Transloading</p>
-              </div>
-            </div>
           </div>
-
-          {/* Contact Form */}
           <ContactForm className="p-8 rounded-xl shadow-lg" />
         </div>
       </section>
-      
+
       {/* Map Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
@@ -147,121 +140,92 @@ export default function ContactClient() {
               Seven strategically located facilities across the US-Mexico border regions
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-xl font-bold mb-4 flex items-center">
-                <MapPin className="text-blue-600 mr-2" size={20} />
-                El Paso Facilities
-              </h3>
-              <p className="text-gray-600 mb-4">Our El Paso operations include five facilities with over 430,000 square feet of space:</p>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                  <span>7167 Chino Drive - 100,000 sq ft (Headquarters)</span>
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                  <span>7180 Merchant - 110,000 sq ft with rail service</span>
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                  <span>5850 Welch - 170,000 sq ft bonded warehouse</span>
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                  <span>5830 Welch - 40,000 sq ft storage facility</span>
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                  <span>7131 Copper Queen - 10,000 sq ft cross-dock</span>
-                </li>
-              </ul>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-xl font-bold mb-4 flex items-center">
-                <MapPin className="text-blue-600 mr-2" size={20} />
-                Additional Border Locations
-              </h3>
-              <p className="text-gray-600 mb-4">Strategic facilities across key border areas:</p>
-              <ul className="space-y-2 text-gray-600 mb-6">
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                  <span>Santa Teresa, NM - 70,000 sq ft with rail service</span>
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                  <span>Del Rio, TX - 10,800 sq ft cross-dock on 5 acres</span>
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
-                  <span>Laredo, TX - 40,000 sq ft warehouse on 7.7 acres</span>
-                </li>
-              </ul>
-              
-              <p className="text-gray-700 font-medium">Total warehouse space: Over 550,000 square feet</p>
-            </div>
-          </div>
-          
+
           <div className="bg-white p-4 rounded-xl shadow-lg">
-            <div className="aspect-w-16 aspect-h-9 w-full h-[400px] relative">
-              <Image
-                src="/images/map-locations.jpg"
-                alt="Map of MVT Warehousing's seven strategic locations"
-                fill
-                className="object-cover rounded-lg"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-lg"></div>
-              <div className="absolute bottom-4 left-4 right-4 text-white">
-                <h4 className="font-bold text-xl mb-1">Strategic Border Locations</h4>
-                <p>Positioned across key US-Mexico border crossing points</p>
+            <div className="w-full h-[500px] relative">
+              {isLoaded ? (
+                <GoogleMap
+                  mapContainerStyle={DEFAULT_CONTAINER_STYLE}
+                  center={DEFAULT_MAP_CENTER}
+                  zoom={DEFAULT_ZOOM_LEVEL}
+                  options={{
+                    styles: BLUE_MAP_STYLE,
+                    disableDefaultUI: false,
+                    zoomControl: true,
+                    mapTypeControl: true,
+                    streetViewControl: false,
+                    fullscreenControl: true
+                  }}
+                >
+                  {FACILITY_LOCATIONS.map((facility, index) => (
+                    <Marker 
+                      key={index} 
+                      position={facility.position} 
+                      title={facility.name}
+                      onClick={() => setSelectedFacility(facility)}
+                    />
+                  ))}
+                  
+                  {selectedFacility && (
+                    <InfoWindow
+                      position={selectedFacility.position}
+                      onCloseClick={() => setSelectedFacility(null)}
+                    >
+                      <div className="p-2 max-w-xs">
+                        <h3 className="font-bold text-lg">{selectedFacility.name}</h3>
+                        <p className="text-sm mb-2">{selectedFacility.address}</p>
+                        <a 
+                          href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(selectedFacility.address)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                        >
+                          Get Directions →
+                        </a>
+                      </div>
+                    </InfoWindow>
+                  )}
+                </GoogleMap>
+              ) : (
+                <div className="flex items-center justify-center h-full">
+                  <p className="text-lg text-gray-500">Loading map...</p>
+                </div>
+              )}
+              <div className="absolute bottom-4 left-4 right-4 text-black bg-white/70 p-2 rounded">
+                <h4 className="font-bold text-xl mb-1">US-Mexico Border Operations</h4>
+                <p>Strategically positioned facilities along the US-Mexico border for efficient cross-border logistics</p>
               </div>
             </div>
           </div>
         </div>
       </section>
-      
+
       {/* CTA Section */}
       <section className="bg-mvt-blue text-white py-20 md:py-24 relative overflow-hidden">
-        {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full">
-            <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <defs>
-                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
-          </div>
+          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center" data-aos="fade-up">
+          <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Need Immediate Assistance?</h2>
             <p className="text-xl mb-10 text-white/80 max-w-2xl mx-auto">
               Our team is ready to help you with any questions about our transportation and warehousing services.
             </p>
-            
+
             <div className="flex flex-col md:flex-row gap-6 justify-center mb-12">
-              <a 
-                href="tel:8003271204"
-                className="btn bg-white text-mvt-blue hover:bg-gray-100 btn-lg group inline-flex items-center justify-center"
-                data-aos="fade-up"
-                data-aos-delay="200"
-              >
+              <a href="tel:8003271204" className="btn bg-white text-mvt-blue hover:bg-gray-100 btn-lg group inline-flex items-center justify-center">
                 <Phone className="mr-2 h-5 w-5" />
                 <span>Call (800) 327-1204</span>
               </a>
-              
-              <a 
-                href="mailto:sales@mvtwarehousing.com"
-                className="btn btn-outline border-white text-white hover:bg-white/10 btn-lg inline-flex items-center justify-center"
-                data-aos="fade-up"
-                data-aos-delay="300"
-              >
+              <a href="mailto:sales@mvtwarehousing.com" className="btn btn-outline border-white text-white hover:bg-white/10 btn-lg inline-flex items-center justify-center">
                 <Mail className="mr-2 h-5 w-5" />
                 <span>Email Us</span>
               </a>

@@ -15,9 +15,9 @@ export default function AOSProvider({
   useEffect(() => {
     AOS.init({
       duration: 800,
-      once: false,
+      once: true, // Set to true to prevent re-animation and potential mismatches
       easing: "ease-out-cubic",
-      mirror: true,
+      mirror: false, // Set to false to simplify animation behavior
       offset: 50,
       delay: 100,
     });

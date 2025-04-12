@@ -38,6 +38,7 @@ export default function StatsSection() {
               className="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow"
               data-aos="fade-up"
               data-aos-delay={stat.delay}
+              suppressHydrationWarning={true}
             >
               <div className="flex justify-center mb-4">
                 {stat.icon}

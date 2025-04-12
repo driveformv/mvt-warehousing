@@ -24,7 +24,7 @@ export default function HomeClient() {
       {/* Additional Services Section */}
       <section className="bg-mvt-blue text-white py-20 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16" data-aos="fade-up">
+          <div className="text-center mb-16" data-aos="fade-up" suppressHydrationWarning={true}>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Additional Services</h2>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               Comprehensive logistics solutions for your business needs
@@ -36,6 +36,7 @@ export default function HomeClient() {
               className="bg-mvt-blue/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-mvt-blue/40 transition-all duration-300 hover:-translate-y-1"
               data-aos="fade-up"
               data-aos-delay="100"
+              suppressHydrationWarning={true}
             >
               <h3 className="text-xl font-bold mb-4">Rail Service</h3>
               <p className="text-white/80">
@@ -47,6 +48,7 @@ export default function HomeClient() {
               className="bg-mvt-blue/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-mvt-blue/40 transition-all duration-300 hover:-translate-y-1"
               data-aos="fade-up"
               data-aos-delay="200"
+              suppressHydrationWarning={true}
             >
               <h3 className="text-xl font-bold mb-4">Equipment & Attachments</h3>
               <p className="text-white/80">
@@ -58,6 +60,7 @@ export default function HomeClient() {
               className="bg-mvt-blue/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-mvt-blue/40 transition-all duration-300 hover:-translate-y-1"
               data-aos="fade-up"
               data-aos-delay="300"
+              suppressHydrationWarning={true}
             >
               <h3 className="text-xl font-bold mb-4">Bonded & CME Warehouse</h3>
               <p className="text-white/80">
@@ -69,6 +72,7 @@ export default function HomeClient() {
               className="bg-mvt-blue/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-mvt-blue/40 transition-all duration-300 hover:-translate-y-1"
               data-aos="fade-up"
               data-aos-delay="400"
+              suppressHydrationWarning={true}
             >
               <h3 className="text-xl font-bold mb-4">Computerized Systems</h3>
               <p className="text-white/80">
@@ -80,6 +84,7 @@ export default function HomeClient() {
               className="bg-mvt-blue/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-mvt-blue/40 transition-all duration-300 hover:-translate-y-1"
               data-aos="fade-up"
               data-aos-delay="500"
+              suppressHydrationWarning={true}
             >
               <h3 className="text-xl font-bold mb-4">Specialized Fleet</h3>
               <p className="text-white/80">
@@ -91,6 +96,7 @@ export default function HomeClient() {
               className="bg-mvt-blue/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-mvt-blue/40 transition-all duration-300 hover:-translate-y-1"
               data-aos="fade-up"
               data-aos-delay="600"
+              suppressHydrationWarning={true}
             >
               <h3 className="text-xl font-bold mb-4">Cross-Border Services</h3>
               <p className="text-white/80">
@@ -99,7 +105,7 @@ export default function HomeClient() {
             </div>
           </div>
           
-          <div className="mt-12 text-center" data-aos="fade-up" data-aos-delay="700">
+          <div className="mt-12 text-center" data-aos="fade-up" data-aos-delay="700" suppressHydrationWarning={true}>
             <Link 
               href="/services#additional-services" 
               className="btn btn-outline border-white text-white hover:bg-white/10 btn-lg inline-flex items-center group"
@@ -118,6 +124,7 @@ export default function HomeClient() {
             <div 
               className="flex-1 order-2 md:order-1"
               data-aos="fade-right"
+              suppressHydrationWarning={true}
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6">About MVT Warehousing</h2>
               <p className="text-gray-700 mb-6 text-lg leading-relaxed">
@@ -141,6 +148,7 @@ export default function HomeClient() {
             <div 
               className="flex-1 relative h-[400px] order-1 md:order-2 mb-8 md:mb-0 rounded-xl overflow-hidden"
               data-aos="fade-left"
+              suppressHydrationWarning={true}
             >
               <Image
                 src="/images/1.jpg"

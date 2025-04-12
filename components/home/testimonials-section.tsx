@@ -42,14 +42,14 @@ export default function TestimonialsSection() {
   return (
     <section className="bg-gray-50 py-20 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16" data-aos="fade-up">
+        <div className="text-center mb-16" data-aos="fade-up" suppressHydrationWarning={true}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Clients Say</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Don't just take our word for it - hear from some of our satisfied clients
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto relative" data-aos="fade-up" data-aos-delay="200">
+        <div className="max-w-4xl mx-auto relative" data-aos="fade-up" data-aos-delay="200" suppressHydrationWarning={true}>
           {/* Testimonial Cards */}
           <div className="relative overflow-hidden">
             <div 
@@ -127,7 +127,7 @@ export default function TestimonialsSection() {
         </div>
         
         {/* Trust Signals */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center" data-aos="fade-up" data-aos-delay="400">
+        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center" data-aos="fade-up" data-aos-delay="400" suppressHydrationWarning={true}>
           <div className="bg-white p-6 rounded-lg shadow-sm w-full max-w-[180px] h-24 flex items-center justify-center">
             <div className="text-gray-400 font-bold text-xl">CLIENT LOGO</div>
           </div>

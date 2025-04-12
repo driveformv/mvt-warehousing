@@ -19,7 +19,7 @@ export default function CTASection() {
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center" data-aos="fade-up">
+        <div className="max-w-4xl mx-auto text-center" data-aos="fade-up" suppressHydrationWarning={true}>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Get Started?</h2>
           <p className="text-xl mb-10 text-white/80 max-w-2xl mx-auto">
             Contact us today to discuss your transportation and logistics needs. Our team of experts is ready to help you optimize your supply chain.
@@ -31,6 +31,7 @@ export default function CTASection() {
               className="btn bg-white text-mvt-blue hover:bg-gray-100 btn-lg group inline-flex items-center justify-center"
               data-aos="fade-up"
               data-aos-delay="200"
+              suppressHydrationWarning={true}
             >
               <span>Contact Us</span>
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -41,6 +42,7 @@ export default function CTASection() {
               className="btn btn-outline border-white text-white hover:bg-white/10 btn-lg inline-flex items-center justify-center"
               data-aos="fade-up"
               data-aos-delay="300"
+              suppressHydrationWarning={true}
             >
               <Phone className="mr-2 h-5 w-5" />
               <span>(800) 327-1204</span>
@@ -51,6 +53,7 @@ export default function CTASection() {
             className="bg-white/10 backdrop-blur-sm rounded-xl p-8 max-w-2xl mx-auto"
             data-aos="fade-up"
             data-aos-delay="400"
+            suppressHydrationWarning={true}
           >
             <h3 className="text-2xl font-bold mb-4">Quick Contact</h3>
             <p className="mb-6 text-white/80">
