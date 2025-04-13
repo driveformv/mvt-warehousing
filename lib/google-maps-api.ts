@@ -2,7 +2,7 @@
  * Client-side utility for interacting with the Google Maps API via Supabase Edge Functions
  */
 
-import { supabase } from './supabase';
+import { supabase, getSupabaseUrl, getSupabaseAnonKey } from './supabase';
 
 // Types for the Google Maps API requests
 interface GeocodingRequest {
@@ -19,13 +19,53 @@ interface PlaceDetailsRequest {
   placeId: string;
 }
 
-// Base URL for the Supabase Edge Function
+/**
+ * Get the base URL for the Supabase Edge Function
+ * @returns The base URL for the Supabase Edge Function
+ */
 const getEdgeFunctionUrl = () => {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseUrl = getSupabaseUrl();
   if (!supabaseUrl) {
-    throw new Error('NEXT_PUBLIC_SUPABASE_URL is not defined');
+    throw new Error('SUPABASE_URL is not defined');
   }
   return `${supabaseUrl}/functions/v1/google-maps`;
+};
+
+/**
+ * Get the authorization header for the Supabase Edge Function
+ * @returns The authorization header for the Supabase Edge Function
+ */
+const getAuthHeader = async (): Promise<HeadersInit> => {
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json'
+  };
+  
+  // Use the anon key for authentication since the Edge Function is deployed with --no-verify-jwt
+  const anonKey = getSupabaseAnonKey();
+  if (anonKey) {
+    return {
+      ...headers,
+      'Authorization': `Bearer ${anonKey}`
+    };
+  }
+  
+  // Fall back to session token if available
+  if (supabase?.auth) {
+    try {
+      const { data } = await supabase.auth.getSession();
+      if (data?.session?.access_token) {
+        return {
+          ...headers,
+          'Authorization': `Bearer ${data.session.access_token}`
+        };
+      }
+    } catch (e) {
+      console.warn('Failed to get auth session:', e);
+    }
+  }
+  
+  console.error('No authorization method available for Supabase Edge Function');
+  return headers;
 };
 
 /**
@@ -35,40 +75,25 @@ const getEdgeFunctionUrl = () => {
  */
 export async function geocodeAddress(address: string) {
   try {
-    // Get the session asynchronously if available
-    let authHeader = {};
-    // Use the anon key for authentication since the Edge Function is deployed with --no-verify-jwt
-    const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    if (anonKey) {
-      authHeader = { Authorization: `Bearer ${anonKey}` };
-    } else {
-      // Fall back to session token if available
-      if (supabase?.auth) {
-        try {
-          const { data } = await supabase.auth.getSession();
-          if (data?.session?.access_token) {
-            authHeader = { Authorization: `Bearer ${data.session.access_token}` };
-          }
-        } catch (e) {
-          console.warn('Failed to get auth session:', e);
-        }
-      }
-    }
-
-    const response = await fetch(`${getEdgeFunctionUrl()}/geocode`, {
+    const authHeader = await getAuthHeader();
+    const edgeFunctionUrl = getEdgeFunctionUrl();
+    
+    console.log(`Geocoding address: ${address}`);
+    
+    const response = await fetch(`${edgeFunctionUrl}/geocode`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...authHeader,
-      },
+      headers: authHeader,
       body: JSON.stringify({ address } as GeocodingRequest),
     });
 
     if (!response.ok) {
-      throw new Error(`Geocoding failed: ${response.statusText}`);
+      const errorText = await response.text();
+      throw new Error(`Geocoding failed: ${response.status} ${errorText}`);
     }
 
-    return await response.json();
+    const data = await response.json();
+    console.log('Geocoding successful');
+    return data;
   } catch (error) {
     console.error('Error geocoding address:', error);
     throw error;
@@ -88,40 +113,25 @@ export async function getDirections(
   mode: 'driving' | 'walking' | 'bicycling' | 'transit' = 'driving'
 ) {
   try {
-    // Get the session asynchronously if available
-    let authHeader = {};
-    // Use the anon key for authentication since the Edge Function is deployed with --no-verify-jwt
-    const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    if (anonKey) {
-      authHeader = { Authorization: `Bearer ${anonKey}` };
-    } else {
-      // Fall back to session token if available
-      if (supabase?.auth) {
-        try {
-          const { data } = await supabase.auth.getSession();
-          if (data?.session?.access_token) {
-            authHeader = { Authorization: `Bearer ${data.session.access_token}` };
-          }
-        } catch (e) {
-          console.warn('Failed to get auth session:', e);
-        }
-      }
-    }
-
-    const response = await fetch(`${getEdgeFunctionUrl()}/directions`, {
+    const authHeader = await getAuthHeader();
+    const edgeFunctionUrl = getEdgeFunctionUrl();
+    
+    console.log(`Getting directions from ${origin} to ${destination} via ${mode}`);
+    
+    const response = await fetch(`${edgeFunctionUrl}/directions`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...authHeader,
-      },
+      headers: authHeader,
       body: JSON.stringify({ origin, destination, mode } as DirectionsRequest),
     });
 
     if (!response.ok) {
-      throw new Error(`Getting directions failed: ${response.statusText}`);
+      const errorText = await response.text();
+      throw new Error(`Getting directions failed: ${response.status} ${errorText}`);
     }
 
-    return await response.json();
+    const data = await response.json();
+    console.log('Directions retrieved successfully');
+    return data;
   } catch (error) {
     console.error('Error getting directions:', error);
     throw error;
@@ -135,40 +145,25 @@ export async function getDirections(
  */
 export async function getPlaceDetails(placeId: string) {
   try {
-    // Get the session asynchronously if available
-    let authHeader = {};
-    // Use the anon key for authentication since the Edge Function is deployed with --no-verify-jwt
-    const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    if (anonKey) {
-      authHeader = { Authorization: `Bearer ${anonKey}` };
-    } else {
-      // Fall back to session token if available
-      if (supabase?.auth) {
-        try {
-          const { data } = await supabase.auth.getSession();
-          if (data?.session?.access_token) {
-            authHeader = { Authorization: `Bearer ${data.session.access_token}` };
-          }
-        } catch (e) {
-          console.warn('Failed to get auth session:', e);
-        }
-      }
-    }
-
-    const response = await fetch(`${getEdgeFunctionUrl()}/place-details`, {
+    const authHeader = await getAuthHeader();
+    const edgeFunctionUrl = getEdgeFunctionUrl();
+    
+    console.log(`Getting place details for place ID: ${placeId}`);
+    
+    const response = await fetch(`${edgeFunctionUrl}/place-details`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...authHeader,
-      },
+      headers: authHeader,
       body: JSON.stringify({ placeId } as PlaceDetailsRequest),
     });
 
     if (!response.ok) {
-      throw new Error(`Getting place details failed: ${response.statusText}`);
+      const errorText = await response.text();
+      throw new Error(`Getting place details failed: ${response.status} ${errorText}`);
     }
 
-    return await response.json();
+    const data = await response.json();
+    console.log('Place details retrieved successfully');
+    return data;
   } catch (error) {
     console.error('Error getting place details:', error);
     throw error;

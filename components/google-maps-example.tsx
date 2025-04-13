@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -15,6 +15,39 @@ export default function GoogleMapsExample() {
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [supabaseStatus, setSupabaseStatus] = useState<'loading' | 'configured' | 'error'>('loading');
+  const [apiKeyStatus, setApiKeyStatus] = useState<'loading' | 'available' | 'error'>('loading');
+  const [configChecked, setConfigChecked] = useState(false);
+
+  // Check if Supabase is configured on component mount
+  useEffect(() => {
+    const checkConfigurations = async () => {
+      if (configChecked) return; // Only check once
+      
+      try {
+        // Check Supabase configuration
+        const { isSupabaseConfigured } = await import('@/lib/supabase');
+        if (isSupabaseConfigured()) {
+          setSupabaseStatus('configured');
+          setApiKeyStatus('available'); // We'll fetch the API key from Supabase Edge Function
+        } else {
+          setSupabaseStatus('error');
+          setApiKeyStatus('error');
+          setError('SUPABASE_URL or SUPABASE_ANON_KEY is not defined');
+        }
+        
+        setConfigChecked(true);
+      } catch (err) {
+        setSupabaseStatus('error');
+        setApiKeyStatus('error');
+        setError('Failed to check configurations');
+        console.error('Error checking configurations:', err);
+        setConfigChecked(true);
+      }
+    };
+
+    checkConfigurations();
+  }, [configChecked]);
 
   const handleGeocode = async () => {
     if (!address) return;

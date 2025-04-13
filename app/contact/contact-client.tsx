@@ -19,22 +19,29 @@ export default function ContactClient() {
     pageview('/contact');
   }, []);
 
-  // Create a function to get a temporary API key from the Supabase Edge Function
+  // State for map loading
+  const [isMapLoading, setIsMapLoading] = useState(true);
+  const [mapError, setMapError] = useState<string | null>(null);
   const [mapApiKey, setMapApiKey] = useState<string>('');
+  const [mapScriptLoaded, setMapScriptLoaded] = useState(false);
   
+  // Fetch the API key only once
   useEffect(() => {
-    // Fetch a temporary API key from the Supabase Edge Function
     const fetchApiKey = async () => {
       try {
-        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-        const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+        const { getSupabaseUrl, getSupabaseAnonKey } = await import('@/lib/supabase');
+        const supabaseUrl = getSupabaseUrl();
+        const anonKey = getSupabaseAnonKey();
         
         if (!supabaseUrl || !anonKey) {
-          console.error('Supabase URL or anon key is not defined');
+          setMapError('SUPABASE_URL or SUPABASE_ANON_KEY is not defined');
+          console.error('SUPABASE_URL or SUPABASE_ANON_KEY is not defined');
+          setIsMapLoading(false);
           return;
         }
         
-        // Create a temporary endpoint in the Edge Function to get the API key
+        console.log('Fetching Google Maps API key from Supabase Edge Function');
+        
         const response = await fetch(`${supabaseUrl}/functions/v1/google-maps/api-key`, {
           method: 'GET',
           headers: {
@@ -44,26 +51,53 @@ export default function ContactClient() {
         });
         
         if (!response.ok) {
-          throw new Error('Failed to fetch API key');
+          const errorText = await response.text();
+          throw new Error(`Failed to fetch API key: ${response.status} ${errorText}`);
         }
         
         const data = await response.json();
+        if (!data.apiKey) {
+          throw new Error('API key not found in response');
+        }
+        
+        console.log('Successfully fetched Google Maps API key');
         setMapApiKey(data.apiKey);
+        
+        // Now that we have the API key, load the Google Maps script
+        loadGoogleMapsScript(data.apiKey);
       } catch (error) {
         console.error('Error fetching API key:', error);
+        setMapError(error instanceof Error ? error.message : 'Failed to load Google Maps');
+        setIsMapLoading(false);
       }
     };
     
     fetchApiKey();
   }, []);
   
-  // Define libraries array outside of the component to prevent reloading
-  const libraries = ['places', 'geometry'] as ('places' | 'geometry')[];
-  
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: mapApiKey,
-    libraries: libraries
-  });
+  // Function to load the Google Maps script
+  const loadGoogleMapsScript = (apiKey: string) => {
+    if (typeof window === 'undefined' || window.google?.maps || document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')) {
+      setMapScriptLoaded(true);
+      setIsMapLoading(false);
+      return;
+    }
+    
+    const libraries = ['places', 'geometry'];
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=${libraries.join(',')}`;
+    script.async = true;
+    script.onload = () => {
+      setMapScriptLoaded(true);
+      setIsMapLoading(false);
+    };
+    script.onerror = () => {
+      setMapError('Failed to load Google Maps script');
+      setIsMapLoading(false);
+    };
+    
+    document.head.appendChild(script);
+  };
   
   const [selectedFacility, setSelectedFacility] = useState<null | typeof FACILITY_LOCATIONS[0]>(null);
 
@@ -183,7 +217,7 @@ export default function ContactClient() {
 
           <div className="bg-white p-4 rounded-xl shadow-lg">
             <div className="w-full h-[500px] relative">
-              {isLoaded ? (
+              {mapScriptLoaded ? (
                 <GoogleMap
                   mapContainerStyle={DEFAULT_CONTAINER_STYLE}
                   center={DEFAULT_MAP_CENTER}
