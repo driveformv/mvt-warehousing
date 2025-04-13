@@ -48,6 +48,7 @@ export default function MainNav() {
         { name: "Bulk Transfer", path: "/services#bulk-transfer" },
         { name: "Transloading", path: "/services#transloading" },
         { name: "Additional Services", path: "/services#additional-services" },
+        { name: "Google Maps API", path: "/google-maps-test" },
       ]
     },
     { name: "About", path: "/about" },
