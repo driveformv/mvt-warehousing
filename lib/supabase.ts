@@ -1,10 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Debug: Log all environment variables
-console.log('Environment variables available:');
-console.log('process.env.SUPABASE_URL:', process.env.SUPABASE_URL);
-console.log('process.env.SUPABASE_ANON_KEY:', process.env.SUPABASE_ANON_KEY ? 'defined' : 'undefined');
-console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
 
 // Get Supabase credentials using the exact names from Supabase
 const supabaseUrl = process.env.SUPABASE_URL || '';
