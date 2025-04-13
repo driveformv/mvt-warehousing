@@ -2,8 +2,8 @@
  * Google Maps utility functions and configuration
  */
 
-// Export the Google Maps API key from environment variables
-export const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
+// The Google Maps API key is now fetched from the Supabase Edge Function
+// and not directly exposed in the client code
 
 // Default map center coordinates (centered between all facilities in TX and NM)
 export const DEFAULT_MAP_CENTER = {

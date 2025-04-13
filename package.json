@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy:google-maps": "./scripts/deploy-google-maps-function.sh"
+    "deploy:google-maps": "./scripts/deploy-google-maps-function.sh",
+    "deploy:google-maps-api-key": "./scripts/deploy-google-maps-api-key-endpoint.sh",
+    "deploy:google-maps-dashboard": "node ./scripts/dashboard-deploy-google-maps-function.js"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.5",

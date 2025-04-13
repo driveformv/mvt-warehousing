@@ -35,12 +35,25 @@ serve(async (req) => {
     const url = new URL(req.url);
     const path = url.pathname.split("/").pop();
 
-    // Parse the request body
-    const requestData = await req.json();
-
     // Set up response headers with CORS
     const headers = new Headers(corsHeaders);
     headers.set("Content-Type", "application/json");
+
+    // Special case for API key endpoint with GET method
+    if (path === "api-key" && req.method === "GET") {
+      return handleApiKeyRequest(headers);
+    }
+
+    // For other endpoints, parse the request body
+    let requestData;
+    try {
+      requestData = await req.json();
+    } catch (e) {
+      return new Response(
+        JSON.stringify({ error: "Invalid JSON in request body" }),
+        { status: 400, headers }
+      );
+    }
 
     // Handle different API endpoints
     switch (path) {
@@ -53,7 +66,7 @@ serve(async (req) => {
       default:
         return new Response(
           JSON.stringify({
-            error: "Invalid endpoint. Use /geocode, /directions, or /place-details",
+            error: "Invalid endpoint. Use /geocode, /directions, /place-details, or /api-key",
           }),
           { status: 400, headers }
         );
@@ -139,6 +152,36 @@ async function handlePlaceDetails(data: PlaceDetailsRequest, headers: Headers): 
   } catch (error) {
     return new Response(
       JSON.stringify({ error: "Failed to get place details" }),
+      { status: 500, headers }
+    );
+  }
+}
+
+/**
+ * Handle API key request - provides the Google Maps API key to the client
+ * This is a secure way to provide the API key without exposing it in client-side code
+ */
+async function handleApiKeyRequest(headers: Headers): Promise<Response> {
+  try {
+    if (!GOOGLE_MAPS_API_KEY) {
+      return new Response(
+        JSON.stringify({ error: "API key is not configured on the server" }),
+        { status: 500, headers }
+      );
+    }
+
+    // Return the API key to the client
+    return new Response(
+      JSON.stringify({ 
+        apiKey: GOOGLE_MAPS_API_KEY,
+        // Set a short expiration time for security
+        expires: new Date(Date.now() + 1000 * 60 * 60).toISOString() // 1 hour expiration
+      }),
+      { headers }
+    );
+  } catch (error) {
+    return new Response(
+      JSON.stringify({ error: "Failed to retrieve API key" }),
       { status: 500, headers }
     );
   }

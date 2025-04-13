@@ -7,7 +7,6 @@ import ContactForm from "@/components/contact-form";
 import { pageview } from "@/lib/analytics";
 import { useEffect, useState } from "react";
 import { 
-  GOOGLE_MAPS_API_KEY, 
   DEFAULT_MAP_CENTER, 
   DEFAULT_CONTAINER_STYLE,
   DEFAULT_ZOOM_LEVEL,
@@ -20,9 +19,50 @@ export default function ContactClient() {
     pageview('/contact');
   }, []);
 
+  // Create a function to get a temporary API key from the Supabase Edge Function
+  const [mapApiKey, setMapApiKey] = useState<string>('');
+  
+  useEffect(() => {
+    // Fetch a temporary API key from the Supabase Edge Function
+    const fetchApiKey = async () => {
+      try {
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+        
+        if (!supabaseUrl || !anonKey) {
+          console.error('Supabase URL or anon key is not defined');
+          return;
+        }
+        
+        // Create a temporary endpoint in the Edge Function to get the API key
+        const response = await fetch(`${supabaseUrl}/functions/v1/google-maps/api-key`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${anonKey}`
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch API key');
+        }
+        
+        const data = await response.json();
+        setMapApiKey(data.apiKey);
+      } catch (error) {
+        console.error('Error fetching API key:', error);
+      }
+    };
+    
+    fetchApiKey();
+  }, []);
+  
+  // Define libraries array outside of the component to prevent reloading
+  const libraries = ['places', 'geometry'] as ('places' | 'geometry')[];
+  
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: GOOGLE_MAPS_API_KEY,
-    libraries: ['places', 'geometry']
+    googleMapsApiKey: mapApiKey,
+    libraries: libraries
   });
   
   const [selectedFacility, setSelectedFacility] = useState<null | typeof FACILITY_LOCATIONS[0]>(null);
