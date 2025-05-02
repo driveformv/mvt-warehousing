@@ -1,0 +1,11 @@
+This is a placeholder for the OpenGraph image.
+
+To generate the actual og-image.jpg file:
+
+1. Open the HTML template at public/images/og-image-template.html in a web browser
+2. Set the browser window size to 1200x630 pixels
+3. Take a screenshot of the entire window
+4. Save the screenshot as og-image.jpg in this directory (public/images/)
+5. Verify the image dimensions are 1200x630 pixels
+
+The OpenGraph image is referenced in the metadata and is important for social media sharing.

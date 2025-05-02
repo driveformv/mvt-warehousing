@@ -9,6 +9,7 @@ import LoginSection from '@/components/layout/login-section';
 import Footer from '@/components/layout/footer';
 import AOSProvider from '@/components/aos-provider';
 import AnalyticsProvider from '@/components/analytics-provider';
+import StructuredData from '@/components/structured-data';
 
 // Import Inter with multiple weights for better typography hierarchy
 const inter = Inter({ 
@@ -25,6 +26,29 @@ export const metadata: Metadata = {
     icon: '/logos/MVT Logo 500X500.svg',
     apple: '/logos/MVT Logo 500X500.svg',
   },
+  openGraph: {
+    title: 'MVT Warehousing | Premium Integrated Logistics Services',
+    description: 'Your strategic partner for transportation, warehousing, and logistics services',
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://www.mvtwarehousing.com',
+    siteName: 'MVT Warehousing',
+    images: [{
+      url: '/images/og-image.jpg',
+      width: 1200,
+      height: 630,
+      alt: 'MVT Warehousing'
+    }]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MVT Warehousing | Premium Integrated Logistics Services',
+    description: 'Your strategic partner for transportation, warehousing, and logistics services',
+    images: ['/images/og-image.jpg'],
+  },
+  alternates: {
+    canonical: 'https://www.mvtwarehousing.com'
+  }
 };
 
 export default function RootLayout({
@@ -35,6 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className={`${inter.className} antialiased`} suppressHydrationWarning>
+        <StructuredData />
         <Suspense fallback={<>Loading analytics...</>}>
           <AnalyticsProvider>
             <AOSProvider>
