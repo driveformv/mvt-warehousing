@@ -14,6 +14,42 @@ export const supabase = hasSupabaseCredentials
   ? createClient(supabaseUrl, supabaseAnonKey)
   : null;
 
+// Helper function to upload a file to Supabase Storage
+export const uploadFile = async (
+  bucketName: string,
+  filePath: string,
+  file: File
+): Promise<{ path: string; error: Error | null }> => {
+  if (!supabase) {
+    console.error('Supabase client is not available');
+    return { path: '', error: new Error('Supabase client is not available') };
+  }
+
+  try {
+    const { data, error } = await supabase.storage
+      .from(bucketName)
+      .upload(filePath, file, {
+        cacheControl: '3600',
+        upsert: true
+      });
+
+    if (error) {
+      console.error('Error uploading file:', error);
+      return { path: '', error };
+    }
+
+    // Get the public URL for the file
+    const { data: { publicUrl } } = supabase.storage
+      .from(bucketName)
+      .getPublicUrl(data.path);
+
+    return { path: publicUrl, error: null };
+  } catch (error) {
+    console.error('Error in uploadFile:', error);
+    return { path: '', error: error as Error };
+  }
+};
+
 // Helper function to check if Supabase is configured
 export const isSupabaseConfigured = () => {
   if (!supabaseUrl) {

@@ -78,7 +78,8 @@ export async function sendContactNotification({
   phone,
   company,
   subject,
-  formName = 'contact_form'
+  formName = 'contact_form',
+  attachments = []
 }: {
   name: string;
   email: string;
@@ -87,6 +88,10 @@ export async function sendContactNotification({
   company?: string;
   subject?: string;
   formName?: string;
+  attachments?: {
+    filename: string;
+    content: Buffer;
+  }[];
 }) {
   try {
     // First try to get form-specific configuration
@@ -129,7 +134,9 @@ export async function sendContactNotification({
         <p><strong>Subject:</strong> ${subject || 'General Inquiry'}</p>
         <h2>Message:</h2>
         <p>${message.replace(/\n/g, '<br>')}</p>
+        ${attachments.length > 0 ? '<p><strong>Attachments:</strong> See attached files</p>' : ''}
       `,
+      attachments: attachments.length > 0 ? attachments : undefined,
     });
 
     return response;

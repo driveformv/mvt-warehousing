@@ -3,7 +3,7 @@
 import { Briefcase, CheckCircle, Clock, DollarSign, MapPin, Phone, Shield, Truck, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function CareersClient() {
   const [formData, setFormData] = useState({
@@ -15,12 +15,77 @@ export default function CareersClient() {
     resume: "",
     message: "",
   });
+  
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({
+    type: null,
+    message: ''
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log(formData);
-    alert("Thank you for your application! We will be in touch soon.");
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+    
+    try {
+      // Create a FormData object to send the file
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('position', formData.position);
+      formDataToSend.append('experience', formData.experience);
+      formDataToSend.append('message', formData.message || '');
+      
+      // Append the resume file if it exists
+      if (resumeFile) {
+        formDataToSend.append('resume', resumeFile);
+      }
+      
+      const response = await fetch('/api/careers/apply', {
+        method: 'POST',
+        body: formDataToSend
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: 'Thank you for your application! We will get back to you soon.'
+        });
+        
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          position: "",
+          experience: "",
+          resume: "",
+          message: "",
+        });
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: data.error || 'Something went wrong. Please try again.'
+        });
+      }
+    } catch (error) {
+      console.error('Error submitting application:', error);
+      setSubmitStatus({
+        type: 'error',
+        message: 'An error occurred. Please try again later.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -209,6 +274,18 @@ export default function CareersClient() {
           </div>
 
           <div className="bg-white p-8 md:p-12 rounded-xl shadow-lg">
+            {submitStatus.type && (
+              <div 
+                className={`mb-6 p-4 rounded-md ${
+                  submitStatus.type === 'success' 
+                    ? 'bg-green-50 text-green-700 border-l-4 border-green-500' 
+                    : 'bg-red-50 text-red-700 border-l-4 border-red-500'
+                }`}
+              >
+                {submitStatus.message}
+              </div>
+            )}
+            
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -298,7 +375,14 @@ export default function CareersClient() {
                 <input
                   type="file"
                   id="resume"
-                  onChange={(e) => setFormData({ ...formData, resume: e.target.value })}
+                  ref={fileInputRef}
+                  onChange={(e) => {
+                    const files = e.target.files;
+                    if (files && files.length > 0) {
+                      setResumeFile(files[0]);
+                      setFormData({ ...formData, resume: files[0].name });
+                    }
+                  }}
                   className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                   accept=".pdf,.doc,.docx"
                 />
@@ -317,9 +401,12 @@ export default function CareersClient() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-4 px-6 rounded-md hover:bg-blue-700 transition-colors font-semibold text-lg"
+                disabled={isSubmitting}
+                className={`w-full bg-blue-600 text-white py-4 px-6 rounded-md hover:bg-blue-700 transition-colors font-semibold text-lg ${
+                  isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
               >
-                Submit Application
+                {isSubmitting ? 'Submitting...' : 'Submit Application'}
               </button>
               <p className="text-sm text-gray-500 text-center mt-4">
                 By submitting this application, you agree to our privacy policy and terms of service.

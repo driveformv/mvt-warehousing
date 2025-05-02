@@ -3,7 +3,7 @@ import { TrendingUp, MapPin, Clock, Award, Train } from "lucide-react";
 export default function StatsSection() {
   const stats = [
     {
-      value: "550K+",
+      value: "700K+",
       label: "Square Feet of Space",
       icon: <TrendingUp className="h-8 w-8 text-mvt-blue" />,
       delay: 100,
