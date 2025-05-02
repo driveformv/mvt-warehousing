@@ -1,4 +1,4 @@
-import EmailConfigClient from './email-config-client';
+import EmailConfigClient from '@/app/admin/email-config/email-config-client';
 
 export const metadata = {
   title: 'Email Configuration - MVT Warehousing Admin',
