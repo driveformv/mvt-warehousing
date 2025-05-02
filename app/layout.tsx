@@ -7,7 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import MainNav from '@/components/layout/main-nav';
 import LoginSection from '@/components/layout/login-section';
 import Footer from '@/components/layout/footer';
-import AOSProvider from '@/components/aos-provider';
+import ClientAOSWrapper from '@/components/client-aos-wrapper';
 import AnalyticsProvider from '@/components/analytics-provider';
 import StructuredData from '@/components/structured-data';
 
@@ -57,12 +57,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <body className={`${inter.className} antialiased`} suppressHydrationWarning>
         <StructuredData />
         <Suspense fallback={<>Loading analytics...</>}>
           <AnalyticsProvider>
-            <AOSProvider>
+            <ClientAOSWrapper>
               <Suspense fallback={<div className="fixed top-0 left-0 right-0 h-32 bg-white"></div>}>
                 <LoginSection />
                 <MainNav />
@@ -75,7 +75,7 @@ export default function RootLayout({
               </main>
               
               <Footer />
-            </AOSProvider>
+            </ClientAOSWrapper>
           </AnalyticsProvider>
         </Suspense>
         <Analytics />

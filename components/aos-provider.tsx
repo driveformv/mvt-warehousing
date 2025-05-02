@@ -11,34 +11,44 @@ export default function AOSProvider({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const [hydrated, setHydrated] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  // Only initialize AOS after hydration is complete
+  // Only initialize AOS after component is fully mounted
   useEffect(() => {
-    setHydrated(true);
-  }, []);
-
-  useEffect(() => {
-    if (hydrated) {
-      AOS.init({
-        duration: 800,
-        once: true, // Set to true to prevent re-animation and potential mismatches
-        easing: "ease-out-cubic",
-        mirror: false, // Set to false to simplify animation behavior
-        offset: 50,
-        delay: 100,
-        disable: 'mobile', // Disable on mobile to reduce complexity
-      });
-    }
-  }, [hydrated]);
+    // Set mounted to true after the first render cycle is complete
+    setMounted(true);
+    
+    // Initialize AOS only on the client side
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: "ease-out-cubic",
+      mirror: false,
+      offset: 50,
+      delay: 100,
+      disable: 'mobile',
+      // This is the key fix - don't initialize AOS until after hydration
+      startEvent: 'DOMContentLoaded',
+      // Disable AOS on elements until after hydration
+      initClassName: mounted ? 'aos-init' : '',
+      animatedClassName: mounted ? 'aos-animate' : '',
+    });
+    
+    // Refresh AOS after a short delay to ensure hydration is complete
+    const timer = setTimeout(() => {
+      AOS.refresh();
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, [mounted]);
 
   // Refresh AOS when the route changes
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && mounted) {
       window.scrollTo(0, 0);
       AOS.refresh();
     }
-  }, [pathname]);
+  }, [pathname, mounted]);
 
   return <>{children}</>;
 }

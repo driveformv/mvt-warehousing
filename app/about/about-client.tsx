@@ -76,41 +76,41 @@ export default function AboutClient() {
           
           <div className="grid md:grid-cols-2 gap-12">
             <div className="bg-white p-10 rounded-xl shadow-md">
-              <h3 className="text-2xl font-bold mb-4 text-blue-600">Our Mission</h3>
+              <h3 className="text-2xl font-bold mb-4 text-primary">Our Mission</h3>
               <p className="text-gray-600 mb-6">
                 To provide exceptional warehousing and logistics solutions that optimize our clients' supply chains, reduce costs, and improve efficiency. We are committed to delivering reliable, innovative services that exceed expectations and build long-term partnerships.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <ShieldCheck className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                  <ShieldCheck className="text-primary mt-1 flex-shrink-0" size={20} />
                   <span className="text-gray-600">Ensuring the highest standards of safety and security</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Clock className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                  <Clock className="text-primary mt-1 flex-shrink-0" size={20} />
                   <span className="text-gray-600">Delivering on-time, every time</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Users className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                  <Users className="text-primary mt-1 flex-shrink-0" size={20} />
                   <span className="text-gray-600">Building lasting relationships with clients and partners</span>
                 </li>
               </ul>
             </div>
             <div className="bg-white p-10 rounded-xl shadow-md">
-              <h3 className="text-2xl font-bold mb-4 text-blue-600">Our Vision</h3>
+              <h3 className="text-2xl font-bold mb-4 text-primary">Our Vision</h3>
               <p className="text-gray-600 mb-6">
                 To be the premier warehousing and logistics provider, recognized for our innovative solutions, operational excellence, and exceptional customer service. We aim to set the industry standard for reliability, efficiency, and technological advancement.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <Globe2 className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                  <Globe2 className="text-primary mt-1 flex-shrink-0" size={20} />
                   <span className="text-gray-600">Expanding our reach to serve clients nationwide</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <TrendingUp className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                  <TrendingUp className="text-primary mt-1 flex-shrink-0" size={20} />
                   <span className="text-gray-600">Continuously improving our processes and technology</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Warehouse className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                  <Warehouse className="text-primary mt-1 flex-shrink-0" size={20} />
                   <span className="text-gray-600">Developing innovative warehousing solutions</span>
                 </li>
               </ul>
@@ -129,36 +129,36 @@ export default function AboutClient() {
             </p>
           </div>
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="bg-blue-50 p-8 rounded-xl text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Award className="text-blue-600" size={32} />
+            <div className="bg-primary/5 p-8 rounded-xl text-center">
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Award className="text-primary" size={32} />
               </div>
               <h3 className="text-xl font-bold mb-3">Excellence</h3>
               <p className="text-gray-600">
                 We are committed to delivering the highest quality service in everything we do, exceeding expectations and setting new standards.
               </p>
             </div>
-            <div className="bg-blue-50 p-8 rounded-xl text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="text-blue-600" size={32} />
+            <div className="bg-primary/5 p-8 rounded-xl text-center">
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Users className="text-primary" size={32} />
               </div>
               <h3 className="text-xl font-bold mb-3">Teamwork</h3>
               <p className="text-gray-600">
                 Collaboration drives our success. We work together across departments and with our clients to achieve common goals.
               </p>
             </div>
-            <div className="bg-blue-50 p-8 rounded-xl text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Target className="text-blue-600" size={32} />
+            <div className="bg-primary/5 p-8 rounded-xl text-center">
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Target className="text-primary" size={32} />
               </div>
               <h3 className="text-xl font-bold mb-3">Reliability</h3>
               <p className="text-gray-600">
                 Our clients can count on us to deliver consistent and dependable service, meeting deadlines and keeping promises.
               </p>
             </div>
-            <div className="bg-blue-50 p-8 rounded-xl text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <TrendingUp className="text-blue-600" size={32} />
+            <div className="bg-primary/5 p-8 rounded-xl text-center">
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <TrendingUp className="text-primary" size={32} />
               </div>
               <h3 className="text-xl font-bold mb-3">Innovation</h3>
               <p className="text-gray-600">
@@ -333,24 +333,24 @@ export default function AboutClient() {
             </div>
           </div>
           
-          <div className="max-w-4xl mx-auto bg-blue-50 p-6 rounded-lg shadow-sm">
+          <div className="max-w-4xl mx-auto bg-primary/5 p-6 rounded-lg shadow-sm">
             <h3 className="text-xl font-bold mb-4 text-center">Warehouse Management Features</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="flex items-start">
-                <div className="bg-blue-100 p-2 rounded-full mr-3">
-                  <Warehouse className="h-5 w-5 text-blue-600" />
+                <div className="bg-primary/10 p-2 rounded-full mr-3">
+                  <Warehouse className="h-5 w-5 text-primary" />
                 </div>
                 <p className="text-gray-700">Industry-proven WMS (Cadre Accuplus)</p>
               </div>
               <div className="flex items-start">
-                <div className="bg-blue-100 p-2 rounded-full mr-3">
-                  <TrendingUp className="h-5 w-5 text-blue-600" />
+                <div className="bg-primary/10 p-2 rounded-full mr-3">
+                  <TrendingUp className="h-5 w-5 text-primary" />
                 </div>
                 <p className="text-gray-700">RF scanning for receiving, shipping and inventories</p>
               </div>
               <div className="flex items-start">
-                <div className="bg-blue-100 p-2 rounded-full mr-3">
-                  <Target className="h-5 w-5 text-blue-600" />
+                <div className="bg-primary/10 p-2 rounded-full mr-3">
+                  <Target className="h-5 w-5 text-primary" />
                 </div>
                 <p className="text-gray-700">24/7 web access to inventory management</p>
               </div>
@@ -360,7 +360,7 @@ export default function AboutClient() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-mvt-blue text-white py-20 md:py-24 relative overflow-hidden">
+      <section className="bg-primary text-primary-foreground py-20 md:py-24 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-full h-full">
@@ -385,7 +385,7 @@ export default function AboutClient() {
             <div className="flex flex-col md:flex-row gap-6 justify-center mb-12">
               <Link 
                 href="/contact"
-                className="btn bg-white text-mvt-blue hover:bg-gray-100 btn-lg group inline-flex items-center justify-center"
+                className="btn bg-white text-primary hover:bg-gray-100 btn-lg group inline-flex items-center justify-center"
               >
                 <span>Contact Us</span>
                 <Target className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />

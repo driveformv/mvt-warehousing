@@ -5,31 +5,31 @@ export default function StatsSection() {
     {
       value: "700K+",
       label: "Square Feet of Space",
-      icon: <TrendingUp className="h-8 w-8 text-mvt-blue" />,
+      icon: <TrendingUp className="h-8 w-8 text-primary" />,
       delay: 100,
     },
     {
       value: "38+",
       label: "Years of Experience",
-      icon: <Clock className="h-8 w-8 text-mvt-blue" />,
+      icon: <Clock className="h-8 w-8 text-primary" />,
       delay: 300,
     },
     {
       value: "7",
       label: "Strategic Locations",
-      icon: <MapPin className="h-8 w-8 text-mvt-blue" />,
+      icon: <MapPin className="h-8 w-8 text-primary" />,
       delay: 500,
     },
     {
       value: "Rail",
       label: "UPRR & BNSF Access",
-      icon: <Train className="h-8 w-8 text-mvt-blue" />,
+      icon: <Train className="h-8 w-8 text-primary" />,
       delay: 700,
     },
   ];
 
   return (
-    <section className="bg-gradient-to-r from-mvt-blue/5 to-mvt-lightBlue/5 py-16 md:py-20">
+    <section className="bg-gradient-to-r from-primary/5 to-accent/5 py-16 md:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((stat, index) => (
@@ -43,8 +43,8 @@ export default function StatsSection() {
               <div className="flex justify-center mb-4">
                 {stat.icon}
               </div>
-              <p className="text-4xl font-bold text-mvt-blue mb-2">{stat.value}</p>
-              <p className="text-mvt-text">{stat.label}</p>
+              <p className="text-4xl font-bold text-primary mb-2">{stat.value}</p>
+              <p className="text-foreground">{stat.label}</p>
             </div>
           ))}
         </div>

@@ -84,8 +84,8 @@ export default function MainNav() {
                     <button
                       className={`px-2 py-2 text-base font-medium transition-colors flex items-center ${
                         pathname === item.path || pathname.includes(item.path)
-                          ? "text-mvt-blue font-semibold"
-                          : "text-gray-600 hover:text-mvt-blue"
+                          ? "text-primary font-semibold"
+                          : "text-gray-600 hover:text-primary"
                       }`}
                       onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
                       aria-expanded={servicesDropdownOpen}
@@ -101,7 +101,7 @@ export default function MainNav() {
                           <Link
                             key={dropdownItem.name}
                             href={dropdownItem.path}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-mvt-blue"
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary"
                             onClick={() => setServicesDropdownOpen(false)}
                           >
                             {dropdownItem.name}
@@ -115,8 +115,8 @@ export default function MainNav() {
                     href={item.path}
                     className={`px-2 py-2 text-base font-medium transition-colors ${
                       pathname === item.path
-                        ? "text-mvt-blue font-semibold"
-                        : "text-gray-600 hover:text-mvt-blue"
+                        ? "text-primary font-semibold"
+                        : "text-gray-600 hover:text-primary"
                     }`}
                   >
                     {item.name}
@@ -128,7 +128,7 @@ export default function MainNav() {
             {/* CTA Button */}
             <Link 
               href="/contact" 
-              className="ml-4 bg-mvt-blue text-white hover:bg-mvt-blue/90 px-6 py-2 rounded-md font-medium"
+              className="ml-4 bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-2 rounded-md font-medium"
             >
               Get a Quote
             </Link>
@@ -160,7 +160,7 @@ export default function MainNav() {
                     <>
                       <button
                         className={`flex justify-between items-center w-full py-2 text-lg font-medium ${
-                          pathname === item.path ? "text-mvt-blue font-semibold" : "text-gray-600"
+                          pathname === item.path ? "text-primary font-semibold" : "text-gray-600"
                         }`}
                         onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
                       >
@@ -174,7 +174,7 @@ export default function MainNav() {
                             <Link
                               key={dropdownItem.name}
                               href={dropdownItem.path}
-                              className="block py-2 text-base text-gray-600 hover:text-mvt-blue"
+                              className="block py-2 text-base text-gray-600 hover:text-primary"
                               onClick={() => {
                                 setServicesDropdownOpen(false);
                                 setIsMobileMenuOpen(false);
@@ -191,7 +191,7 @@ export default function MainNav() {
                       href={item.path}
                       className={`py-2 text-lg font-medium ${
                         pathname === item.path
-                          ? "text-mvt-blue font-semibold"
+                          ? "text-primary font-semibold"
                           : "text-gray-600"
                       }`}
                       onClick={() => setIsMobileMenuOpen(false)}
@@ -205,7 +205,7 @@ export default function MainNav() {
               {/* Mobile CTA */}
               <Link 
                 href="/contact" 
-                className="bg-mvt-blue text-white hover:bg-mvt-blue/90 px-6 py-3 rounded-md font-medium text-center mt-4"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-md font-medium text-center mt-4"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Get a Quote

@@ -23,8 +23,8 @@ export default function LoginSection() {
               onClick={toggleLogin("load-tracking")}
               className={`py-2 px-3 transition-colors ${
                 activeLogin === "load-tracking" 
-                  ? "text-mvt-blue font-medium" 
-                  : "text-gray-700 hover:text-mvt-blue"
+                  ? "text-primary font-medium" 
+                  : "text-gray-700 hover:text-primary"
               }`}
             >
               Load Tracking/POD's
@@ -34,8 +34,8 @@ export default function LoginSection() {
               onClick={toggleLogin("customer-tools")}
               className={`py-2 px-3 transition-colors ${
                 activeLogin === "customer-tools" 
-                  ? "text-mvt-blue font-medium" 
-                  : "text-gray-700 hover:text-mvt-blue"
+                  ? "text-primary font-medium" 
+                  : "text-gray-700 hover:text-primary"
               }`}
             >
               Customer Tools
@@ -44,7 +44,7 @@ export default function LoginSection() {
               href="https://intelliapp.driverapponline.com/c/stagecoach?r=MVTWarehousing_HP" 
               target="_blank"
               rel="noopener noreferrer"
-              className="py-2 px-3 transition-colors text-gray-700 hover:text-mvt-blue"
+              className="py-2 px-3 transition-colors text-gray-700 hover:text-primary"
             >
               Drive With Stagecoach
             </a>
@@ -61,7 +61,7 @@ export default function LoginSection() {
               {activeLogin === "load-tracking" && (
                 <div className="bg-gray-50 p-4 rounded-md w-full max-w-md">
                   <form action="https://sgce.loadtracking.com/login" method="post" className="space-y-3">
-                    <h3 className="font-semibold text-lg text-mvt-blue mb-2">Load Tracking/POD's</h3>
+                    <h3 className="font-semibold text-lg text-primary mb-2">Load Tracking/POD's</h3>
                     <div>
                       <label htmlFor="username1" className="block text-sm font-medium text-gray-700 mb-1">
                         User Name
@@ -70,7 +70,7 @@ export default function LoginSection() {
                         type="text"
                         id="username1"
                         name="username"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mvt-blue"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
                       />
                     </div>
                     <div>
@@ -81,12 +81,12 @@ export default function LoginSection() {
                         type="password"
                         id="password1"
                         name="password"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mvt-blue"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
                       />
                     </div>
                     <button
                       type="submit"
-                      className="w-full bg-mvt-blue text-white py-2 px-4 rounded-md hover:bg-mvt-blue/90 transition-colors"
+                      className="w-full bg-primary text-primary-foreground py-2 px-4 rounded-md hover:bg-primary/90 transition-colors"
                     >
                       Login
                     </button>
@@ -98,7 +98,7 @@ export default function LoginSection() {
               {activeLogin === "customer-tools" && (
                 <div className="bg-gray-50 p-4 rounded-md w-full max-w-md">
                   <form action="https://sgce.loadtracking.com/im/apps/home" method="post" className="space-y-3">
-                    <h3 className="font-semibold text-lg text-mvt-blue mb-2">Customer Tools</h3>
+                    <h3 className="font-semibold text-lg text-primary mb-2">Customer Tools</h3>
                     <div>
                       <label htmlFor="username2" className="block text-sm font-medium text-gray-700 mb-1">
                         User Name
@@ -107,7 +107,7 @@ export default function LoginSection() {
                         type="text"
                         id="username2"
                         name="username"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mvt-blue"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
                       />
                     </div>
                     <div>
@@ -118,12 +118,12 @@ export default function LoginSection() {
                         type="password"
                         id="password2"
                         name="password"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mvt-blue"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
                       />
                     </div>
                     <button
                       type="submit"
-                      className="w-full bg-mvt-blue text-white py-2 px-4 rounded-md hover:bg-mvt-blue/90 transition-colors"
+                      className="w-full bg-primary text-primary-foreground py-2 px-4 rounded-md hover:bg-primary/90 transition-colors"
                     >
                       Login
                     </button>
@@ -135,7 +135,7 @@ export default function LoginSection() {
               {activeLogin === "drive-with-stagecoach" && (
                 <div className="bg-gray-50 p-4 rounded-md w-full max-w-md">
                   <form action="https://intelliapp.driverapponline.com/c/stagecoach?r=MVTWarehousing_HP" method="post" className="space-y-3">
-                    <h3 className="font-semibold text-lg text-mvt-blue mb-2">Drive With Stagecoach</h3>
+                    <h3 className="font-semibold text-lg text-primary mb-2">Drive With Stagecoach</h3>
                     <div>
                       <label htmlFor="username3" className="block text-sm font-medium text-gray-700 mb-1">
                         User Name
@@ -144,7 +144,7 @@ export default function LoginSection() {
                         type="text"
                         id="username3"
                         name="username"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mvt-blue"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
                       />
                     </div>
                     <div>
@@ -155,12 +155,12 @@ export default function LoginSection() {
                         type="password"
                         id="password3"
                         name="password"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mvt-blue"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
                       />
                     </div>
                     <button
                       type="submit"
-                      className="w-full bg-mvt-blue text-white py-2 px-4 rounded-md hover:bg-mvt-blue/90 transition-colors"
+                      className="w-full bg-primary text-primary-foreground py-2 px-4 rounded-md hover:bg-primary/90 transition-colors"
                     >
                       Login
                     </button>

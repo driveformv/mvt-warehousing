@@ -3,7 +3,7 @@ import { ArrowRight, Phone, Mail } from "lucide-react";
 
 export default function CTASection() {
   return (
-    <section className="bg-mvt-blue text-white py-20 md:py-24 relative overflow-hidden">
+    <section className="bg-primary text-primary-foreground py-20 md:py-24 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-full h-full">
@@ -28,7 +28,7 @@ export default function CTASection() {
           <div className="flex flex-col md:flex-row gap-6 justify-center mb-12">
             <Link 
               href="/contact"
-              className="btn bg-white text-mvt-blue hover:bg-gray-100 btn-lg group inline-flex items-center justify-center"
+              className="btn bg-white text-primary hover:bg-gray-100 btn-lg group inline-flex items-center justify-center"
               data-aos="fade-up"
               data-aos-delay="200"
               suppressHydrationWarning={true}

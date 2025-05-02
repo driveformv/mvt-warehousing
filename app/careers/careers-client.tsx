@@ -3,7 +3,7 @@
 import { Briefcase, CheckCircle, Clock, DollarSign, MapPin, Phone, Shield, Truck, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function CareersClient() {
   const [formData, setFormData] = useState({
@@ -27,6 +27,13 @@ export default function CareersClient() {
     type: null,
     message: ''
   });
+  
+  // Track client-side mounting to prevent hydration mismatches with AOS
+  const [isMounted, setIsMounted] = useState(false);
+  
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -118,8 +125,8 @@ export default function CareersClient() {
 
         <div className="grid md:grid-cols-3 gap-8">
           <div className="bg-white p-8 rounded-xl shadow-md text-center">
-            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-              <DollarSign className="text-blue-600" size={32} />
+            <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+              <DollarSign className="text-primary" size={32} />
             </div>
             <h3 className="text-xl font-bold mb-3">Competitive Pay</h3>
             <p className="text-gray-600">
@@ -127,8 +134,8 @@ export default function CareersClient() {
             </p>
           </div>
           <div className="bg-white p-8 rounded-xl shadow-md text-center">
-            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Clock className="text-blue-600" size={32} />
+            <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Clock className="text-primary" size={32} />
             </div>
             <h3 className="text-xl font-bold mb-3">Home Time</h3>
             <p className="text-gray-600">
@@ -136,8 +143,8 @@ export default function CareersClient() {
             </p>
           </div>
           <div className="bg-white p-8 rounded-xl shadow-md text-center">
-            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Shield className="text-blue-600" size={32} />
+            <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Shield className="text-primary" size={32} />
             </div>
             <h3 className="text-xl font-bold mb-3">Safety First</h3>
             <p className="text-gray-600">
@@ -160,8 +167,8 @@ export default function CareersClient() {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-white p-8 rounded-xl shadow-md">
               <div className="flex items-start gap-4">
-                <div className="bg-blue-100 p-3 rounded-full">
-                  <Truck className="text-blue-600" size={24} />
+                <div className="bg-primary/10 p-3 rounded-full">
+                  <Truck className="text-primary" size={24} />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold mb-2">CDL Drivers</h3>
@@ -169,9 +176,9 @@ export default function CareersClient() {
                     We're looking for experienced CDL drivers to join our team at our terminal locations in El Paso, Del Rio, and Laredo, TX.
                   </p>
                   <div className="flex flex-wrap gap-3 mb-6">
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Full-Time</span>
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">CDL Required</span>
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Benefits</span>
+                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Full-Time</span>
+                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">CDL Required</span>
+                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Benefits</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600">
                     <MapPin size={16} />
@@ -182,8 +189,8 @@ export default function CareersClient() {
             </div>
             <div className="bg-white p-8 rounded-xl shadow-md">
               <div className="flex items-start gap-4">
-                <div className="bg-blue-100 p-3 rounded-full">
-                  <Briefcase className="text-blue-600" size={24} />
+                <div className="bg-primary/10 p-3 rounded-full">
+                  <Briefcase className="text-primary" size={24} />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold mb-2">Warehouse Associates</h3>
@@ -191,9 +198,9 @@ export default function CareersClient() {
                     Join our warehouse team to help manage inventory, load/unload shipments, and ensure efficient operations.
                   </p>
                   <div className="flex flex-wrap gap-3 mb-6">
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Full-Time</span>
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Experience Preferred</span>
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Benefits</span>
+                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Full-Time</span>
+                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Experience Preferred</span>
+                    <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Benefits</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600">
                     <MapPin size={16} />
@@ -224,35 +231,35 @@ export default function CareersClient() {
             </p>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-primary mt-1 flex-shrink-0" size={20} />
                 <div>
                   <h3 className="font-semibold">Weekly Home Time</h3>
                   <p className="text-gray-600">Regular home time to maintain a healthy work-life balance.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-primary mt-1 flex-shrink-0" size={20} />
                 <div>
                   <h3 className="font-semibold">Performance-Based Pay</h3>
                   <p className="text-gray-600">Competitive pay structure with incentives for performance.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-primary mt-1 flex-shrink-0" size={20} />
                 <div>
                   <h3 className="font-semibold">Well-Maintained Equipment</h3>
                   <p className="text-gray-600">Modern, well-maintained trucks for safety and comfort.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-primary mt-1 flex-shrink-0" size={20} />
                 <div>
                   <h3 className="font-semibold">24/7 Roadside Assistance</h3>
                   <p className="text-gray-600">Support whenever and wherever you need it.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-primary mt-1 flex-shrink-0" size={20} />
                 <div>
                   <h3 className="font-semibold">Recognition Programs</h3>
                   <p className="text-gray-600">Driver of the Month and Driver of the Year awards to recognize excellence.</p>
@@ -297,7 +304,7 @@ export default function CareersClient() {
                     id="name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-ring focus:border-primary"
                     required
                   />
                 </div>
@@ -310,7 +317,7 @@ export default function CareersClient() {
                     id="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-ring focus:border-primary"
                     required
                   />
                 </div>
@@ -325,7 +332,7 @@ export default function CareersClient() {
                     id="phone"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-ring focus:border-primary"
                     required
                   />
                 </div>
@@ -337,7 +344,7 @@ export default function CareersClient() {
                     id="position"
                     value={formData.position}
                     onChange={(e) => setFormData({ ...formData, position: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-ring focus:border-primary"
                     required
                   >
                     <option value="">Select a position</option>
@@ -357,7 +364,7 @@ export default function CareersClient() {
                   id="experience"
                   value={formData.experience}
                   onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-ring focus:border-primary"
                   required
                 >
                   <option value="">Select experience</option>
@@ -383,7 +390,7 @@ export default function CareersClient() {
                       setFormData({ ...formData, resume: files[0].name });
                     }
                   }}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-ring focus:border-primary"
                   accept=".pdf,.doc,.docx"
                 />
               </div>
@@ -396,13 +403,13 @@ export default function CareersClient() {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-ring focus:border-primary"
                 ></textarea>
               </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full bg-blue-600 text-white py-4 px-6 rounded-md hover:bg-blue-700 transition-colors font-semibold text-lg ${
+                className={`w-full bg-primary text-primary-foreground py-4 px-6 rounded-md hover:bg-primary/90 transition-colors font-semibold text-lg ${
                   isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
                 }`}
               >
@@ -429,8 +436,8 @@ export default function CareersClient() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-xl shadow-md">
               <div className="flex items-center mb-6">
-                <div className="bg-blue-100 p-3 rounded-full mr-4">
-                  <User className="text-blue-600" size={24} />
+                <div className="bg-primary/10 p-3 rounded-full mr-4">
+                  <User className="text-primary" size={24} />
                 </div>
                 <div>
                   <h3 className="font-bold">Victor Leyva</h3>
@@ -443,8 +450,8 @@ export default function CareersClient() {
             </div>
             <div className="bg-white p-8 rounded-xl shadow-md">
               <div className="flex items-center mb-6">
-                <div className="bg-blue-100 p-3 rounded-full mr-4">
-                  <User className="text-blue-600" size={24} />
+                <div className="bg-primary/10 p-3 rounded-full mr-4">
+                  <User className="text-primary" size={24} />
                 </div>
                 <div>
                   <h3 className="font-bold">Juan Perez</h3>
@@ -457,8 +464,8 @@ export default function CareersClient() {
             </div>
             <div className="bg-white p-8 rounded-xl shadow-md">
               <div className="flex items-center mb-6">
-                <div className="bg-blue-100 p-3 rounded-full mr-4">
-                  <User className="text-blue-600" size={24} />
+                <div className="bg-primary/10 p-3 rounded-full mr-4">
+                  <User className="text-primary" size={24} />
                 </div>
                 <div>
                   <h3 className="font-bold">Omar Lazo</h3>
@@ -474,7 +481,7 @@ export default function CareersClient() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-mvt-blue text-white py-20 md:py-24 relative overflow-hidden">
+      <section className="bg-primary text-primary-foreground py-20 md:py-24 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-full h-full">
@@ -490,7 +497,10 @@ export default function CareersClient() {
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center" data-aos="fade-up">
+          <div 
+            className="max-w-4xl mx-auto text-center" 
+            {...(isMounted ? { 'data-aos': "fade-up" } : {})}
+          >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Join Our Team?</h2>
             <p className="text-xl mb-10 text-white/80 max-w-2xl mx-auto">
               Apply today and take the first step toward a rewarding career with MVT Warehousing.
@@ -499,9 +509,8 @@ export default function CareersClient() {
             <div className="flex flex-col md:flex-row gap-6 justify-center mb-12">
               <a 
                 href="#apply-now"
-                className="btn bg-white text-mvt-blue hover:bg-gray-100 btn-lg group inline-flex items-center justify-center"
-                data-aos="fade-up"
-                data-aos-delay="200"
+                className="btn bg-white text-primary hover:bg-gray-100 btn-lg group inline-flex items-center justify-center"
+                {...(isMounted ? { 'data-aos': "fade-up", 'data-aos-delay': "200" } : {})}
               >
                 <span>Apply Now</span>
                 <Briefcase className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -510,8 +519,7 @@ export default function CareersClient() {
               <Link 
                 href="/contact"
                 className="btn btn-outline border-white text-white hover:bg-white/10 btn-lg inline-flex items-center justify-center"
-                data-aos="fade-up"
-                data-aos-delay="300"
+                {...(isMounted ? { 'data-aos': "fade-up", 'data-aos-delay': "300" } : {})}
               >
                 <Phone className="mr-2 h-5 w-5" />
                 <span>Contact Recruiting</span>

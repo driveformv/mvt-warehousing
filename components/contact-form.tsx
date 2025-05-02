@@ -134,7 +134,7 @@ export default function ContactForm({ className = '', isAdmin = false }: Contact
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-ring focus:border-primary"
             />
           </div>
           
@@ -149,7 +149,7 @@ export default function ContactForm({ className = '', isAdmin = false }: Contact
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-ring focus:border-primary"
             />
           </div>
           
@@ -163,7 +163,7 @@ export default function ContactForm({ className = '', isAdmin = false }: Contact
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-ring focus:border-primary"
             />
           </div>
           
@@ -177,7 +177,7 @@ export default function ContactForm({ className = '', isAdmin = false }: Contact
               name="company"
               value={formData.company}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-ring focus:border-primary"
             />
           </div>
           
@@ -190,7 +190,7 @@ export default function ContactForm({ className = '', isAdmin = false }: Contact
               name="subject"
               value={formData.subject}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-ring focus:border-primary"
             >
               <option value="General Inquiry">General Inquiry</option>
               <option value="Service Request">Service Request</option>
@@ -211,7 +211,7 @@ export default function ContactForm({ className = '', isAdmin = false }: Contact
               onChange={handleChange}
               required
               rows={5}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-ring focus:border-primary"
             ></textarea>
           </div>
         </div>
@@ -220,7 +220,7 @@ export default function ContactForm({ className = '', isAdmin = false }: Contact
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full md:w-auto px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors ${
+            className={`w-full md:w-auto px-6 py-3 bg-primary text-primary-foreground font-medium rounded-md hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-colors ${
               isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
             }`}
           >

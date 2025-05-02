@@ -76,11 +76,11 @@ export default function TestimonialsSection() {
                     
                     {/* Author */}
                     <div className="flex items-center">
-                      <div className="w-12 h-12 bg-mvt-blue/10 rounded-full flex items-center justify-center text-mvt-blue font-bold text-xl">
+                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-xl">
                         {testimonial.author.charAt(0)}
                       </div>
                       <div className="ml-4">
-                        <p className="font-bold text-mvt-text">{testimonial.author}</p>
+                        <p className="font-bold text-foreground">{testimonial.author}</p>
                         <p className="text-gray-500 text-sm">{testimonial.position}</p>
                       </div>
                     </div>
@@ -94,7 +94,7 @@ export default function TestimonialsSection() {
           <div className="flex justify-center mt-8 gap-4">
             <button 
               onClick={prevTestimonial}
-              className="p-2 rounded-full bg-white shadow-md hover:bg-mvt-blue hover:text-white transition-colors focus-ring"
+              className="p-2 rounded-full bg-white shadow-md hover:bg-primary hover:text-white transition-colors focus-ring"
               aria-label="Previous testimonial"
             >
               <ChevronLeft className="w-6 h-6" />
@@ -108,7 +108,7 @@ export default function TestimonialsSection() {
                   onClick={() => setActiveIndex(index)}
                   className={`w-3 h-3 rounded-full transition-all ${
                     activeIndex === index 
-                      ? "bg-mvt-blue w-6" 
+                      ? "bg-primary w-6" 
                       : "bg-gray-300 hover:bg-gray-400"
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
@@ -118,7 +118,7 @@ export default function TestimonialsSection() {
             
             <button 
               onClick={nextTestimonial}
-              className="p-2 rounded-full bg-white shadow-md hover:bg-mvt-blue hover:text-white transition-colors focus-ring"
+              className="p-2 rounded-full bg-white shadow-md hover:bg-primary hover:text-white transition-colors focus-ring"
               aria-label="Next testimonial"
             >
               <ChevronRight className="w-6 h-6" />

@@ -36,8 +36,8 @@ export default function ServicesClient() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-white p-8 rounded-xl shadow-md text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Warehouse className="text-blue-600" size={32} />
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Warehouse className="text-primary" size={32} />
               </div>
               <h3 className="text-xl font-bold mb-3">Warehouse and Distribution</h3>
               <p className="text-gray-600">
@@ -45,8 +45,8 @@ export default function ServicesClient() {
               </p>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-md text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Package className="text-blue-600" size={32} />
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Package className="text-primary" size={32} />
               </div>
               <h3 className="text-xl font-bold mb-3">Bulk Transfer / Packaging</h3>
               <p className="text-gray-600">
@@ -54,8 +54,8 @@ export default function ServicesClient() {
               </p>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-md text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <BarChart3 className="text-blue-600" size={32} />
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <BarChart3 className="text-primary" size={32} />
               </div>
               <h3 className="text-xl font-bold mb-3">Value-Added Services</h3>
               <p className="text-gray-600">
@@ -63,8 +63,8 @@ export default function ServicesClient() {
               </p>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-md text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Globe2 className="text-blue-600" size={32} />
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Globe2 className="text-primary" size={32} />
               </div>
               <h3 className="text-xl font-bold mb-3">Transloading & Cross Dock</h3>
               <p className="text-gray-600">
@@ -85,19 +85,19 @@ export default function ServicesClient() {
             </p>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-primary mt-1 flex-shrink-0" size={20} />
                 <span className="text-gray-600">Industry-proven Warehouse Management System (Cadre Accuplus) with 24/7 web access</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-primary mt-1 flex-shrink-0" size={20} />
                 <span className="text-gray-600">RF scanning technology for receiving, shipping, and inventories</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-primary mt-1 flex-shrink-0" size={20} />
                 <span className="text-gray-600">US Customs bonded facilities and CME certified warehouse for copper cathode storage</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-primary mt-1 flex-shrink-0" size={20} />
                 <span className="text-gray-600">Bar coding, labeling, and shrink wrapping services available</span>
               </div>
             </div>
@@ -123,21 +123,21 @@ export default function ServicesClient() {
             </p>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-primary mt-1 flex-shrink-0" size={20} />
                 <div>
                   <h3 className="font-semibold">High-Volume Capacity</h3>
                   <p className="text-gray-600">Capacity to pack 200,000 lbs per day with modern automated systems.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-primary mt-1 flex-shrink-0" size={20} />
                 <div>
                   <h3 className="font-semibold">Railcar Processing</h3>
                   <p className="text-gray-600">Receiving railcar capacity of 100+ cars with rail service to both UPRR and BNSF.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-primary mt-1 flex-shrink-0" size={20} />
                 <div>
                   <h3 className="font-semibold">Specialized Equipment</h3>
                   <p className="text-gray-600">24 pneumatic tankers with 1630 cubic feet capacity for bulk resin delivery.</p>
@@ -174,21 +174,21 @@ export default function ServicesClient() {
             </p>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-primary mt-1 flex-shrink-0" size={20} />
                 <div>
                   <h3 className="font-semibold">Versatile Equipment</h3>
                   <p className="text-gray-600">50+ lift trucks ranging from 5,000 to 55,000 lbs capacity with specialized attachments.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-primary mt-1 flex-shrink-0" size={20} />
                 <div>
                   <h3 className="font-semibold">Real-Time Tracking</h3>
                   <p className="text-gray-600">Transload app providing real-time information and detailed reporting.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-primary mt-1 flex-shrink-0" size={20} />
                 <div>
                   <h3 className="font-semibold">High-Volume Handling</h3>
                   <p className="text-gray-600">Cross-dock facility handling up to 1.4 million lbs weekly with 19 dock doors.</p>
@@ -210,8 +210,8 @@ export default function ServicesClient() {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           <div className="bg-white p-6 rounded-xl shadow-md">
-            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-              <TruckIcon className="text-blue-600" size={24} />
+            <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <TruckIcon className="text-primary" size={24} />
             </div>
             <h3 className="text-xl font-bold mb-3">Intermodal & Local Cartage</h3>
             <p className="text-gray-600 mb-4">
@@ -219,23 +219,23 @@ export default function ServicesClient() {
             </p>
             <ul className="space-y-2 text-gray-600">
               <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <CheckCircle className="text-primary mr-2 h-4 w-4" />
                 <span>Dedicated yard spotting operations</span>
               </li>
               <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <CheckCircle className="text-primary mr-2 h-4 w-4" />
                 <span>Experienced border crossing specialists</span>
               </li>
               <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <CheckCircle className="text-primary mr-2 h-4 w-4" />
                 <span>Flexible program designs</span>
               </li>
             </ul>
           </div>
           
           <div className="bg-white p-6 rounded-xl shadow-md">
-            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-              <Warehouse className="text-blue-600" size={24} />
+            <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <Warehouse className="text-primary" size={24} />
             </div>
             <h3 className="text-xl font-bold mb-3">Bonded & CME Warehouse</h3>
             <p className="text-gray-600 mb-4">
@@ -243,23 +243,23 @@ export default function ServicesClient() {
             </p>
             <ul className="space-y-2 text-gray-600">
               <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <CheckCircle className="text-primary mr-2 h-4 w-4" />
                 <span>One of only seven CME-certified warehouses in the US</span>
               </li>
               <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <CheckCircle className="text-primary mr-2 h-4 w-4" />
                 <span>Store dutiable merchandise without duty payment</span>
               </li>
               <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <CheckCircle className="text-primary mr-2 h-4 w-4" />
                 <span>Secure monitored facilities</span>
               </li>
             </ul>
           </div>
           
           <div className="bg-white p-6 rounded-xl shadow-md">
-            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-              <Globe2 className="text-blue-600" size={24} />
+            <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <Globe2 className="text-primary" size={24} />
             </div>
             <h3 className="text-xl font-bold mb-3">Cross-Border Services</h3>
             <p className="text-gray-600 mb-4">
@@ -267,23 +267,23 @@ export default function ServicesClient() {
             </p>
             <ul className="space-y-2 text-gray-600">
               <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <CheckCircle className="text-primary mr-2 h-4 w-4" />
                 <span>Daily deliveries to Juarez</span>
               </li>
               <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <CheckCircle className="text-primary mr-2 h-4 w-4" />
                 <span>On-demand deliveries into Mexico's interior</span>
               </li>
               <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <CheckCircle className="text-primary mr-2 h-4 w-4" />
                 <span>Extensive knowledge of border logistics</span>
               </li>
             </ul>
           </div>
           
           <div className="bg-white p-6 rounded-xl shadow-md">
-            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-              <BarChart3 className="text-blue-600" size={24} />
+            <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <BarChart3 className="text-primary" size={24} />
             </div>
             <h3 className="text-xl font-bold mb-3">Rail Service</h3>
             <p className="text-gray-600 mb-4">
@@ -291,23 +291,23 @@ export default function ServicesClient() {
             </p>
             <ul className="space-y-2 text-gray-600">
               <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <CheckCircle className="text-primary mr-2 h-4 w-4" />
                 <span>Over 50 rail spots across our locations</span>
               </li>
               <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <CheckCircle className="text-primary mr-2 h-4 w-4" />
                 <span>RailCar Tracker app for real-time monitoring</span>
               </li>
               <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <CheckCircle className="text-primary mr-2 h-4 w-4" />
                 <span>Efficient bulk transportation solutions</span>
               </li>
             </ul>
           </div>
           
           <div className="bg-white p-6 rounded-xl shadow-md">
-            <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-              <Shield className="text-blue-600" size={24} />
+            <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <Shield className="text-primary" size={24} />
             </div>
             <h3 className="text-xl font-bold mb-3">Specialized Systems</h3>
             <p className="text-gray-600 mb-4">
@@ -315,15 +315,15 @@ export default function ServicesClient() {
             </p>
             <ul className="space-y-2 text-gray-600">
               <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <CheckCircle className="text-primary mr-2 h-4 w-4" />
                 <span>Warehouse Management System (WMS)</span>
               </li>
               <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <CheckCircle className="text-primary mr-2 h-4 w-4" />
                 <span>RF scanning technology</span>
               </li>
               <li className="flex items-center">
-                <CheckCircle className="text-blue-600 mr-2 h-4 w-4" />
+                <CheckCircle className="text-primary mr-2 h-4 w-4" />
                 <span>Transload app with web access reports</span>
               </li>
             </ul>
@@ -333,7 +333,7 @@ export default function ServicesClient() {
         <div className="text-center">
           <Link 
             href="/contact" 
-            className="inline-flex items-center px-6 py-3 bg-mvt-blue text-white rounded-md hover:bg-mvt-blue/90 transition-colors"
+            className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
           >
             <span>Contact Us About Specialized Services</span>
             <CheckCircle className="ml-2 h-5 w-5" />
@@ -342,7 +342,7 @@ export default function ServicesClient() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-mvt-blue text-white py-20 md:py-24 relative overflow-hidden">
+      <section className="bg-primary text-primary-foreground py-20 md:py-24 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-full h-full">
@@ -367,7 +367,7 @@ export default function ServicesClient() {
             <div className="flex flex-col md:flex-row gap-6 justify-center mb-12">
               <Link 
                 href="/contact"
-                className="btn bg-white text-mvt-blue hover:bg-gray-100 btn-lg group inline-flex items-center justify-center"
+                className="btn bg-white text-primary hover:bg-gray-100 btn-lg group inline-flex items-center justify-center"
               >
                 <span>Contact Us</span>
                 <TruckIcon className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />

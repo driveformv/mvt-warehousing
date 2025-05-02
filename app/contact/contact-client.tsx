@@ -134,8 +134,8 @@ export default function ContactClient() {
             <h2 className="text-3xl font-bold mb-8">Contact Information</h2>
             <div className="space-y-8 mb-12">
               <div className="flex items-start gap-4">
-                <div className="bg-blue-100 p-3 rounded-full">
-                  <MapPin className="text-blue-600" size={24} />
+                <div className="bg-primary/10 p-3 rounded-full">
+                  <MapPin className="text-primary" size={24} />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Our Locations</h3>
@@ -176,8 +176,8 @@ export default function ContactClient() {
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className="bg-blue-100 p-3 rounded-full">
-                  <Phone className="text-blue-600" size={24} />
+                <div className="bg-primary/10 p-3 rounded-full">
+                  <Phone className="text-primary" size={24} />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Phone</h3>
@@ -185,8 +185,8 @@ export default function ContactClient() {
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className="bg-blue-100 p-3 rounded-full">
-                  <Mail className="text-blue-600" size={24} />
+                <div className="bg-primary/10 p-3 rounded-full">
+                  <Mail className="text-primary" size={24} />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Email</h3>
@@ -194,8 +194,8 @@ export default function ContactClient() {
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className="bg-blue-100 p-3 rounded-full">
-                  <Clock className="text-blue-600" size={24} />
+                <div className="bg-primary/10 p-3 rounded-full">
+                  <Clock className="text-primary" size={24} />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Hours of Operation</h3>
@@ -259,7 +259,7 @@ export default function ContactClient() {
                           href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(selectedFacility.address)}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                          className="text-primary hover:text-primary/80 text-sm font-medium"
                         >
                           Get Directions →
                         </a>
@@ -282,7 +282,7 @@ export default function ContactClient() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-mvt-blue text-white py-20 md:py-24 relative overflow-hidden">
+      <section className="bg-primary text-primary-foreground py-20 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
@@ -302,7 +302,7 @@ export default function ContactClient() {
             </p>
 
             <div className="flex flex-col md:flex-row gap-6 justify-center mb-12">
-              <a href="tel:8003271204" className="btn bg-white text-mvt-blue hover:bg-gray-100 btn-lg group inline-flex items-center justify-center">
+              <a href="tel:8003271204" className="btn bg-white text-primary hover:bg-gray-100 btn-lg group inline-flex items-center justify-center">
                 <Phone className="mr-2 h-5 w-5" />
                 <span>Call (800) 327-1204</span>
               </a>

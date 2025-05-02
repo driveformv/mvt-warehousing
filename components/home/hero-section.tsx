@@ -143,7 +143,7 @@ export default function HeroSection() {
             
             <Link 
               href="/services"
-              className="btn btn-outline border-white text-white hover:bg-white hover:text-mvt-blue btn-lg"
+              className="btn btn-outline border-white text-white hover:bg-white hover:text-primary btn-lg"
             >
               Explore Our Services
             </Link>

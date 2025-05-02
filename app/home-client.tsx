@@ -21,7 +21,7 @@ export default function HomeClient() {
       <ServicesSection />
 
       {/* Additional Services Section */}
-      <section className="bg-mvt-blue text-white py-20 md:py-24">
+      <section className="bg-primary text-primary-foreground py-20 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16" data-aos="fade-up" suppressHydrationWarning={true}>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Additional Services</h2>
@@ -32,7 +32,7 @@ export default function HomeClient() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div 
-              className="bg-mvt-blue/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-mvt-blue/40 transition-all duration-300 hover:-translate-y-1"
+              className="bg-primary/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-primary/40 transition-all duration-300 hover:-translate-y-1"
               data-aos="fade-up"
               data-aos-delay="100"
               suppressHydrationWarning={true}
@@ -44,7 +44,7 @@ export default function HomeClient() {
             </div>
             
             <div 
-              className="bg-mvt-blue/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-mvt-blue/40 transition-all duration-300 hover:-translate-y-1"
+              className="bg-primary/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-primary/40 transition-all duration-300 hover:-translate-y-1"
               data-aos="fade-up"
               data-aos-delay="200"
               suppressHydrationWarning={true}
@@ -56,7 +56,7 @@ export default function HomeClient() {
             </div>
             
             <div 
-              className="bg-mvt-blue/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-mvt-blue/40 transition-all duration-300 hover:-translate-y-1"
+              className="bg-primary/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-primary/40 transition-all duration-300 hover:-translate-y-1"
               data-aos="fade-up"
               data-aos-delay="300"
               suppressHydrationWarning={true}
@@ -68,7 +68,7 @@ export default function HomeClient() {
             </div>
             
             <div 
-              className="bg-mvt-blue/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-mvt-blue/40 transition-all duration-300 hover:-translate-y-1"
+              className="bg-primary/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-primary/40 transition-all duration-300 hover:-translate-y-1"
               data-aos="fade-up"
               data-aos-delay="400"
               suppressHydrationWarning={true}
@@ -80,7 +80,7 @@ export default function HomeClient() {
             </div>
             
             <div 
-              className="bg-mvt-blue/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-mvt-blue/40 transition-all duration-300 hover:-translate-y-1"
+              className="bg-primary/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-primary/40 transition-all duration-300 hover:-translate-y-1"
               data-aos="fade-up"
               data-aos-delay="500"
               suppressHydrationWarning={true}
@@ -92,7 +92,7 @@ export default function HomeClient() {
             </div>
             
             <div 
-              className="bg-mvt-blue/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-mvt-blue/40 transition-all duration-300 hover:-translate-y-1"
+              className="bg-primary/30 backdrop-blur-sm p-8 rounded-xl border border-white/10 hover:bg-primary/40 transition-all duration-300 hover:-translate-y-1"
               data-aos="fade-up"
               data-aos-delay="600"
               suppressHydrationWarning={true}
@@ -133,7 +133,7 @@ export default function HomeClient() {
                                         With 38 years of experience and over 700,000 square feet of warehousing space strategically located on the Border, we're an integrated company offering rail-served facilities with access to both UPRR and BNSF railroads.
               </p>
               <p className="text-gray-700 mb-8">
-                <strong>Our slogan:</strong> <span className="text-mvt-blue font-medium">We Make It Work</span>
+                <strong>Our slogan:</strong> <span className="text-primary font-medium">We Make It Work</span>
               </p>
               <Link 
                 href="/about"

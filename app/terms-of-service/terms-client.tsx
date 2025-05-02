@@ -5,7 +5,7 @@ import React from "react";
 export default function TermsOfServiceContent() {
   return (
     <main className="flex-1">
-      <div className="bg-mvt-blue py-16">
+      <div className="bg-primary py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-white text-center">Terms of Service</h1>
         </div>

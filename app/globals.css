@@ -77,17 +77,21 @@
     --card-foreground: 222 13% 19%;
     --popover: 0 0% 100%;
     --popover-foreground: 222 13% 19%;
-    --primary: 219 67% 15%; /* MVT blue: #0A2342 */
+    /* Exact HSL value for MVT blue: #0A2342 */
+    --primary: 219 67% 15%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 358 68% 54%; /* MVT red: #D64045 */
+    /* Exact HSL value for MVT red: #D64045 */
+    --secondary: 358 68% 54%;
     --secondary-foreground: 0 0% 100%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215 25% 45.1%;
-    --accent: 210 45% 47%; /* MVT lightBlue: #4A7AA8 */
+    /* Exact HSL value for MVT lightBlue: #4A7AA8 */
+    --accent: 210 45% 47%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 95%; /* MVT light: #F2F2F2 */
+    /* Exact HSL value for MVT light: #F2F2F2 */
+    --border: 0 0% 95%;
     --input: 0 0% 95%;
     --ring: 219 67% 15%;
     --chart-1: 219 67% 15%; /* MVT blue */
@@ -146,21 +150,21 @@
     @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
   
-  /* Button styles with improved states */
+  /* Button styles with improved states - using CSS variables for consistency */
   .btn {
     @apply inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background;
   }
   
   .btn-primary {
-    @apply bg-mvt-blue text-white hover:bg-mvt-blue/90 active:bg-mvt-blue/95;
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/95;
   }
   
   .btn-secondary {
-    @apply bg-mvt-red text-white hover:bg-mvt-red/90 active:bg-mvt-red/95;
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 active:bg-secondary/95;
   }
   
   .btn-outline {
-    @apply border-2 bg-transparent hover:bg-white/10 active:bg-white/20;
+    @apply border-2 bg-transparent hover:bg-accent/10 active:bg-accent/20;
   }
   
   .btn-lg {
@@ -256,6 +260,6 @@
   
   /* Focus styles for accessibility */
   .focus-ring {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-mvt-blue focus-visible:ring-offset-2;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
   }
 }

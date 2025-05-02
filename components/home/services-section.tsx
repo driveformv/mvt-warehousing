@@ -53,7 +53,7 @@ export default function ServicesSection() {
               suppressHydrationWarning={true}
             >
               <div className="p-6">
-                <div className="bg-mvt-blue p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6 group-hover:bg-mvt-red transition-colors duration-300">
+                <div className="bg-primary p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6 group-hover:bg-secondary transition-colors duration-300">
                   {service.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-4">{service.title}</h3>
@@ -62,7 +62,7 @@ export default function ServicesSection() {
                 </p>
                 <Link 
                   href={service.link}
-                  className="text-mvt-blue hover:text-mvt-lightBlue font-semibold inline-flex items-center group/link"
+                  className="text-primary hover:text-accent font-semibold inline-flex items-center group/link"
                 >
                   <span>Learn More</span>
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover/link:translate-x-1" />
