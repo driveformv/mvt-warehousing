@@ -6,7 +6,7 @@ export default function ServicesSection() {
     {
       icon: <Warehouse className="text-white" size={28} />,
       title: "Public Warehousing",
-      description: "Over 550,000 square feet of warehousing space with rail-served facilities across multiple strategic locations on the border, providing contract and public warehousing solutions.",
+      description: "Over 700,000 square feet of warehousing space strategically located on the Border, providing contract and public warehousing solutions.",
       link: "/services#warehousing",
       delay: 100,
     },

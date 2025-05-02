@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
+import { sendContactNotification, sendContactConfirmation } from '@/lib/resend';
 
 export async function POST(request: Request) {
   try {
@@ -47,6 +48,31 @@ export async function POST(request: Request) {
       .select();
     
     if (error) throw error;
+    
+    // Send notification email to admin
+    try {
+      await sendContactNotification({
+        name: body.name,
+        email: body.email,
+        message: body.message,
+        phone: body.phone,
+        company: body.company,
+        subject: body.subject,
+        formName: 'contact_form'
+      });
+      
+      // Send confirmation email to the user
+      await sendContactConfirmation({
+        name: body.name,
+        email: body.email,
+        subject: body.subject,
+        formName: 'contact_form'
+      });
+    } catch (emailError) {
+      // Log the error but don't fail the request
+      console.error('Error sending email notifications:', emailError);
+      // We still return success since the form data was saved to the database
+    }
     
     return NextResponse.json({ 
       success: true,

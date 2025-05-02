@@ -2,12 +2,14 @@
 
 import { useState } from 'react';
 import { trackFormSubmission } from '@/lib/analytics';
+import EmailConfigModal from './email-config-modal';
 
 interface ContactFormProps {
   className?: string;
+  isAdmin?: boolean;
 }
 
-export default function ContactForm({ className = '' }: ContactFormProps) {
+export default function ContactForm({ className = '', isAdmin = false }: ContactFormProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,6 +27,7 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
     type: null,
     message: ''
   });
+  const [isConfigModalOpen, setIsConfigModalOpen] = useState(false);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -93,7 +96,18 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
   
   return (
     <div className={`bg-white rounded-lg shadow-md p-6 ${className}`}>
-      <h2 className="text-2xl font-bold mb-6">Contact Us</h2>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold">Contact Us</h2>
+        {isAdmin && (
+          <button
+            type="button"
+            onClick={() => setIsConfigModalOpen(true)}
+            className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded text-sm"
+          >
+            Email Settings
+          </button>
+        )}
+      </div>
       
       {submitStatus.type && (
         <div 
@@ -214,6 +228,14 @@ export default function ContactForm({ className = '' }: ContactFormProps) {
           </button>
         </div>
       </form>
+
+      {isAdmin && (
+        <EmailConfigModal
+          isOpen={isConfigModalOpen}
+          onClose={() => setIsConfigModalOpen(false)}
+          formName="contact_form"
+        />
+      )}
     </div>
   );
 }

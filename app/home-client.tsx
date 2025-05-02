@@ -3,7 +3,6 @@
 import HeroSection from "@/components/home/hero-section";
 import StatsSection from "@/components/home/stats-section";
 import ServicesSection from "@/components/home/services-section";
-import TestimonialsSection from "@/components/home/testimonials-section";
 import CTASection from "@/components/home/cta-section";
 import Image from "next/image";
 import Link from "next/link";
@@ -131,7 +130,7 @@ export default function HomeClient() {
                 Founded in 1986, MVT Warehousing provides a full suite of transportation and warehousing services with a focus on safety, our personnel, and customer satisfaction.
               </p>
               <p className="text-gray-700 mb-8 text-lg leading-relaxed">
-                With 38 years of experience and over 550,000 square feet of warehousing space across 7 strategic locations, we're an integrated company offering rail-served facilities with access to both UPRR and BNSF railroads.
+                                        With 38 years of experience and over 700,000 square feet of warehousing space strategically located on the Border, we're an integrated company offering rail-served facilities with access to both UPRR and BNSF railroads.
               </p>
               <p className="text-gray-700 mb-8">
                 <strong>Our slogan:</strong> <span className="text-mvt-blue font-medium">We Make It Work</span>
@@ -160,9 +159,6 @@ export default function HomeClient() {
           </div>
         </div>
       </section>
-
-      {/* Testimonials Section */}
-      <TestimonialsSection />
 
       {/* CTA Section */}
       <CTASection />

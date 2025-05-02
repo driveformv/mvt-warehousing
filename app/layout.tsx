@@ -21,6 +21,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'MVT Warehousing | Premium Integrated Logistics Services',
   description: 'Your strategic partner for transportation, warehousing, and logistics services',
+  icons: {
+    icon: '/logos/MVT Logo 500X500.svg',
+    apple: '/logos/MVT Logo 500X500.svg',
+  },
 };
 
 export default function RootLayout({
@@ -30,7 +34,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} antialiased`} suppressHydrationWarning>
         <Suspense fallback={<>Loading analytics...</>}>
           <AnalyticsProvider>
             <AOSProvider>

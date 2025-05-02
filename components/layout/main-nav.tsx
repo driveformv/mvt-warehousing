@@ -44,11 +44,9 @@ export default function MainNav() {
       hasDropdown: true,
       dropdownItems: [
         { name: "Warehousing", path: "/services#warehousing" },
-        { name: "Transportation", path: "/services#transportation" },
         { name: "Bulk Transfer", path: "/services#bulk-transfer" },
         { name: "Transloading", path: "/services#transloading" },
         { name: "Additional Services", path: "/services#additional-services" },
-        { name: "Google Maps API", path: "/google-maps-test" },
       ]
     },
     { name: "About", path: "/about" },

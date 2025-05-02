@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-type LoginType = "load-tracking" | "customer-tools" | "driver-center" | null;
+type LoginType = "load-tracking" | "customer-tools" | "drive-with-stagecoach" | null;
 
 export default function LoginSection() {
   const [activeLogin, setActiveLogin] = useState<LoginType>(null);
@@ -41,15 +41,12 @@ export default function LoginSection() {
               Customer Tools
             </a>
             <a 
-              href="#" 
-              onClick={toggleLogin("driver-center")}
-              className={`py-2 px-3 transition-colors ${
-                activeLogin === "driver-center" 
-                  ? "text-mvt-blue font-medium" 
-                  : "text-gray-700 hover:text-mvt-blue"
-              }`}
+              href="https://intelliapp.driverapponline.com/c/stagecoach?r=MVTWarehousing_HP" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-2 px-3 transition-colors text-gray-700 hover:text-mvt-blue"
             >
-              Driver Center
+              Drive With Stagecoach
             </a>
           </div>
         </div>
@@ -134,11 +131,11 @@ export default function LoginSection() {
                 </div>
               )}
 
-              {/* Driver Center Login */}
-              {activeLogin === "driver-center" && (
+              {/* Drive With Stagecoach Login */}
+              {activeLogin === "drive-with-stagecoach" && (
                 <div className="bg-gray-50 p-4 rounded-md w-full max-w-md">
-                  <form action="https://sgce.loadtracking.com/im/apps/settlementhistory" method="post" className="space-y-3">
-                    <h3 className="font-semibold text-lg text-mvt-blue mb-2">Driver Center</h3>
+                  <form action="https://intelliapp.driverapponline.com/c/stagecoach?r=MVTWarehousing_HP" method="post" className="space-y-3">
+                    <h3 className="font-semibold text-lg text-mvt-blue mb-2">Drive With Stagecoach</h3>
                     <div>
                       <label htmlFor="username3" className="block text-sm font-medium text-gray-700 mb-1">
                         User Name

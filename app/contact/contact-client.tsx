@@ -5,7 +5,7 @@ import Image from "next/image";
 import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from '@react-google-maps/api';
 import ContactForm from "@/components/contact-form";
 import { pageview } from "@/lib/analytics";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { 
   DEFAULT_MAP_CENTER, 
   DEFAULT_CONTAINER_STYLE,
@@ -100,6 +100,13 @@ export default function ContactClient() {
   };
   
   const [selectedFacility, setSelectedFacility] = useState<null | typeof FACILITY_LOCATIONS[0]>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  
+  // Check if user is admin based on URL parameter
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    setIsAdmin(urlParams.get('admin') === 'true');
+  }, []);
 
   return (
     <main>
@@ -201,7 +208,7 @@ export default function ContactClient() {
               </div>
             </div>
           </div>
-          <ContactForm className="p-8 rounded-xl shadow-lg" />
+          <ContactForm className="p-8 rounded-xl shadow-lg" isAdmin={isAdmin} />
         </div>
       </section>
 

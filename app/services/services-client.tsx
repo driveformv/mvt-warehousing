@@ -37,20 +37,11 @@ export default function ServicesClient() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-white p-8 rounded-xl shadow-md text-center">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <TruckIcon className="text-blue-600" size={32} />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Full Truckload Transportation</h3>
-              <p className="text-gray-600">
-                US Customs bonded carrier providing both solo and team driver service with satellite tracking and on-demand location reporting across the United States.
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-xl shadow-md text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Warehouse className="text-blue-600" size={32} />
               </div>
               <h3 className="text-xl font-bold mb-3">Warehouse and Distribution</h3>
               <p className="text-gray-600">
-                Over 550,000 square feet of space across 7 strategic locations with rail-served facilities and complete inventory management systems.
+                Over 700,000 square feet strategically located on the Border with rail-served facilities and complete inventory management systems.
               </p>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-md text-center">
@@ -71,6 +62,15 @@ export default function ServicesClient() {
                 Custom solutions including packaging, cross-docking, pick and pack, inventory management, and just-in-time delivery services.
               </p>
             </div>
+            <div className="bg-white p-8 rounded-xl shadow-md text-center">
+              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Globe2 className="text-blue-600" size={32} />
+              </div>
+              <h3 className="text-xl font-bold mb-3">Transloading & Cross Dock</h3>
+              <p className="text-gray-600">
+                Premier domestic and international freight-management solutions from ocean containers, dry vans, flatbeds, railcars, and more with specialized equipment.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -81,7 +81,7 @@ export default function ServicesClient() {
           <div className="order-2 md:order-1">
             <h2 className="text-3xl font-bold mb-6">Warehouse and Distribution</h2>
             <p className="text-gray-600 mb-8">
-              With over 550,000 square feet of space across 7 strategic locations, MVT Warehousing provides contract and public warehousing solutions with complete inventory management. Our facilities are rail-served with access to both Union Pacific and BNSF railroads.
+              With over 700,000 square feet of space strategically located on the Border, MVT Warehousing provides contract and public warehousing solutions with complete inventory management. Our facilities are rail-served with access to both Union Pacific and BNSF railroads.
             </p>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
@@ -109,69 +109,6 @@ export default function ServicesClient() {
               fill
               className="object-cover rounded-xl shadow-lg"
             />
-          </div>
-        </div>
-      </section>
-
-      {/* Full Truckload Transportation Section */}
-      <section className="py-16 bg-white" id="transportation">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="lg:flex items-center gap-12">
-            <div className="lg:w-1/2 mb-8 lg:mb-0">
-              <Image 
-                src="/images/4-1.jpg"
-                alt="MVT Warehousing Trucks"
-                width={600}
-                height={400}
-                className="rounded-xl shadow-md object-cover w-full h-80 lg:h-96"
-              />
-            </div>
-            <div className="lg:w-1/2">
-              <h2 className="text-3xl font-bold mb-6">Full Truckload Transportation</h2>
-              <p className="mb-6 text-gray-600 text-lg">
-                Our modern fleet of trucks provides reliable and efficient transportation services across the United States with both solo and team driver options to meet your specific needs.
-              </p>
-              
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <CheckCircle className="text-blue-600 mr-3 mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-medium">US Customs Bonded Carrier</h4>
-                    <p className="text-gray-600">Authorized to transport bonded shipments with full compliance to customs regulations</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="text-blue-600 mr-3 mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-medium">Advanced Tracking Technology</h4>
-                    <p className="text-gray-600">24/7 satellite tracking with real-time location updates and detailed reporting</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="text-blue-600 mr-3 mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-medium">Nationwide Coverage</h4>
-                    <p className="text-gray-600">Service throughout the continental United States with strategic terminals in key locations</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="text-blue-600 mr-3 mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-medium">Solo & Team Driver Service</h4>
-                    <p className="text-gray-600">Flexible driver options to accommodate time-sensitive deliveries and long-haul requirements</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="mt-8">
-                <Link 
-                  href="/contact"
-                  className="inline-flex items-center px-6 py-3 bg-mvt-blue text-white rounded-md hover:bg-mvt-blue/90 transition-colors"
-                >
-                  Request Transportation Quote
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -421,7 +358,7 @@ export default function ServicesClient() {
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center" data-aos="fade-up">
+          <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Optimize Your Supply Chain?</h2>
             <p className="text-xl mb-10 text-white/80 max-w-2xl mx-auto">
               Contact us today to discuss how our comprehensive transportation and warehousing solutions can help your business grow.
@@ -431,8 +368,6 @@ export default function ServicesClient() {
               <Link 
                 href="/contact"
                 className="btn bg-white text-mvt-blue hover:bg-gray-100 btn-lg group inline-flex items-center justify-center"
-                data-aos="fade-up"
-                data-aos-delay="200"
               >
                 <span>Contact Us</span>
                 <TruckIcon className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -441,8 +376,6 @@ export default function ServicesClient() {
               <Link 
                 href="tel:8003271204"
                 className="btn btn-outline border-white text-white hover:bg-white/10 btn-lg inline-flex items-center justify-center"
-                data-aos="fade-up"
-                data-aos-delay="300"
               >
                 <Clock className="mr-2 h-5 w-5" />
                 <span>Request a Quote</span>

@@ -122,7 +122,7 @@ export default function HeroSection() {
             data-aos-duration="1000"
             suppressHydrationWarning={true}
           >
-            Founded in 1986, MVT Warehousing provides a full suite of transportation and warehousing services with 550,000+ square feet across 7 strategic locations.
+            Founded in 1986, MVT Warehousing provides a full suite of transportation and warehousing services with 700,000 square feet strategically located on the Border.
           </p>
           
           {/* CTA Buttons */}
