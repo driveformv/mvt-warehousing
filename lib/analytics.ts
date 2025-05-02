@@ -25,31 +25,45 @@ export const initGA = () => {
       window.dataLayer.push(arguments);
     };
     window.gtag('js', new Date());
-    window.gtag('config', process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID, {
-      page_path: window.location.pathname,
-    });
+    
+    // Check if the measurement ID is defined
+    if (process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID) {
+      window.gtag('config', process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID, {
+        page_path: window.location.pathname,
+      });
+    } else {
+      console.error('Google Analytics Measurement ID is undefined');
+    }
   }
 };
 
 // Track page views
 export const pageview = (url: string) => {
   if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('config', process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID, {
-      page_path: url,
-    });
+    if (process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID) {
+      window.gtag('config', process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID, {
+        page_path: url,
+      });
+    } else {
+      console.error('Google Analytics Measurement ID is undefined in pageview');
+    }
   }
 };
 
 // Track events
 export const event = ({ action, category, label, value, nonInteraction = false, ...rest }: GAEvent) => {
   if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', action, {
-      event_category: category,
-      event_label: label,
-      value: value,
-      non_interaction: nonInteraction,
-      ...rest,
-    });
+    if (process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID) {
+      window.gtag('event', action, {
+        event_category: category,
+        event_label: label,
+        value: value,
+        non_interaction: nonInteraction,
+        ...rest,
+      });
+    } else {
+      console.error('Google Analytics Measurement ID is undefined in event tracking');
+    }
   }
 };
 
