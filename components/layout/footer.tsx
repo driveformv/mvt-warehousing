@@ -191,6 +191,13 @@ export default function Footer() {
             <Link href="/terms-of-service" className="hover:text-white transition-colors">
               Terms of Service
             </Link>
+            <Link
+              href="/admin/login"
+              className="opacity-60 hover:opacity-100 transition-opacity hover:text-white"
+              aria-label="Admin Access"
+            >
+              •
+            </Link>
           </div>
         </div>
       </div>

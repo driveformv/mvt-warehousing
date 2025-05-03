@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
+import AdminLogout from '@/components/admin/admin-logout';
 
 interface EmailConfig {
   id: string;
@@ -277,7 +278,10 @@ export default function EmailConfigClient() {
 
   return (
     <div className="p-8 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8">Email Configuration Management</h1>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Email Configuration Management</h1>
+        <AdminLogout />
+      </div>
       
       {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">{error}</div>}
       
